@@ -1,0 +1,54 @@
+# Copyright (C) YEAR YOUR COMPANY
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Welcome to Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+
+msgid "Select Language:"
+msgstr "Select Language:"
+
+msgid "How do you want to use the system?"
+msgstr "How do you want to use the system?"
+
+msgid "Programmer"
+msgstr "Programmer"
+
+msgid "Designer"
+msgstr "Designer"
+
+msgid "Normal User"
+msgstr "Normal User"
+
+msgid "Quick Start:"
+msgstr "Quick Start:"
+
+msgid "Install Programming Tools"
+msgstr "Install Programming Tools"
+
+msgid "Design Tools"
+msgstr "Design Tools"
+
+msgid "Video Editing Tools"
+msgstr "Video Editing Tools"
+
+msgid "Update System (Pacman)"
+msgstr "Update System (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Update System (Yay)"
+
+msgid "Open Documentation"
+msgstr "Open Documentation"
+
+msgid "Open YouTube Channel"
+msgstr "Open YouTube Channel"
+

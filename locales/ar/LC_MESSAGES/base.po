@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: ar\n"
+
+msgid "Welcome to Helwan Linux"
+msgstr "مرحبًا بك في حلوان لينكس"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "مرحبًا بك في عالم حلوان لينكس! ❤️\nنحن هنا لمساعدتك في بناء أحلامك على أقوى أساس!"
+
+msgid "Select Language:"
+msgstr "اختر اللغة:"
+
+msgid "How do you want to use the system?"
+msgstr "كيف تريد استخدام النظام؟"
+
+msgid "Programmer"
+msgstr "مطور"
+
+msgid "Designer"
+msgstr "مصمم"
+
+msgid "Normal User"
+msgstr "مستخدم عادي"
+
+msgid "Quick Start:"
+msgstr "ابدأ بسرعة:"
+
+msgid "Install Programming Tools"
+msgstr "تثبيت أدوات البرمجة"
+
+msgid "Design Tools"
+msgstr "أدوات التصميم"
+
+msgid "Video Editing Tools"
+msgstr "أدوات تحرير الفيديو"
+
+msgid "Update System (Pacman)"
+msgstr "تحديث النظام (باكمان)"
+
+msgid "Update System (Yay)"
+msgstr "تحديث النظام (يِاي)"
+
+msgid "Open Documentation"
+msgstr "فتح الوثائق"
+
+msgid "Open YouTube Channel"
+msgstr "فتح قناة اليوتيوب"
+
