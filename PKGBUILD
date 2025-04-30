@@ -28,4 +28,7 @@ package() {
     lang_dir=$(dirname "${mo_file}" | sed 's|locales/||')
     install -Dm644 "${mo_file}" "${pkgdir}/usr/share/locale/${lang_dir}/LC_MESSAGES/helwan-welcome.mo"
   done
+
+  # Move the desktop entry to autostart for automatic startup
+  install -Dm644 "${srcdir}/${pkgname}/helwan-welcome.desktop" "${pkgdir}/home/$USER/.config/autostart/helwan-welcome.desktop"
 }
