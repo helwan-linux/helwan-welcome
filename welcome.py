@@ -29,7 +29,7 @@ class WelcomeApp(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(_("Welcome to Helwan Linux"))
-        self.setGeometry(100, 100, 600, 520)
+        self.setGeometry(100, 100, 100, 80)
         self.setStyleSheet("""
             QWidget {
                 background-color: #f5f5f5;
