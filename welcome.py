@@ -127,14 +127,16 @@ class WelcomeApp(QWidget):
         self.startup_checkbutton.stateChanged.connect(self.toggle_startup)
         self.controls_layout.addWidget(self.startup_checkbutton)
 
-        # Update buttons
+        # First row of update buttons
+        update_buttons_row1 = QHBoxLayout()
         self.update_pacman_button = QPushButton(_("Update System (Pacman)"), self)
         self.update_pacman_button.clicked.connect(lambda: self.update_system("pacman"))
-        self.controls_layout.addWidget(self.update_pacman_button)
+        update_buttons_row1.addWidget(self.update_pacman_button)
 
         self.update_yay_button = QPushButton(_("Update System (Yay)"), self)
         self.update_yay_button.clicked.connect(lambda: self.update_system("yay"))
-        self.controls_layout.addWidget(self.update_yay_button)
+        update_buttons_row1.addWidget(self.update_yay_button)
+        self.controls_layout.addLayout(update_buttons_row1)
 
         # System Language
         system_language_hbox = QHBoxLayout()
@@ -151,24 +153,29 @@ class WelcomeApp(QWidget):
         self.change_system_language_button.clicked.connect(self.apply_system_language)
         self.controls_layout.addWidget(self.change_system_language_button)
 
-        layout.addSpacing(15)
+        layout.addSpacing(2)
 
-        # Other buttons
+        # Second row of other buttons
+        other_buttons_row = QHBoxLayout()
         self.documentation_button = QPushButton(_("Open Documentation"), self)
         self.documentation_button.clicked.connect(self.open_documentation)
-        layout.addWidget(self.documentation_button)
+        other_buttons_row.addWidget(self.documentation_button)
 
         self.youtube_button = QPushButton(_("Open YouTube Channel"), self)
         self.youtube_button.clicked.connect(self.open_youtube_channel)
-        layout.addWidget(self.youtube_button)
+        other_buttons_row.addWidget(self.youtube_button)
+        self.controls_layout.addLayout(other_buttons_row)
 
+        # Third row of other buttons
+        other_buttons_row2 = QHBoxLayout()
         self.system_info_button = QPushButton(_("Show System Info"), self)
         self.system_info_button.clicked.connect(self.show_system_info)
-        layout.addWidget(self.system_info_button)
+        other_buttons_row2.addWidget(self.system_info_button)
 
         self.performance_monitor_button = QPushButton(_("Performance Monitor"), self)
         self.performance_monitor_button.clicked.connect(self.open_performance_monitor)
-        layout.addWidget(self.performance_monitor_button)
+        other_buttons_row2.addWidget(self.performance_monitor_button)
+        self.controls_layout.addLayout(other_buttons_row2)
 
         if self.show_on_startup:
             self.mark_as_shown()
