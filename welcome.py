@@ -66,7 +66,6 @@ class WelcomeApp:
         self.update_yay_button = tk.Button(self.buttons_frame, text=_("Update System (Yay)"), command=lambda: self.update_system("yay"))
         self.update_yay_button.grid(row=1, column=1, padx=10, pady=10)
 
-        # استبدال الزر بقائمة منسدلة لتغيير لغة النظام
         self.system_language_label = tk.Label(self.buttons_frame, text=_("System Language:"), font=("Arial", 10), bg="#f0f0f0")
         self.system_language_label.grid(row=2, column=0, padx=5, pady=5)
 
@@ -74,7 +73,7 @@ class WelcomeApp:
         self.system_language_choices = ['ar_EG.UTF-8', 'en_US.UTF-8', 'es_ES.UTF-8', 'pt_PT.UTF-8']
         self.system_language_combobox = ttk.Combobox(self.buttons_frame, textvariable=self.system_language_var, values=self.system_language_choices)
         self.system_language_combobox.grid(row=2, column=1, padx=5, pady=5)
-        self.system_language_combobox.set('ar_EG.UTF-8')  # تعيين اللغة العربية كلغة افتراضية في القائمة
+        self.system_language_combobox.set('ar_EG.UTF-8')
         self.change_system_language_button = tk.Button(self.buttons_frame, text=_("Apply System Language"), command=self.apply_system_language)
         self.change_system_language_button.grid(row=2, column=2, padx=10, pady=10)
 
@@ -84,7 +83,6 @@ class WelcomeApp:
         self.youtube_button = tk.Button(self.buttons_frame, text=_("Open YouTube Channel"), command=self.open_youtube_channel)
         self.youtube_button.grid(row=3, column=1, padx=10, pady=10)
 
-        # إضافة أزرار جديدة لتحليل النظام ومراقبة الأداء
         self.system_info_button = tk.Button(self.buttons_frame, text=_("Show System Info"), command=self.show_system_info)
         self.system_info_button.grid(row=4, column=0, padx=10, pady=10)
 
@@ -133,7 +131,6 @@ class WelcomeApp:
             messagebox.showerror(_("Error"), _("No internet connection."))
             return
 
-        # إنشاء شريط التقدم
         progress_window = tk.Toplevel(self.root)
         progress_window.title(_("Updating System"))
         progress_window.geometry("400x100")
@@ -144,7 +141,6 @@ class WelcomeApp:
         progress.pack(pady=10)
         progress.start()
 
-        # بدء التحديث في خيط منفصل لعدم تعطيل واجهة المستخدم
         def run_update():
             command = ["xterm", "-e"]
             if manager == "pacman":
@@ -202,7 +198,6 @@ class WelcomeApp:
         else:
             self.mark_as_not_shown()
 
-    # إضافة وظيفة لعرض معلومات النظام
     def show_system_info(self):
         info = ""
         info += "Kernel: " + self.run_command("uname -r")
@@ -212,7 +207,6 @@ class WelcomeApp:
         info += "Graphics:\n" + self.run_command("lspci | grep -i vga")
         self.show_output("System Info", info)
 
-    # إضافة وظيفة لمراقبة الأداء
     def show_performance(self):
         info = ""
         info += "CPU Usage:\n" + self.run_command("top -bn1 | grep 'Cpu(s)'")
@@ -224,19 +218,15 @@ class WelcomeApp:
         output_window = tk.Toplevel(self.root)
         output_window.title(title)
         text_box = tk.Text(output_window, wrap="word", bg="black", fg="lime", font=("Courier", 10))
-        text_box.pack(expand=True, fill="both")
+        text_box.pack(expand=True, fill="both", padx=10, pady=10)
         text_box.insert("1.0", content)
-        text_box.config(state="disabled")
+        text_box.config(state=tk.DISABLED)
 
-    # تنفيذ الأوامر عبر shell
     def run_command(self, command):
-        try:
-            return subprocess.check_output(command, shell=True, text=True)
-        except subprocess.CalledProcessError as e:
-            return f"Error: {e}"
+        result = subprocess.run(command, shell=True, capture_output=True, text=True)
+        return result.stdout if result.returncode == 0 else result.stderr
 
-# تشغيل التطبيق
-if __name__ == "__main__":
-    root = tk.Tk()
-    app = WelcomeApp(root)
-    root.mainloop()
+# تهيئة الواجهة
+root = tk.Tk()
+app = WelcomeApp(root)
+root.mainloop()
