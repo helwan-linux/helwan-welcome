@@ -1,24 +1,16 @@
 # Maintainer: Saeed Badrelden <saeedbadrelden2021@example.com>
 pkgname=helwan-welcome
-pkgver=1.0 # أو أي إصدار مناسب
+pkgver=1.0
 pkgrel=1
 pkgdesc="A welcome application for Helwan Linux"
 arch=('any')
 url="https://github.com/helwan-linux/helwan-welcome"
-license=('GPL3') # تأكد من أن هذا هو الترخيص الصحيح
+license=('GPL3')
 depends=('python-tkinter' 'python-pillow' 'python-gettext')
 makedepends=('git')
-conflicts=()
-replaces=()
-backup=()
 
-source=("git+https://github.com/helwan-linux/helwan-welcome.git#tag=v${pkgver}?depth=1") # استخدم التاج المناسب أو commit
-sha256sums=('SKIP') # سيتم حسابه لاحقًا
-
-pkgver() {
-  cd "${pkgname}"
-  printf "%s" "$(git describe --tags --always)"
-}
+source=("git+https://github.com/helwan-linux/helwan-welcome.git#tag=v${pkgver}?depth=1")
+sha256sums=('SKIP')
 
 build() {
   cd "${srcdir}/${pkgname}"
@@ -31,6 +23,9 @@ package() {
   install -Dm644 sources/logo.png "${pkgdir}/usr/share/pixmaps/helwan-welcome.png"
   install -Dm644 helwan-welcome.desktop "${pkgdir}/usr/share/applications/helwan-welcome.desktop"
 
-  # تثبيت ملفات الترجمة
-  find locales -name "*.mo" -exec install -Dm644 {} "${pkgdir}/usr/share/locale/{}/LC_MESSAGES/base.mo" \;
+  # Install translation files
+  find locales -name "*.mo" | while read -r mo_file; do
+    lang_dir=$(dirname "${mo_file}" | sed 's|locales/||')
+    install -Dm644 "${mo_file}" "${pkgdir}/usr/share/locale/${lang_dir}/LC_MESSAGES/helwan-welcome.mo"
+  done
 }
