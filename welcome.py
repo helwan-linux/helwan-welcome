@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 import sys
 import os
 import webbrowser
@@ -281,11 +283,11 @@ class WelcomeApp(QWidget):
         selected_language = self.system_language_combobox.currentText()
         try:
             self.show_message(_("Language Change"), _(f"System will be configured to {selected_language} now."))
-            subprocess.run(["localectl", "set-locale", f"LANG={selected_language}"], check=True)
+            subprocess.run(["sudo", "localectl", "set-locale", f"LANG={selected_language}"], check=True)
             subprocess.run(["sudo", "locale-gen"], check=True)
-            self.show_message(_("Done"), _("System language changed. Please log out and log in again."))
+            self.show_message(_("Done"), _("System language updated. You may need to reboot for changes to take full effect."))
         except subprocess.CalledProcessError as e:
-            self.show_message(_("Error"), str(e))
+            self.show_message(_("Error"), _(f"Failed to change system language: {e}"))
 
     def show_message(self, title, message):
         msg_box = QMessageBox(self)
@@ -293,7 +295,7 @@ class WelcomeApp(QWidget):
         msg_box.setText(message)
         msg_box.exec_()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = WelcomeApp()
     window.show()
