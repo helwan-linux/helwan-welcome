@@ -30,5 +30,5 @@ package() {
   done
 
   # Move the desktop entry to autostart for automatic startup
-  install -Dm644 "${srcdir}/${pkgname}/helwan-welcome.desktop" "${pkgdir}/home/$USER/.config/autostart/helwan-welcome.desktop"
+  install -Dm644 "${srcdir}/${pkgname}/helwan-welcome.desktop" "${pkgdir}/home/${USER}/.config/autostart/helwan-welcome.desktop"
 }
