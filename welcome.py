@@ -25,7 +25,7 @@ def set_language(language_code):
 
 # اللغة الافتراضية
 language_code = 'en'
-#_ = set_language(language_code)
+_ = set_language(language_code)
 
 class WelcomeApp(QWidget):
     def __init__(self):
