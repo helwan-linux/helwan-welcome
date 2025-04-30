@@ -11,7 +11,7 @@ msgid "Welcome to Helwan Linux"
 msgstr "مرحبًا بك في حلوان لينكس"
 
 msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
-msgstr "مرحبًا بك في عالم هلوان لينكس! ❤️\nنحن هنا لمساعدتك في بناء أحلامك على أقوى الأسس!"
+msgstr "مرحبًا بك في عالم حلوان لينكس! ❤️\nنحن هنا لمساعدتك في بناء أحلامك على أقوى الأسس!"
 
 msgid "Application Language:"
 msgstr "لغة التطبيق:"
