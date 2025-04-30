@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Helwan Welcome
+Comment=Welcome application for Helwan Linux
+Exec=helwan-welcome
+Icon=/usr/share/pixmaps/helwan-welcome.png
+Terminal=false
+Type=Application
+Categories=Utility;System;GNOME;GTK;
+StartupNotify=true
+Keywords=welcome;first run;intro;helwan;
+X-GNOME-Autostart-enabled=true
