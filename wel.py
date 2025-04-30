@@ -41,9 +41,19 @@ class WelcomeApp(QWidget):
 
     def load_logo(self):
         try:
+            # تأكد من أن المسار يحتوي على الصورة
             logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
-            logo = Image.open(logo_path).resize((150, 150))
-            return QPixmap.fromImage(logo.convert("RGBA"))
+            # إذا كانت الصورة موجودة وقابلة للتحميل
+            if os.path.exists(logo_path):
+                logo = QPixmap(logo_path)  # تحميل الصورة مباشرة كـ QPixmap
+                if not logo.isNull():
+                    return logo
+                else:
+                    print(f"Error: Image at {logo_path} is invalid.")
+                    return None
+            else:
+                print(f"Error: Logo image not found at {logo_path}")
+                return None
         except Exception as e:
             print(f"Error loading logo: {e}")
             return None
@@ -217,37 +227,25 @@ class WelcomeApp(QWidget):
         info += "Memory:\n" + self.run_command("free -h")
         info += "Disk Usage:\n" + self.run_command("df -h --total | grep total")
         info += "Graphics:\n" + self.run_command("lspci | grep -i vga")
-        self.show_output("System Info", info)
-
-    def show_performance(self):
-        info = ""
-        info += "CPU Usage:\n" + self.run_command("top -bn1 | grep 'Cpu(s)'")
-        info += "Memory Usage:\n" + self.run_command("free -h")
-        self.show_output("Performance Monitor", info)
+        self.show_message(_("System Information"), info)
 
     def run_command(self, command):
         try:
-            result = subprocess.check_output(command, shell=True, stderr=subprocess.STDOUT)
-            return result.decode('utf-8')
+            return subprocess.check_output(command, shell=True, text=True)
         except subprocess.CalledProcessError as e:
-            return f"Error: {e.output.decode()}"
+            return str(e)
+
+    def show_performance(self):
+        # قم بفتح نافذة لمراقبة الأداء هنا
+        self.show_message(_("Performance Monitor"), _("This feature will open a performance monitoring tool."))
 
     def show_message(self, title, message):
         dialog = QDialog(self)
         dialog.setWindowTitle(title)
-        dialog.setFixedSize(400, 100)
-        layout = QVBoxLayout(dialog)
-        label = QLabel(message)
-        layout.addWidget(label)
-        dialog.exec_()
-
-    def show_output(self, title, output):
-        dialog = QDialog(self)
-        dialog.setWindowTitle(title)
-        dialog.setFixedSize(500, 300)
-        layout = QVBoxLayout(dialog)
-        output_label = QLabel(output)
-        layout.addWidget(output_label)
+        dialog.setFixedSize(400, 200)
+        dialog_layout = QVBoxLayout(dialog)
+        dialog_label = QLabel(message, dialog)
+        dialog_layout.addWidget(dialog_label)
         dialog.exec_()
 
 if __name__ == "__main__":
