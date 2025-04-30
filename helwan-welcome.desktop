@@ -8,3 +8,4 @@ Type=Application
 Categories=Utility;System;
 StartupNotify=true
 Keywords=welcome;first run;intro;helwan;
+X-GNOME-Autostart-enabled=true
