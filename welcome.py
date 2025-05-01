@@ -233,7 +233,7 @@ class WelcomeApp(QWidget):
             return False
 
     def update_system(self, manager):
-        print(f"Running system update with manager: {manager}")  # Debugging line
+        #print(f"Running system update with manager: {manager}")  # Debugging line
 
         if not self.check_internet_connection():
             self.show_message(_("Error"), _("No internet connection."))
@@ -274,7 +274,7 @@ class WelcomeApp(QWidget):
         progress_window.show()
 
         def run_update():
-            print(f"Started thread for manager: {manager}")  # Debugging line
+            #print(f"Started thread for manager: {manager}")  # Debugging line
 
             if manager == "pacman":
                 command = "sudo pacman -Syu"
