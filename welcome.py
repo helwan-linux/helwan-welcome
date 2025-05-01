@@ -31,7 +31,7 @@ class WelcomeApp(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(_("Welcome to Helwan Linux"))
-        self.setGeometry(100, 100, 100, 80)
+        self.setGeometry(100, 100, 400, 600)
         self.setStyleSheet("""
             QWidget {
                 background-color: #f5f5f5;
@@ -95,10 +95,10 @@ class WelcomeApp(QWidget):
         layout.setAlignment(Qt.AlignCenter)
 
         if self.logo:
-            self.logo_label = QLabel(self)
-            self.logo_label.setPixmap(self.logo)
-            self.logo_label.setAlignment(Qt.AlignCenter)
-            layout.addWidget(self.logo_label)
+            logo_label = QLabel(self)
+            logo_label.setPixmap(self.logo)
+            logo_label.setAlignment(Qt.AlignCenter)
+            layout.addWidget(logo_label)
 
         self.greeting_label = QLabel(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
         self.greeting_label.setAlignment(Qt.AlignCenter)
@@ -225,7 +225,16 @@ class WelcomeApp(QWidget):
     def open_performance_monitor(self):
         subprocess.Popen(["xterm", "-e", "htop; echo; echo Press Enter to close...; read"])
 
+    def check_internet_connection(self):
+        try:
+            socket.create_connection(("www.google.com", 80), timeout=3)
+            return True
+        except OSError:
+            return False
+
     def update_system(self, manager):
+        print(f"Running system update with manager: {manager}")  # Debugging line
+
         if not self.check_internet_connection():
             self.show_message(_("Error"), _("No internet connection."))
             return
@@ -234,12 +243,13 @@ class WelcomeApp(QWidget):
         progress_window.setWindowTitle(_("Updating System"))
         progress_window.setFixedSize(400, 120)
         progress_layout = QVBoxLayout(progress_window)
+
         progress_label = QLabel(_("Updating system, please wait..."), progress_window)
         progress_label.setAlignment(Qt.AlignCenter)
         progress_layout.addWidget(progress_label)
 
         progress = QProgressBar(progress_window)
-        progress.setRange(0, 0)
+        progress.setRange(0, 0)  # Indeterminate progress bar
         progress_layout.addWidget(progress)
 
         progress_window.setStyleSheet("""
@@ -260,49 +270,40 @@ class WelcomeApp(QWidget):
                 border-radius: 4px;
             }
         """)
+
         progress_window.show()
 
         def run_update():
-            command = ["xterm", "-e"]
+            print(f"Started thread for manager: {manager}")  # Debugging line
+
             if manager == "pacman":
-                command.append("bash -c 'sudo pacman -Syu; echo; echo Press Enter to close...; read'")
+                command = "sudo pacman -Syu"
+            elif manager == "yay":
+                command = "yay -Syu"
             else:
-                command.append("bash -c 'yay -Syu; echo; echo Press Enter to close...; read'")
+                command = ""
 
-            try:
-                subprocess.Popen(command)
-                progress_window.accept()
-                self.show_message(_("Update Complete"), _("System updated successfully."))
-            except Exception as e:
-                progress_window.accept()
-                self.show_message(_("Error"), str(e))
+            if command:
+                os.system(f"xterm -e '{command}; echo; echo Press Enter to close...; read'")
 
-        threading.Thread(target=run_update).start()
+            progress_window.close()
 
-    def check_internet_connection(self):
-        try:
-            socket.create_connection(("www.google.com", 80), timeout=5)
-            return True
-        except OSError:
-            return False
+        # Run update in new thread
+        threading.Thread(target=run_update, daemon=True).start()
+
 
     def apply_system_language(self):
-        selected_language = self.system_language_combobox.currentText()
+        selected_lang = self.system_language_combobox.currentText()
         try:
-            self.show_message(_("Language Change"), _(f"System will be configured to {selected_language} now."))
-            subprocess.run(["sudo", "localectl", "set-locale", f"LANG={selected_language}"], check=True)
-            subprocess.run(["sudo", "locale-gen"], check=True)
-            self.show_message(_("Done"), _("System language updated. You may need to reboot for changes to take full effect."))
-        except subprocess.CalledProcessError as e:
-            self.show_message(_("Error"), _(f"Failed to change system language: {e}"))
+            subprocess.Popen(["xterm", "-e", f"bash -c 'sudo localectl set-locale LANG={selected_lang}; echo; echo Press Enter to close...; read'"])
+            self.show_message(_("Done"), _("System language applied successfully."))
+        except Exception as e:
+            self.show_message(_("Error"), str(e))
 
     def show_message(self, title, message):
-        msg_box = QMessageBox(self)
-        msg_box.setWindowTitle(title)
-        msg_box.setText(message)
-        msg_box.exec_()
+        QMessageBox.information(self, title, message)
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = WelcomeApp()
     window.show()
