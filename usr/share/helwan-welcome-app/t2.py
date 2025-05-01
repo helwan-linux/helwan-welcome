@@ -1,10 +1,9 @@
 #!/usr/bin/env python3
-
 import sys
 import os
 import webbrowser
 from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox, QComboBox, QProgressBar, QDialog, QHBoxLayout, QMessageBox
-from PyQt5.QtCore import Qt, QThread, pyqtSignal, QObject
+from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
 import subprocess
 import socket
@@ -29,48 +28,11 @@ def set_language(language_code):
 language_code = 'en'
 _ = set_language(language_code)
 
-class Worker(QObject):
-    finished = pyqtSignal(str)
-    progress = pyqtSignal(int)
-    error = pyqtSignal(str)
-    operation_completed = pyqtSignal(str, str) # operation, message
-
-    def __init__(self, parent=None):
-        super().__init__(parent)
-        self.command = []
-        self.operation_name = ""
-
-    def set_command(self, command, operation_name):
-        self.command = command
-        self.operation_name = operation_name
-
-    def run(self):
-        try:
-            process = subprocess.Popen(self.command, stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
-            while True:
-                output = process.stdout.readline()
-                if output == '' and process.poll() is not None:
-                    break
-                print(output.strip())  # يمكنك هنا معالجة المخرجات لعرض التقدم بشكل أدق إذا كان ذلك ممكنًا
-
-            return_code = process.wait()
-            if return_code == 0:
-                self.operation_completed.emit(self.operation_name, _("{} completed successfully.").format(self.operation_name))
-            else:
-                error_output = process.stderr.read()
-                self.error.emit(_("Failed to {}.").format(self.operation_name) + f"\n{error_output}")
-        except FileNotFoundError:
-            self.error.emit(_("Error: Command not found."))
-        except Exception as e:
-            self.error.emit(f"An unexpected error occurred: {e}")
-        finally:
-            self.finished.emit("Done")
-
 class WelcomeApp(QWidget):
     def __init__(self):
         super().__init__()
         self.setWindowTitle(_("Welcome to Helwan Linux"))
-        self.setGeometry(100, 100, 400, 750)  # زيادة الطول لاستيعاب العناصر الجديدة
+        self.setGeometry(100, 100, 400, 650)  # Increased height to accommodate the new dropdown
         self.setStyleSheet("""
             QWidget {
                 background-color: #f5f5f5;
@@ -85,8 +47,9 @@ class WelcomeApp(QWidget):
                 color: #333;
                 border: 1px solid #ccc;
                 border-radius: 5px;
-                padding: 8px 15px;
+                padding: 6px 12px; /* Reduced padding for smaller buttons */
                 margin-top: 5px;
+                font-size: 12px; /* Slightly smaller font */
             }
             QPushButton:hover {
                 background-color: #d0d0d0;
@@ -103,9 +66,6 @@ class WelcomeApp(QWidget):
                 padding: 6px;
                 margin-top: 5px;
             }
-            QProgressBar {
-                margin-top: 10px;
-            }
         """)
 
         self.startup_file = os.path.join(os.path.expanduser("~"), ".helwan_welcome_shown")
@@ -113,16 +73,6 @@ class WelcomeApp(QWidget):
 
         self.logo = self.load_logo()
         self.init_ui()
-
-        self.worker_thread = QThread()
-        self.worker = Worker()
-        self.worker.moveToThread(self.worker_thread)
-        self.worker_thread.started.connect(self.worker.run)
-        self.worker.operation_completed.connect(self.show_operation_completed_message)
-        self.worker.error.connect(self.show_error_message)
-        self.worker.finished.connect(self.worker_thread.quit)
-        self.worker.finished.connect(self.worker.deleteLater)
-        self.worker_thread.finished.connect(self.worker_thread.deleteLater)
 
     def load_logo(self):
         try:
@@ -154,11 +104,11 @@ class WelcomeApp(QWidget):
 
         self.greeting_label = QLabel(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
         self.greeting_label.setAlignment(Qt.AlignCenter)
-        self.greeting_label.setStyleSheet("font-size: 15px; margin-top: 15px; margin-bottom: 25px; color: #555;")
+        self.greeting_label.setStyleSheet("font-size: 15px; margin-top: 15px; margin-bottom: 20px; color: #555;") # Reduced bottom margin
         layout.addWidget(self.greeting_label)
 
         self.controls_layout = QVBoxLayout()
-        self.controls_layout.setSpacing(12)
+        self.controls_layout.setSpacing(10) # Reduced spacing
         layout.addLayout(self.controls_layout)
 
         # Application Language
@@ -179,14 +129,28 @@ class WelcomeApp(QWidget):
         self.startup_checkbutton.stateChanged.connect(self.toggle_startup)
         self.controls_layout.addWidget(self.startup_checkbutton)
 
-        # Update Buttons
+        # Install Kernel
+        kernel_hbox = QHBoxLayout()
+        self.install_kernel_label = QLabel(_("Install Kernel:"))
+        kernel_hbox.addWidget(self.install_kernel_label)
+        kernel_hbox.addStretch(1)
+        self.kernel_combobox = QComboBox(self)
+        self.kernel_combobox.addItems(['linux-lts', 'linux-zen'])
+        kernel_hbox.addWidget(self.kernel_combobox)
+        self.controls_layout.addLayout(kernel_hbox)
+
+        self.install_kernel_button = QPushButton(_("Install Selected Kernel"), self)
+        self.install_kernel_button.clicked.connect(self.install_selected_kernel)
+        self.controls_layout.addWidget(self.install_kernel_button)
+
+        # First row of update buttons
         update_buttons_row1 = QHBoxLayout()
-        self.update_pacman_button = QPushButton(_("Update System (Pacman)"), self)
-        self.update_pacman_button.clicked.connect(lambda: self.start_operation(["sudo", "pacman", "-Syu", "--noconfirm"], _("System Update (Pacman)")))
+        self.update_pacman_button = QPushButton(_("Update (Pacman)"), self) # Shorter text
+        self.update_pacman_button.clicked.connect(lambda: self.update_system("pacman"))
         update_buttons_row1.addWidget(self.update_pacman_button)
 
-        self.update_yay_button = QPushButton(_("Update System (Yay)"), self)
-        self.update_yay_button.clicked.connect(lambda: self.start_operation(["yay", "-Syu", "--noconfirm"], _("System Update (Yay)")))
+        self.update_yay_button = QPushButton(_("Update (Yay)"), self) # Shorter text
+        self.update_yay_button.clicked.connect(lambda: self.update_system("yay"))
         update_buttons_row1.addWidget(self.update_yay_button)
         self.controls_layout.addLayout(update_buttons_row1)
 
@@ -201,78 +165,174 @@ class WelcomeApp(QWidget):
         system_language_hbox.addWidget(self.system_language_combobox)
         self.controls_layout.addLayout(system_language_hbox)
 
-        self.change_system_language_button = QPushButton(_("Apply System Language"), self)
+        self.change_system_language_button = QPushButton(_("Apply Language"), self) # Shorter text
         self.change_system_language_button.clicked.connect(self.apply_system_language)
         self.controls_layout.addWidget(self.change_system_language_button)
 
-        # Kernel Installation
-        kernel_hbox = QHBoxLayout()
-        self.kernel_label = QLabel(_("Install Kernel:"))
-        kernel_hbox.addWidget(self.kernel_label)
-        kernel_hbox.addStretch(1)
-        self.kernel_combobox = QComboBox(self)
-        self.kernel_combobox.addItems(['linux-lts', 'linux-zen', 'linux-hardened'])
-        kernel_hbox.addWidget(self.kernel_combobox)
-        self.controls_layout.addLayout(kernel_hbox)
-
-        self.install_kernel_button = QPushButton(_("Install Selected Kernel"), self)
-        self.install_kernel_button.clicked.connect(self.install_selected_kernel)
-        self.controls_layout.addWidget(self.install_kernel_button)
-
-        self.progress_bar = QProgressBar(self)
-        self.progress_bar.setRange(0, 0) # الوضع المشغول افتراضيًا
-        self.progress_bar.hide()
-        self.controls_layout.addWidget(self.progress_bar)
-
-        # Other Buttons
+        # Second row of other buttons
         other_buttons_row = QHBoxLayout()
-        self.documentation_button = QPushButton(_("Open Documentation"), self)
+        self.documentation_button = QPushButton(_("Documentation"), self) # Shorter text
         self.documentation_button.clicked.connect(self.open_documentation)
         other_buttons_row.addWidget(self.documentation_button)
 
-        self.quit_button = QPushButton(_("Quit"), self)
-        self.quit_button.clicked.connect(self.close)
-        other_buttons_row.addWidget(self.quit_button)
+        self.youtube_button = QPushButton(_("YouTube Channel"), self) # Shorter text
+        self.youtube_button.clicked.connect(self.open_youtube_channel)
+        other_buttons_row.addWidget(self.youtube_button)
         self.controls_layout.addLayout(other_buttons_row)
 
-    def change_language(self, language_code):
+        # Third row of other buttons
+        other_buttons_row2 = QHBoxLayout()
+        self.system_info_button = QPushButton(_("System Info"), self) # Shorter text
+        self.system_info_button.clicked.connect(self.show_system_info)
+        other_buttons_row2.addWidget(self.system_info_button)
+
+        self.performance_monitor_button = QPushButton(_("Monitor"), self) # Shorter text
+        self.performance_monitor_button.clicked.connect(self.open_performance_monitor)
+        other_buttons_row2.addWidget(self.performance_monitor_button)
+        self.controls_layout.addLayout(other_buttons_row2)
+
+        if self.show_on_startup:
+            self.mark_as_shown()
+
+    def change_language(self, selected_language_code):
         global _
-        _ = set_language(language_code)
+        _ = set_language(selected_language_code)
+        self.update_ui()
+
+    def update_ui(self):
+        self.setWindowTitle(_("Welcome to Helwan Linux"))
         self.greeting_label.setText(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
+        self.app_language_label.setText(_("Application Language:"))
+        self.startup_checkbutton.setText(_("Show on startup"))
+        self.update_pacman_button.setText(_("Update (Pacman)"))
+        self.update_yay_button.setText(_("Update (Yay)"))
+        self.system_language_label.setText(_("System Language:"))
+        self.change_system_language_button.setText(_("Apply Language"))
+        self.documentation_button.setText(_("Documentation"))
+        self.youtube_button.setText(_("YouTube Channel"))
+        self.system_info_button.setText(_("System Info"))
+        self.performance_monitor_button.setText(_("Monitor"))
+        self.install_kernel_label.setText(_("Install Kernel:"))
+        self.install_kernel_button.setText(_("Install Selected Kernel"))
 
     def toggle_startup(self, state):
         if state == Qt.Checked:
-            os.system("echo '@python3 {0}/helwan_startup.py' >> ~/.config/autostart/helwan.desktop".format(os.path.expanduser("~")))
-            with open(self.startup_file, "w"): pass
+            if os.path.exists(self.startup_file):
+                os.remove(self.startup_file)
         else:
-            os.remove(self.startup_file)
-            os.system("rm ~/.config/autostart/helwan.desktop")
+            self.mark_as_shown()
 
-    def start_operation(self, command, operation_name):
-        self.worker.set_command(command, operation_name)
-        self.worker_thread.start()
+    def mark_as_shown(self):
+        try:
+            with open(self.startup_file, "w") as f:
+                f.write("shown")
+        except Exception as e:
+            print(f"Error writing startup file: {e}")
 
-    def show_operation_completed_message(self, operation, message):
-        QMessageBox.information(self, operation, message)
+    def open_documentation(self):
+        webbrowser.open("https://helwan-linux.mystrikingly.com/documentation")
 
-    def show_error_message(self, error_message):
-        QMessageBox.critical(self, _("Error"), error_message)
+    def open_youtube_channel(self):
+        webbrowser.open("https://www.youtube.com/channel/UCKlFDMjrzkVFzw-erYKVibQ")
 
-    def apply_system_language(self):
-        system_language = self.system_language_combobox.currentText()
-        confirmation = QMessageBox.question(self, _("Confirm System Language Change"), _("Are you sure you want to change system language to {}?".format(system_language)), QMessageBox.Yes | QMessageBox.No)
-        if confirmation == QMessageBox.Yes:
-            self.start_operation(["sudo", "localectl", "set-locale", "LANG=" + system_language], _("System Language Change"))
+    def show_system_info(self):
+        subprocess.Popen(["xterm", "-e", "neofetch; echo; echo Press Enter to close...; read"])
+
+    def open_performance_monitor(self):
+        subprocess.Popen(["xterm", "-e", "htop; echo; echo Press Enter to close...; read"])
+
+    def check_internet_connection(self):
+        try:
+            socket.create_connection(("www.google.com", 80), timeout=3)
+            return True
+        except OSError:
+            return False
+
+    def update_system(self, manager):
+        if not self.check_internet_connection():
+            self.show_message(_("Error"), _("No internet connection."))
+            return
+
+        progress_window = QDialog(self)
+        progress_window.setWindowTitle(_("Updating System"))
+        progress_layout = QVBoxLayout(progress_window)
+
+        progress_label = QLabel(_("Updating system... Please wait."))
+        progress_layout.addWidget(progress_label)
+
+        progress_bar = QProgressBar(progress_window)
+        progress_bar.setRange(0, 100)
+        progress_bar.setValue(0)
+        progress_layout.addWidget(progress_bar)
+
+        def run_update_command():
+            try:
+                if manager == "pacman":
+                    subprocess.run(["sudo", "pacman", "-Syu", "--noconfirm"], check=True)
+                elif manager == "yay":
+                    subprocess.run(["yay", "-Syu", "--noconfirm"], check=True)
+
+                progress_bar.setValue(100)
+                self.show_message(_("Update Completed"), _("System update completed successfully."))
+            except subprocess.CalledProcessError:
+                progress_bar.setValue(100)
+                self.show_message(_("Error"), _("Failed to update the system."))
+
+        threading.Thread(target=run_update_command, daemon=True).start()
+
+        progress_window.exec_()
 
     def install_selected_kernel(self):
         selected_kernel = self.kernel_combobox.currentText()
-        confirmation = QMessageBox.question(self, _("Confirm Kernel Installation"), _("Are you sure you want to install the selected kernel: {}?".format(selected_kernel)), QMessageBox.Yes | QMessageBox.No)
-        if confirmation == QMessageBox.Yes:
-            self.start_operation(["sudo", "pacman", "-S", selected_kernel, "--noconfirm"], _("Kernel Installation"))
+        if not self.check_internet_connection():
+            self.show_message(_("Error"), _("No internet connection."))
+            return
 
-    def open_documentation(self):
-        url = "https://www.archlinux.org/doc/"
-        webbrowser.open(url)
+        confirmation = QMessageBox.question(
+            self,
+            _("Install Kernel"),
+            _("Are you sure you want to install {}? This may take some time.").format(selected_kernel),
+            QMessageBox.Yes | QMessageBox.No,
+            QMessageBox.No
+        )
+
+        if confirmation == QMessageBox.Yes:
+            progress_window = QDialog(self)
+            progress_window.setWindowTitle(_("Installing {}").format(selected_kernel))
+            progress_layout = QVBoxLayout(progress_window)
+
+            progress_label = QLabel(_("Installing {}... Please wait.").format(selected_kernel))
+            progress_layout.addWidget(progress_label)
+
+            progress_bar = QProgressBar(progress_window)
+            progress_bar.setRange(0, 0) # Indeterminate progress
+            progress_layout.addWidget(progress_bar)
+
+            def run_install_command():
+                try:
+                    subprocess.run(["sudo", "pacman", "-S", "--needed", "--noconfirm", selected_kernel], check=True)
+                    progress_bar.setValue(100) # Just to stop indeterminate
+                    self.show_message(_("Installation Completed"), _("{} installed successfully. You may need to reboot to use the new kernel.").format(selected_kernel))
+                except subprocess.CalledProcessError:
+                    progress_bar.setValue(100) # Just to stop indeterminate
+                    self.show_message(_("Error"), _("Failed to install {}.").format(selected_kernel))
+
+            threading.Thread(target=run_install_command, daemon=True).start()
+            progress_window.exec_()
+
+    def show_message(self, title, message):
+        msg = QMessageBox(self)
+        msg.setWindowTitle(title)
+        msg.setText(message)
+        msg.exec_()
+
+    def apply_system_language(self):
+        system_language = self.system_language_combobox.currentText()
+        try:
+            subprocess.run(["sudo", "localectl", "set-locale", f"LANG={system_language}"], check=True)
+            self.show_message(_("System Language Updated"), _("System language applied successfully. Please log out and log back in to see the changes."))
+        except subprocess.CalledProcessError:
+            self.show_message(_("Error"), _("Failed to apply system language."))
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
