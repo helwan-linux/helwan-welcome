@@ -14,7 +14,7 @@ import gettext
 # تعيين اللغة الافتراضية وتبديلها
 def set_language(language_code):
     try:
-        current_dir = os.path.dirname(os.path.abspath(__file__))  # الحصول على المسار الكامل للمجلد الحالي
+        current_dir = os.path.dirname(os.path.abspath(__file__))  # المسار الحالي للملف
         lang_path = os.path.join(current_dir, 'locales')  # مسار ملفات الترجمة
         language = gettext.translation('base', localedir=lang_path, languages=[language_code])
         language.install()
@@ -155,8 +155,6 @@ class WelcomeApp(QWidget):
         self.change_system_language_button.clicked.connect(self.apply_system_language)
         self.controls_layout.addWidget(self.change_system_language_button)
 
-        layout.addSpacing(2)
-
         # Second row of other buttons
         other_buttons_row = QHBoxLayout()
         self.documentation_button = QPushButton(_("Open Documentation"), self)
@@ -260,7 +258,7 @@ class WelcomeApp(QWidget):
 
                 progress_bar.setValue(100)
                 self.show_message(_("Update Completed"), _("System update completed successfully."))
-            except subprocess.CalledProcessError as e:
+            except subprocess.CalledProcessError:
                 progress_bar.setValue(100)
                 self.show_message(_("Error"), _("Failed to update the system."))
 
@@ -277,13 +275,12 @@ class WelcomeApp(QWidget):
     def apply_system_language(self):
         system_language = self.system_language_combobox.currentText()
         try:
-            subprocess.run(["sudo", "locale-gen", system_language], check=True)
-            subprocess.run(["sudo", "update-locale", f"LANG={system_language}"], check=True)
-            self.show_message(_("Success"), _("System language applied successfully. Please reboot your system."))
+            subprocess.run(["sudo", "localectl", "set-locale", f"LANG={system_language}"], check=True)
+            self.show_message(_("System Language Updated"), _("System language applied successfully. Please log out and log back in to see the changes."))
         except subprocess.CalledProcessError:
             self.show_message(_("Error"), _("Failed to apply system language."))
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = WelcomeApp()
     window.show()
