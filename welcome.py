@@ -14,12 +14,14 @@ import gettext
 # تعيين اللغة الافتراضية وتبديلها
 def set_language(language_code):
     try:
-        language = gettext.translation('base', localedir='locales', languages=[language_code])
+        current_dir = os.path.dirname(os.path.abspath(__file__))  # الحصول على المسار الكامل للمجلد الحالي
+        lang_path = os.path.join(current_dir, 'locales')  # مسار ملفات الترجمة
+        language = gettext.translation('base', localedir=lang_path, languages=[language_code])
         language.install()
         return language.gettext
     except FileNotFoundError:
         print(f"Error: Locale files for '{language_code}' not found. Falling back to English.")
-        language = gettext.translation('base', localedir='locales', languages=['en'])
+        language = gettext.translation('base', localedir=lang_path, languages=['en'])
         language.install()
         return language.gettext
 
@@ -32,7 +34,7 @@ class WelcomeApp(QWidget):
         super().__init__()
         self.setWindowTitle(_("Welcome to Helwan Linux"))
         self.setGeometry(100, 100, 400, 600)
-        self.setStyleSheet("""
+        self.setStyleSheet(""" 
             QWidget {
                 background-color: #f5f5f5;
                 font-family: 'Segoe UI', sans-serif;
@@ -233,75 +235,53 @@ class WelcomeApp(QWidget):
             return False
 
     def update_system(self, manager):
-        #print(f"Running system update with manager: {manager}")  # Debugging line
-
         if not self.check_internet_connection():
             self.show_message(_("Error"), _("No internet connection."))
             return
 
         progress_window = QDialog(self)
         progress_window.setWindowTitle(_("Updating System"))
-        progress_window.setFixedSize(400, 120)
         progress_layout = QVBoxLayout(progress_window)
 
-        progress_label = QLabel(_("Updating system, please wait..."), progress_window)
-        progress_label.setAlignment(Qt.AlignCenter)
+        progress_label = QLabel(_("Updating system... Please wait."))
         progress_layout.addWidget(progress_label)
 
-        progress = QProgressBar(progress_window)
-        progress.setRange(0, 0)  # Indeterminate progress bar
-        progress_layout.addWidget(progress)
+        progress_bar = QProgressBar(progress_window)
+        progress_bar.setRange(0, 100)
+        progress_bar.setValue(0)
+        progress_layout.addWidget(progress_bar)
 
-        progress_window.setStyleSheet("""
-            QDialog {
-                background-color: #f5f5f5;
-            }
-            QLabel {
-                color: #333;
-                font-size: 14px;
-            }
-            QProgressBar {
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                text-align: center;
-            }
-            QProgressBar::chunk {
-                background-color: #5cb85c;
-                border-radius: 4px;
-            }
-        """)
+        def run_update_command():
+            try:
+                if manager == "pacman":
+                    subprocess.run(["sudo", "pacman", "-Syu", "--noconfirm"], check=True)
+                elif manager == "yay":
+                    subprocess.run(["yay", "-Syu", "--noconfirm"], check=True)
 
-        progress_window.show()
+                progress_bar.setValue(100)
+                self.show_message(_("Update Completed"), _("System update completed successfully."))
+            except subprocess.CalledProcessError as e:
+                progress_bar.setValue(100)
+                self.show_message(_("Error"), _("Failed to update the system."))
 
-        def run_update():
-            #print(f"Started thread for manager: {manager}")  # Debugging line
+        threading.Thread(target=run_update_command, daemon=True).start()
 
-            if manager == "pacman":
-                command = "sudo pacman -Syu"
-            elif manager == "yay":
-                command = "yay -Syu"
-            else:
-                command = ""
-
-            if command:
-                os.system(f"xterm -e '{command}; echo; echo Press Enter to close...; read'")
-
-            progress_window.close()
-
-        # Run update in new thread
-        threading.Thread(target=run_update, daemon=True).start()
-
-
-    def apply_system_language(self):
-        selected_lang = self.system_language_combobox.currentText()
-        try:
-            subprocess.Popen(["xterm", "-e", f"bash -c 'sudo localectl set-locale LANG={selected_lang}; echo; echo Press Enter to close...; read'"])
-            self.show_message(_("Done"), _("System language applied successfully."))
-        except Exception as e:
-            self.show_message(_("Error"), str(e))
+        progress_window.exec_()
 
     def show_message(self, title, message):
-        QMessageBox.information(self, title, message)
+        msg = QMessageBox(self)
+        msg.setWindowTitle(title)
+        msg.setText(message)
+        msg.exec_()
+
+    def apply_system_language(self):
+        system_language = self.system_language_combobox.currentText()
+        try:
+            subprocess.run(["sudo", "locale-gen", system_language], check=True)
+            subprocess.run(["sudo", "update-locale", f"LANG={system_language}"], check=True)
+            self.show_message(_("Success"), _("System language applied successfully. Please reboot your system."))
+        except subprocess.CalledProcessError:
+            self.show_message(_("Error"), _("Failed to apply system language."))
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
