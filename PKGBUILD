@@ -1,15 +1,15 @@
-# Maintainer: Erik Dubois <erik.dubois@gmail.com>
-pkgname=helwan-welcome-app
-_pkgname=helwan-welcome-app
+# Maintainer: Saeed Badrelden <saeedbadrelden2021@gmail.com>
+pkgname=hel-welcome-app
+_pkgname=hel-welcome-app
 _destname1="/etc/skel/.config/"
 _destname2="/usr/"
-#_licensedir="/usr/share/arcolinux/licenses/"
 pkgver=1.1
 pkgrel=01
 pkgdesc="Welcome application for helwanlinux"
 arch=('any')
 url="https://github.com/helwan-linux/helwan-welcome"
 license=('GPL3')
+conflicts=('helwan-welcome-app')
 makedepends=('git')
 depends=('python-pyqt5' 'gettext' 'libwnck3' 'arandr')
 provides=("${pkgname}")
