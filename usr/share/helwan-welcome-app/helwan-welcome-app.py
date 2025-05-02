@@ -220,16 +220,32 @@ class WelcomeApp(QWidget):
         webbrowser.open("https://www.youtube.com/channel/UCKlFDMjrzkVFzw-erYKVibQ")
 
     def show_system_info(self):
-        subprocess.Popen(["xterm", "-e", "neofetch; echo; echo Press Enter to close...; read"])
+        subprocess.Popen(["xterm", "-hold", "-e", "neofetch; echo; echo Press Enter to close...; read"])
 
     def open_performance_monitor(self):
-        subprocess.Popen(["xterm", "-e", "htop; echo; echo Press Enter to close...; read"])
+        subprocess.Popen(["xterm", "-hold", "-e", "htop"])
+
+    def apply_system_language(self):
+        try:
+            selected_language = self.system_language_combobox.currentText()
+            subprocess.run(["sudo", "locale-gen", selected_language], check=True)
+            subprocess.run(["sudo", "update-locale", f"LANG={selected_language}"], check=True)
+            self.show_message(_("Language Applied"), _("System language has been changed successfully."))
+        except subprocess.CalledProcessError as e:
+            self.show_message(_("Error"), _("Failed to apply the system language."))
+
+    def show_message(self, title, message):
+        msg_box = QMessageBox()
+        msg_box.setWindowTitle(title)
+        msg_box.setText(message)
+        msg_box.setIcon(QMessageBox.Information)
+        msg_box.exec_()
 
     def check_internet_connection(self):
         try:
-            socket.create_connection(("www.google.com", 80), timeout=3)
+            socket.create_connection(("8.8.8.8", 53), timeout=5)
             return True
-        except OSError:
+        except (socket.timeout, socket.gaierror):
             return False
 
     def update_system(self, manager):
@@ -252,9 +268,9 @@ class WelcomeApp(QWidget):
         def run_update_command():
             try:
                 if manager == "pacman":
-                    subprocess.run(["sudo", "pacman", "-Syu", "--noconfirm"], check=True)
+                    subprocess.run(["xterm", "-e", "sudo pacman -Syu --noconfirm"], check=True)
                 elif manager == "yay":
-                    subprocess.run(["yay", "-Syu", "--noconfirm"], check=True)
+                    subprocess.run(["xterm", "-e", "sudo yay -Syu --noconfirm"], check=True)
 
                 progress_bar.setValue(100)
                 self.show_message(_("Update Completed"), _("System update completed successfully."))
@@ -266,21 +282,7 @@ class WelcomeApp(QWidget):
 
         progress_window.exec_()
 
-    def show_message(self, title, message):
-        msg = QMessageBox(self)
-        msg.setWindowTitle(title)
-        msg.setText(message)
-        msg.exec_()
-
-    def apply_system_language(self):
-        system_language = self.system_language_combobox.currentText()
-        try:
-            subprocess.run(["sudo", "localectl", "set-locale", f"LANG={system_language}"], check=True)
-            self.show_message(_("System Language Updated"), _("System language applied successfully. Please log out and log back in to see the changes."))
-        except subprocess.CalledProcessError:
-            self.show_message(_("Error"), _("Failed to apply system language."))
-
-if __name__ == '__main__':
+if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = WelcomeApp()
     window.show()
