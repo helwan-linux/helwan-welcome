@@ -79,12 +79,13 @@ class WelcomeApp(QWidget):
             logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
             if os.path.exists(logo_path):
                 logo = QPixmap(logo_path)
-                if not logo.isNull():
-                    scaled_logo = logo.scaledToWidth(120, Qt.SmoothTransformation)
-                    return scaled_logo
-                else:
+                if logo.isNull():
                     print(f"Error: Image at {logo_path} is invalid.")
                     return None
+                else:
+                    # تأكد من أن الصورة سيتم تحجيمها بشكل صحيح
+                    scaled_logo = logo.scaledToWidth(120, Qt.SmoothTransformation)
+                    return scaled_logo
             else:
                 print(f"Error: Logo image not found at {logo_path}")
                 return None
@@ -220,69 +221,22 @@ class WelcomeApp(QWidget):
         webbrowser.open("https://www.youtube.com/channel/UCKlFDMjrzkVFzw-erYKVibQ")
 
     def show_system_info(self):
-        subprocess.Popen(["xterm", "-hold", "-e", "neofetch; echo; echo Press Enter to close...; read"])
+        subprocess.Popen(["xterm", "-hold", "-e", "neofetch; echo; echo Press Enter to exit..."])
 
     def open_performance_monitor(self):
-        subprocess.Popen(["xterm", "-hold", "-e", "htop"])
+        subprocess.Popen(["xterm", "-hold", "-e", "htop; echo; echo Press Enter to exit..."])
+
+    def update_system(self, package_manager):
+        if package_manager == "pacman":
+            subprocess.Popen(["xterm", "-hold", "-e", "sudo pacman -Syu; echo; echo Press Enter to exit..."])
+        elif package_manager == "yay":
+            subprocess.Popen(["xterm", "-hold", "-e", "yay -Syu; echo; echo Press Enter to exit..."])
 
     def apply_system_language(self):
-        try:
-            selected_language = self.system_language_combobox.currentText()
-            subprocess.run(["sudo", "locale-gen", selected_language], check=True)
-            subprocess.run(["sudo", "update-locale", f"LANG={selected_language}"], check=True)
-            self.show_message(_("Language Applied"), _("System language has been changed successfully."))
-        except subprocess.CalledProcessError as e:
-            self.show_message(_("Error"), _("Failed to apply the system language."))
+        system_language = self.system_language_combobox.currentText()
+        subprocess.Popen(["xterm", "-hold", "-e", f"sudo localectl set-locale LANG={system_language}; echo; echo Press Enter to exit..."])
 
-    def show_message(self, title, message):
-        msg_box = QMessageBox()
-        msg_box.setWindowTitle(title)
-        msg_box.setText(message)
-        msg_box.setIcon(QMessageBox.Information)
-        msg_box.exec_()
-
-    def check_internet_connection(self):
-        try:
-            socket.create_connection(("8.8.8.8", 53), timeout=5)
-            return True
-        except (socket.timeout, socket.gaierror):
-            return False
-
-    def update_system(self, manager):
-        if not self.check_internet_connection():
-            self.show_message(_("Error"), _("No internet connection."))
-            return
-
-        progress_window = QDialog(self)
-        progress_window.setWindowTitle(_("Updating System"))
-        progress_layout = QVBoxLayout(progress_window)
-
-        progress_label = QLabel(_("Updating system... Please wait."))
-        progress_layout.addWidget(progress_label)
-
-        progress_bar = QProgressBar(progress_window)
-        progress_bar.setRange(0, 100)
-        progress_bar.setValue(0)
-        progress_layout.addWidget(progress_bar)
-
-        def run_update_command():
-            try:
-                if manager == "pacman":
-                    subprocess.run(["xterm", "-e", "sudo pacman -Syu --noconfirm"], check=True)
-                elif manager == "yay":
-                    subprocess.run(["xterm", "-e", "sudo yay -Syu --noconfirm"], check=True)
-
-                progress_bar.setValue(100)
-                self.show_message(_("Update Completed"), _("System update completed successfully."))
-            except subprocess.CalledProcessError:
-                progress_bar.setValue(100)
-                self.show_message(_("Error"), _("Failed to update the system."))
-
-        threading.Thread(target=run_update_command, daemon=True).start()
-
-        progress_window.exec_()
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = WelcomeApp()
     window.show()
