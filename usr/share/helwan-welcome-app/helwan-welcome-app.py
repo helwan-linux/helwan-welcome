@@ -3,94 +3,64 @@
 import sys
 import os
 import webbrowser
-from PyQt5.QtWidgets import QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox, QComboBox, QProgressBar, QDialog, QHBoxLayout, QMessageBox
+import subprocess
+from PyQt5.QtWidgets import (
+    QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox,
+    QComboBox, QProgressBar, QDialog, QHBoxLayout, QMessageBox
+)
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
-import subprocess
-import socket
-import threading
 import gettext
 
-# تعيين اللغة الافتراضية وتبديلها
-def set_language(language_code):
+# === إعداد الترجمة ===
+def load_translation(language_code):
+    current_dir = os.path.dirname(os.path.abspath(__file__))
+    locale_path = os.path.join(current_dir, 'locales')
     try:
-        current_dir = os.path.dirname(os.path.abspath(__file__))  # المسار الحالي للملف
-        lang_path = os.path.join(current_dir, 'locales')  # مسار ملفات الترجمة
-        language = gettext.translation('base', localedir=lang_path, languages=[language_code])
-        language.install()
-        return language.gettext
+        translation = gettext.translation('base', localedir=locale_path, languages=[language_code])
+        translation.install()
+        return translation.gettext
     except FileNotFoundError:
-        print(f"Error: Locale files for '{language_code}' not found. Falling back to English.")
-        language = gettext.translation('base', localedir=lang_path, languages=['en'])
-        language.install()
-        return language.gettext
+        return lambda s: s
 
-# اللغة الافتراضية
-language_code = 'en'
-_ = set_language(language_code)
+DEFAULT_LANGUAGE_CODE = 'en'
+_ = load_translation(DEFAULT_LANGUAGE_CODE)
 
 class WelcomeApp(QWidget):
     def __init__(self):
         super().__init__()
+        self.language_code = DEFAULT_LANGUAGE_CODE
+        self.show_on_startup = self.check_startup_enabled()
+
         self.setWindowTitle(_("Welcome to Helwan Linux"))
         self.setGeometry(100, 100, 400, 600)
-        self.setStyleSheet(""" 
-            QWidget {
-                background-color: #f5f5f5;
-                font-family: 'Segoe UI', sans-serif;
-                font-size: 13px;
-            }
-            QLabel {
-                color: #333;
-            }
-            QPushButton {
-                background-color: #e0e0e0;
-                color: #333;
-                border: 1px solid #ccc;
-                border-radius: 5px;
-                padding: 8px 15px;
-                margin-top: 5px;
-            }
-            QPushButton:hover {
-                background-color: #d0d0d0;
-            }
-            QCheckBox {
-                color: #333;
-                margin-top: 8px;
-            }
-            QComboBox {
-                background-color: #fff;
-                color: #333;
-                border: 1px solid #ccc;
-                border-radius: 3px;
-                padding: 6px;
-                margin-top: 5px;
-            }
-        """)
-
-        self.startup_file = os.path.join(os.path.expanduser("~"), ".helwan_welcome_shown")
-        self.show_on_startup = not os.path.exists(self.startup_file)
-
+        self.setStyleSheet(self.load_styles())
         self.logo = self.load_logo()
+
         self.init_ui()
 
+    def check_startup_enabled(self):
+        autostart_dir = os.path.expanduser("~/.config/autostart")
+        startup_file_path = os.path.join(autostart_dir, "helwan_welcome.desktop")
+        return os.path.exists(startup_file_path)
+
+    def load_styles(self):
+        return """
+            QWidget { background-color: #f5f5f5; font-family: 'Segoe UI'; font-size: 13px; }
+            QLabel { color: #333; }
+            QPushButton { background-color: #e0e0e0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 8px 15px; margin-top: 5px; }
+            QPushButton:hover { background-color: #d0d0d0; }
+            QCheckBox { color: #333; margin-top: 8px; }
+            QComboBox { background-color: #fff; color: #333; border: 1px solid #ccc; border-radius: 3px; padding: 6px; margin-top: 5px; }
+        """
+
     def load_logo(self):
-        try:
-            logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
-            if os.path.exists(logo_path):
-                logo = QPixmap(logo_path)
-                if logo.isNull():
-                    print(f"Error: Image at {logo_path} is invalid.")
-                    return None
-                else:
-                    # تأكد من أن الصورة سيتم تحجيمها بشكل صحيح
-                    scaled_logo = logo.scaledToWidth(120, Qt.SmoothTransformation)
-                    return scaled_logo
-            else:
-                print(f"Error: Logo image not found at {logo_path}")
-                return None
-        except Exception as e:
-            print(f"Error loading logo: {e}")
+        logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
+        if os.path.exists(logo_path):
+            logo = QPixmap(logo_path)
+            return logo.scaledToWidth(120, Qt.SmoothTransformation) if not logo.isNull() else None
+        else:
+            print(f"Warning: Logo not found at {logo_path}")
             return None
 
     def init_ui(self):
@@ -103,138 +73,141 @@ class WelcomeApp(QWidget):
             logo_label.setAlignment(Qt.AlignCenter)
             layout.addWidget(logo_label)
 
-        self.greeting_label = QLabel(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
-        self.greeting_label.setAlignment(Qt.AlignCenter)
-        self.greeting_label.setStyleSheet("font-size: 15px; margin-top: 15px; margin-bottom: 25px; color: #555;")
-        layout.addWidget(self.greeting_label)
+        greeting = QLabel(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
+        greeting.setAlignment(Qt.AlignCenter)
+        greeting.setStyleSheet("font-size: 15px; margin-top: 15px; margin-bottom: 25px; color: #555;")
+        layout.addWidget(greeting)
 
-        self.controls_layout = QVBoxLayout()
-        self.controls_layout.setSpacing(12)
-        layout.addLayout(self.controls_layout)
+        controls = QVBoxLayout()
+        controls.setSpacing(12)
+        layout.addLayout(controls)
 
-        # Application Language
-        language_hbox = QHBoxLayout()
-        self.app_language_label = QLabel(_("Application Language:"))
-        language_hbox.addWidget(self.app_language_label)
-        language_hbox.addStretch(1)
-        self.language_menu_app = QComboBox(self)
-        self.language_menu_app.addItems(['en', 'ar', 'es', 'pt'])
-        self.language_menu_app.setCurrentText(language_code)
-        self.language_menu_app.currentTextChanged.connect(self.change_language)
-        language_hbox.addWidget(self.language_menu_app)
-        self.controls_layout.addLayout(language_hbox)
+        controls.addLayout(self.create_labeled_combobox(
+            _("Application Language:"),
+            ['en', 'ar', 'es', 'pt'],
+            self.language_code,
+            self.change_language
+        ))
 
-        # Show on startup
-        self.startup_checkbutton = QCheckBox(_("Show on startup"))
-        self.startup_checkbutton.setChecked(self.show_on_startup)
-        self.startup_checkbutton.stateChanged.connect(self.toggle_startup)
-        self.controls_layout.addWidget(self.startup_checkbutton)
+        self.startup_check = QCheckBox(_("Show on startup"))
+        self.startup_check.setChecked(self.show_on_startup)
+        self.startup_check.stateChanged.connect(self.update_startup_file)
+        controls.addWidget(self.startup_check)
 
-        # First row of update buttons
-        update_buttons_row1 = QHBoxLayout()
-        self.update_pacman_button = QPushButton(_("Update System (Pacman)"), self)
-        self.update_pacman_button.clicked.connect(lambda: self.update_system("pacman"))
-        update_buttons_row1.addWidget(self.update_pacman_button)
+        update_row = QHBoxLayout()
+        update_row.addWidget(self.create_button(_("Update System (Pacman)"), lambda: self.run_terminal_cmd("sudo pacman -Syu")))
+        update_row.addWidget(self.create_button(_("Update System (Yay)"), lambda: self.run_terminal_cmd("yay -Syu")))
+        controls.addLayout(update_row)
 
-        self.update_yay_button = QPushButton(_("Update System (Yay)"), self)
-        self.update_yay_button.clicked.connect(lambda: self.update_system("yay"))
-        update_buttons_row1.addWidget(self.update_yay_button)
-        self.controls_layout.addLayout(update_buttons_row1)
+        controls.addLayout(self.create_labeled_combobox(
+            _("System Language:"),
+            ['ar_EG.UTF-8', 'en_US.UTF-8', 'es_ES.UTF-8', 'pt_PT.UTF-8'],
+            'ar_EG.UTF-8',
+            None,
+            attr_name="system_language_combobox"
+        ))
 
-        # System Language
-        system_language_hbox = QHBoxLayout()
-        self.system_language_label = QLabel(_("System Language:"))
-        system_language_hbox.addWidget(self.system_language_label)
-        system_language_hbox.addStretch(1)
-        self.system_language_combobox = QComboBox(self)
-        self.system_language_combobox.addItems(['ar_EG.UTF-8', 'en_US.UTF-8', 'es_ES.UTF-8', 'pt_PT.UTF-8'])
-        self.system_language_combobox.setCurrentText('ar_EG.UTF-8')
-        system_language_hbox.addWidget(self.system_language_combobox)
-        self.controls_layout.addLayout(system_language_hbox)
+        controls.addWidget(self.create_button(_("Apply System Language"), self.apply_system_language))
 
-        self.change_system_language_button = QPushButton(_("Apply System Language"), self)
-        self.change_system_language_button.clicked.connect(self.apply_system_language)
-        self.controls_layout.addWidget(self.change_system_language_button)
+        docs_row = QHBoxLayout()
+        docs_row.addWidget(self.create_button(_("Open Documentation"), lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation")))
+        docs_row.addWidget(self.create_button(_("Open YouTube Channel"), lambda: self.open_url("https://www.youtube.com/your_channel_here")))
+        controls.addLayout(docs_row)
 
-        # Second row of other buttons
-        other_buttons_row = QHBoxLayout()
-        self.documentation_button = QPushButton(_("Open Documentation"), self)
-        self.documentation_button.clicked.connect(self.open_documentation)
-        other_buttons_row.addWidget(self.documentation_button)
+        sysinfo_row = QHBoxLayout()
+        sysinfo_row.addWidget(self.create_button(_("Show System Info"), lambda: self.run_terminal_cmd("neofetch")))
+        sysinfo_row.addWidget(self.create_button(_("Performance Monitor"), lambda: self.run_terminal_cmd("htop")))
+        controls.addLayout(sysinfo_row)
 
-        self.youtube_button = QPushButton(_("Open YouTube Channel"), self)
-        self.youtube_button.clicked.connect(self.open_youtube_channel)
-        other_buttons_row.addWidget(self.youtube_button)
-        self.controls_layout.addLayout(other_buttons_row)
+    def create_button(self, text, action):
+        button = QPushButton(text)
+        button.clicked.connect(action)
+        return button
 
-        # Third row of other buttons
-        other_buttons_row2 = QHBoxLayout()
-        self.system_info_button = QPushButton(_("Show System Info"), self)
-        self.system_info_button.clicked.connect(self.show_system_info)
-        other_buttons_row2.addWidget(self.system_info_button)
+    def create_labeled_combobox(self, label_text, items, default, on_change, attr_name=None):
+        layout = QHBoxLayout()
+        label = QLabel(label_text)
+        layout.addWidget(label)
+        layout.addStretch(1)
 
-        self.performance_monitor_button = QPushButton(_("Performance Monitor"), self)
-        self.performance_monitor_button.clicked.connect(self.open_performance_monitor)
-        other_buttons_row2.addWidget(self.performance_monitor_button)
-        self.controls_layout.addLayout(other_buttons_row2)
+        combo = QComboBox()
+        combo.addItems(items)
+        combo.setCurrentText(default)
+        if on_change:
+            combo.currentTextChanged.connect(on_change)
+        layout.addWidget(combo)
 
-        if self.show_on_startup:
-            self.mark_as_shown()
+        if attr_name:
+            setattr(self, attr_name, combo)
+        return layout
 
-    def change_language(self, selected_language_code):
+    def change_language(self, lang_code):
         global _
-        _ = set_language(selected_language_code)
-        self.update_ui()
+        _ = load_translation(lang_code)
+        self.language_code = lang_code
+        self.retranslate_ui()
+        QMessageBox.information(self, _("Language Changed"), _("Language has been changed successfully."))
 
-    def update_ui(self):
+    def retranslate_ui(self):
         self.setWindowTitle(_("Welcome to Helwan Linux"))
-        self.greeting_label.setText(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
-        self.app_language_label.setText(_("Application Language:"))
-        self.startup_checkbutton.setText(_("Show on startup"))
-        self.update_pacman_button.setText(_("Update System (Pacman)"))
-        self.update_yay_button.setText(_("Update System (Yay)"))
-        self.system_language_label.setText(_("System Language:"))
-        self.change_system_language_button.setText(_("Apply System Language"))
-        self.documentation_button.setText(_("Open Documentation"))
-        self.youtube_button.setText(_("Open YouTube Channel"))
-        self.system_info_button.setText(_("Show System Info"))
-        self.performance_monitor_button.setText(_("Performance Monitor"))
+        self.startup_check.setText(_("Show on startup"))
+        # تحتاج هنا لتحديث نصوص العناصر الأخرى في الواجهة إذا كانت مترجمة
 
-    def toggle_startup(self, state):
-        if state == Qt.Checked:
-            if os.path.exists(self.startup_file):
-                os.remove(self.startup_file)
-        else:
-            self.mark_as_shown()
-
-    def mark_as_shown(self):
+    def update_startup_file(self, state):
         try:
-            with open(self.startup_file, "w") as f:
-                f.write("shown")
+            autostart_dir = os.path.expanduser("~/.config/autostart")
+            if not os.path.exists(autostart_dir):
+                os.makedirs(autostart_dir)
+
+            startup_file_path = os.path.join(autostart_dir, "helwan_welcome.desktop")
+
+            if state == Qt.Checked:
+                if not os.path.exists(startup_file_path):
+                    with open(startup_file_path, "w") as f:
+                        f.write(f"""[Desktop Entry]
+Name=Helwan Welcome App
+Exec={sys.executable} {os.path.abspath(__file__)}
+Type=Application
+X-GNOME-Autostart-enabled=true
+Comment=Welcome screen for Helwan Linux
+Icon={os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")}
+Terminal=false""")
+                self.show_on_startup = True
+            else:
+                if os.path.exists(startup_file_path):
+                    os.remove(startup_file_path)
+                self.show_on_startup = False
+
         except Exception as e:
-            print(f"Error writing startup file: {e}")
+            QMessageBox.warning(self, _("Error"), f"{_('Could not update startup file:')} {e}")
 
-    def open_documentation(self):
-        webbrowser.open("https://helwan-linux.mystrikingly.com/documentation")
+    def open_url(self, url):
+        try:
+            webbrowser.open(url)
+        except Exception as e:
+            QMessageBox.warning(self, _("Error"), f"{_('Could not open URL:')} {e}")
 
-    def open_youtube_channel(self):
-        webbrowser.open("https://www.youtube.com/channel/UCKlFDMjrzkVFzw-erYKVibQ")
-
-    def show_system_info(self):
-        subprocess.Popen(["xterm", "-hold", "-e", "neofetch; echo; echo Press Enter to exit..."])
-
-    def open_performance_monitor(self):
-        subprocess.Popen(["xterm", "-hold", "-e", "htop; echo; echo Press Enter to exit..."])
-
-    def update_system(self, package_manager):
-        if package_manager == "pacman":
-            subprocess.Popen(["xterm", "-hold", "-e", "sudo pacman -Syu; echo; echo Press Enter to exit..."])
-        elif package_manager == "yay":
-            subprocess.Popen(["xterm", "-hold", "-e", "yay -Syu; echo; echo Press Enter to exit..."])
+    def run_terminal_cmd(self, cmd):
+        try:
+            subprocess.Popen(["xterm", "-hold", "-e", f"{cmd}; echo; echo Press Enter to exit..."])
+        except FileNotFoundError:
+            QMessageBox.critical(self, _("Error"), _("xterm is not installed. Please install xterm."))
 
     def apply_system_language(self):
-        system_language = self.system_language_combobox.currentText()
-        subprocess.Popen(["xterm", "-hold", "-e", f"sudo localectl set-locale LANG={system_language}; echo; echo Press Enter to exit..."])
+        lang = self.system_language_combobox.currentText()
+        try:
+            process = subprocess.Popen(["sudo", "localectl", "set-locale", f"LANG={lang}"],
+                                     stdout=subprocess.PIPE,
+                                     stderr=subprocess.PIPE)
+            stdout, stderr = process.communicate()
+            if process.returncode == 0:
+                QMessageBox.information(self, _("System Language"), _("System language applied successfully. You might need to restart your system for the changes to take full effect."))
+            else:
+                QMessageBox.critical(self, _("Error"), f"{_('Failed to apply system language:')} {stderr.decode()}")
+        except FileNotFoundError:
+            QMessageBox.critical(self, _("Error"), _("localectl command not found. Ensure systemd is installed."))
+        except Exception as e:
+            QMessageBox.critical(self, _("Error"), f"{_('An error occurred while applying system language:')} {e}")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
