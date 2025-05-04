@@ -1,0 +1,88 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pt\n"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Bem-vindo ao Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Bem-vindo ao mundo do Helwan Linux! ❤️\nEstamos aqui para ajudá-lo a construir seus sonhos na base mais forte."
+
+msgid "Application Language:"
+msgstr "Idioma do aplicativo:"
+
+msgid "Show on startup"
+msgstr "Mostrar na inicialização"
+
+msgid "Update System (Pacman)"
+msgstr "Atualizar sistema (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Atualizar sistema (Yay)"
+
+msgid "System Language:"
+msgstr "Idioma do sistema:"
+
+msgid "Apply System Language"
+msgstr "Aplicar idioma do sistema"
+
+msgid "Open Documentation"
+msgstr "Abrir documentação"
+
+msgid "Open YouTube Channel"
+msgstr "Abrir canal do YouTube"
+
+msgid "Show System Info"
+msgstr "Mostrar informações do sistema"
+
+msgid "Performance Monitor"
+msgstr "Monitor de desempenho"
+
+msgid "Language Changed"
+msgstr "Idioma alterado"
+
+msgid "Please restart the application to apply language changes."
+msgstr "Reinicie o aplicativo para aplicar as alterações de idioma."
+
+msgid "Error"
+msgstr "Erro"
+
+msgid "Could not write startup file:"
+msgstr "Não foi possível escrever o arquivo de inicialização:"
+
+msgid "Could not open URL:"
+msgstr "Não foi possível abrir a URL:"
+
+msgid "Could not run terminal command:"
+msgstr "Não foi possível executar o comando do terminal:"
+
+msgid "xterm is not installed. Please install xterm to use this feature."
+msgstr "xterm não está instalado. Instale o xterm para usar este recurso."
+
+msgid "System Language"
+msgstr "Idioma do sistema"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Idioma do sistema aplicado com sucesso. Pode ser necessário reiniciar o sistema para que as alterações tenham efeito total."
+
+msgid "Failed to apply system language:"
+msgstr "Falha ao aplicar o idioma do sistema:"
+
+msgid "localectl command not found. Ensure systemd is installed."
+msgstr "Comando localectl não encontrado. Certifique-se de que o systemd esteja instalado."
+
+msgid "An error occurred while applying system language:"
+msgstr "Ocorreu um erro ao aplicar o idioma do sistema:"
+
+msgid "Updating System (Pacman)..."
+msgstr "Atualizando sistema (Pacman)..."
+
+msgid "Updating System (Yay)..."
+msgstr "Atualizando sistema (Yay)..."
+
+msgid "Showing System Info..."
+msgstr "Mostrando informações do sistema..."
+
+msgid "Running Performance Monitor..."
+msgstr "Executando monitor de desempenho..."
