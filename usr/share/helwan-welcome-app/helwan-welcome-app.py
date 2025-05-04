@@ -111,7 +111,7 @@ class WelcomeApp(QWidget):
 
         docs_row = QHBoxLayout()
         docs_row.addWidget(self.create_button(_("Open Documentation"), lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation")))
-        docs_row.addWidget(self.create_button(_("Open YouTube Channel"), lambda: self.open_url("https://www.youtube.com/your_channel_here")))
+        docs_row.addWidget(self.create_button(_("Open YouTube Channel"), lambda: self.open_url("https://www.youtube.com/@HelwanO.S")))
         controls.addLayout(docs_row)
 
         sysinfo_row = QHBoxLayout()
