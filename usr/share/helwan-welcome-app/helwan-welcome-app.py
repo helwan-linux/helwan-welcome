@@ -73,60 +73,81 @@ class WelcomeApp(QWidget):
             logo_label.setAlignment(Qt.AlignCenter)
             layout.addWidget(logo_label)
 
-        greeting = QLabel(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
-        greeting.setAlignment(Qt.AlignCenter)
-        greeting.setStyleSheet("font-size: 15px; margin-top: 15px; margin-bottom: 25px; color: #555;")
-        layout.addWidget(greeting)
+        self.greeting = QLabel()
+        self.greeting.setAlignment(Qt.AlignCenter)
+        self.greeting.setStyleSheet("font-size: 15px; margin-top: 15px; margin-bottom: 25px; color: #555;")
+        layout.addWidget(self.greeting)
 
         controls = QVBoxLayout()
         controls.setSpacing(12)
         layout.addLayout(controls)
 
+        # Application Language ComboBox
         controls.addLayout(self.create_labeled_combobox(
-            _("Application Language:"),
-            ['en', 'ar', 'es', 'pt'],
-            self.language_code,
-            self.change_language
+            label_attr='app_lang_label',
+            combo_attr='app_lang_combobox',
+            label_text=_("Application Language:"),
+            items=['en', 'ar', 'es', 'pt'],
+            default=self.language_code,
+            on_change=self.change_language
         ))
 
-        self.startup_check = QCheckBox(_("Show on startup"))
+        # Show on Startup Checkbox
+        self.startup_check = QCheckBox()
         self.startup_check.setChecked(self.show_on_startup)
         self.startup_check.stateChanged.connect(self.update_startup_file)
         controls.addWidget(self.startup_check)
 
+        # System Update Buttons
         update_row = QHBoxLayout()
-        update_row.addWidget(self.create_button(_("Update System (Pacman)"), lambda: self.run_terminal_cmd("sudo pacman -Syu")))
-        update_row.addWidget(self.create_button(_("Update System (Yay)"), lambda: self.run_terminal_cmd("yay -Syu")))
+        self.pacman_btn = self.create_button("", lambda: self.run_terminal_cmd("sudo pacman -Syu"))
+        self.yay_btn = self.create_button("", lambda: self.run_terminal_cmd("yay -Syu"))
+        update_row.addWidget(self.pacman_btn)
+        update_row.addWidget(self.yay_btn)
         controls.addLayout(update_row)
 
+        # System Language ComboBox
         controls.addLayout(self.create_labeled_combobox(
-            _("System Language:"),
-            ['ar_EG.UTF-8', 'en_US.UTF-8', 'es_ES.UTF-8', 'pt_PT.UTF-8'],
-            'ar_EG.UTF-8',
-            None,
-            attr_name="system_language_combobox"
+            label_attr='sys_lang_label',
+            combo_attr='system_language_combobox',
+            label_text=_("System Language:"),
+            items=['ar_EG.UTF-8', 'en_US.UTF-8', 'es_ES.UTF-8', 'pt_PT.UTF-8'],
+            default='ar_EG.UTF-8',
+            on_change=None
         ))
 
-        controls.addWidget(self.create_button(_("Apply System Language"), self.apply_system_language))
+        # Apply System Language Button
+        self.apply_lang_btn = self.create_button("", self.apply_system_language)
+        controls.addWidget(self.apply_lang_btn)
 
+        # Docs Buttons
         docs_row = QHBoxLayout()
-        docs_row.addWidget(self.create_button(_("Open Documentation"), lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation")))
-        docs_row.addWidget(self.create_button(_("Open YouTube Channel"), lambda: self.open_url("https://www.youtube.com/@HelwanO.S")))
+        self.docs_btn = self.create_button("", lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation"))
+        self.youtube_btn = self.create_button("", lambda: self.open_url("https://www.youtube.com/@HelwanO.S"))
+        docs_row.addWidget(self.docs_btn)
+        docs_row.addWidget(self.youtube_btn)
         controls.addLayout(docs_row)
 
+        # System Info Buttons
         sysinfo_row = QHBoxLayout()
-        sysinfo_row.addWidget(self.create_button(_("Show System Info"), lambda: self.run_terminal_cmd("neofetch")))
-        sysinfo_row.addWidget(self.create_button(_("Performance Monitor"), lambda: self.run_terminal_cmd("htop")))
+        self.neofetch_btn = self.create_button("", lambda: self.run_terminal_cmd("neofetch"))
+        self.htop_btn = self.create_button("", lambda: self.run_terminal_cmd("htop"))
+        sysinfo_row.addWidget(self.neofetch_btn)
+        sysinfo_row.addWidget(self.htop_btn)
         controls.addLayout(sysinfo_row)
+
+        # أول تعريب للواجهة
+        self.retranslate_ui()
 
     def create_button(self, text, action):
         button = QPushButton(text)
         button.clicked.connect(action)
         return button
 
-    def create_labeled_combobox(self, label_text, items, default, on_change, attr_name=None):
+    def create_labeled_combobox(self, label_attr, combo_attr, label_text, items, default, on_change):
         layout = QHBoxLayout()
         label = QLabel(label_text)
+        setattr(self, label_attr, label)
         layout.addWidget(label)
         layout.addStretch(1)
 
@@ -135,10 +156,8 @@ class WelcomeApp(QWidget):
         combo.setCurrentText(default)
         if on_change:
             combo.currentTextChanged.connect(on_change)
+        setattr(self, combo_attr, combo)
         layout.addWidget(combo)
-
-        if attr_name:
-            setattr(self, attr_name, combo)
         return layout
 
     def change_language(self, lang_code):
@@ -150,8 +169,17 @@ class WelcomeApp(QWidget):
 
     def retranslate_ui(self):
         self.setWindowTitle(_("Welcome to Helwan Linux"))
+        self.greeting.setText(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
+        self.app_lang_label.setText(_("Application Language:"))
         self.startup_check.setText(_("Show on startup"))
-        # تحتاج هنا لتحديث نصوص العناصر الأخرى في الواجهة إذا كانت مترجمة
+        self.pacman_btn.setText(_("Update System (Pacman)"))
+        self.yay_btn.setText(_("Update System (Yay)"))
+        self.sys_lang_label.setText(_("System Language:"))
+        self.apply_lang_btn.setText(_("Apply System Language"))
+        self.docs_btn.setText(_("Open Documentation"))
+        self.youtube_btn.setText(_("Open YouTube Channel"))
+        self.neofetch_btn.setText(_("Show System Info"))
+        self.htop_btn.setText(_("Performance Monitor"))
 
     def update_startup_file(self, state):
         try:
