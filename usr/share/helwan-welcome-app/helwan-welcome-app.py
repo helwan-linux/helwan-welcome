@@ -6,7 +6,7 @@ import webbrowser
 import subprocess
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox,
-    QComboBox, QProgressBar, QDialog, QHBoxLayout, QMessageBox
+    QComboBox, QProgressBar, QDialog, QHBoxLayout, QMessageBox, QInputDialog, QLineEdit
 )
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap
@@ -100,8 +100,8 @@ class WelcomeApp(QWidget):
 
         # System Update Buttons
         update_row = QHBoxLayout()
-        self.pacman_btn = self.create_button("", lambda: self.run_terminal_cmd("sudo pacman -Syu"))
-        self.yay_btn = self.create_button("", lambda: self.run_terminal_cmd("yay -Syu"))
+        self.pacman_btn = self.create_button(_("Update System (Pacman)"), lambda: self.run_terminal_cmd("sudo pacman -Syu"))
+        self.yay_btn = self.create_button(_("Update System (Yay)"), lambda: self.run_terminal_cmd("yay -Syu"))
         update_row.addWidget(self.pacman_btn)
         update_row.addWidget(self.yay_btn)
         controls.addLayout(update_row)
@@ -117,21 +117,21 @@ class WelcomeApp(QWidget):
         ))
 
         # Apply System Language Button
-        self.apply_lang_btn = self.create_button("", self.apply_system_language)
+        self.apply_lang_btn = self.create_button(_("Apply System Language"), self.apply_system_language)
         controls.addWidget(self.apply_lang_btn)
 
         # Docs Buttons
         docs_row = QHBoxLayout()
-        self.docs_btn = self.create_button("", lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation"))
-        self.youtube_btn = self.create_button("", lambda: self.open_url("https://www.youtube.com/@HelwanO.S"))
+        self.docs_btn = self.create_button(_("Open Documentation"), lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation"))
+        self.youtube_btn = self.create_button(_("Open YouTube Channel"), lambda: self.open_url("https://www.youtube.com/@HelwanO.S"))
         docs_row.addWidget(self.docs_btn)
         docs_row.addWidget(self.youtube_btn)
         controls.addLayout(docs_row)
 
         # System Info Buttons
         sysinfo_row = QHBoxLayout()
-        self.neofetch_btn = self.create_button("", lambda: self.run_terminal_cmd("neofetch"))
-        self.htop_btn = self.create_button("", lambda: self.run_terminal_cmd("htop"))
+        self.neofetch_btn = self.create_button(_("Show System Info"), lambda: self.run_terminal_cmd("neofetch"))
+        self.htop_btn = self.create_button(_("Performance Monitor"), lambda: self.run_terminal_cmd("htop"))
         sysinfo_row.addWidget(self.neofetch_btn)
         sysinfo_row.addWidget(self.htop_btn)
         controls.addLayout(sysinfo_row)
@@ -200,7 +200,7 @@ X-GNOME-Autostart-enabled=true
 Comment=Welcome screen for Helwan Linux
 Icon={os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")}
 Terminal=false""")
-                self.show_on_startup = True
+                    self.show_on_startup = True
             else:
                 if os.path.exists(startup_file_path):
                     os.remove(startup_file_path)
@@ -224,7 +224,7 @@ Terminal=false""")
     def apply_system_language(self):
         lang = self.system_language_combobox.currentText()
         try:
-            process = subprocess.Popen(["sudo", "localectl", "set-locale", f"LANG={lang}"],
+            process = subprocess.Popen(["pkexec", "localectl", "set-locale", f"LANG={lang}"],
                                      stdout=subprocess.PIPE,
                                      stderr=subprocess.PIPE)
             stdout, stderr = process.communicate()
@@ -233,7 +233,7 @@ Terminal=false""")
             else:
                 QMessageBox.critical(self, _("Error"), f"{_('Failed to apply system language:')} {stderr.decode()}")
         except FileNotFoundError:
-            QMessageBox.critical(self, _("Error"), _("localectl command not found. Ensure systemd is installed."))
+            QMessageBox.critical(self, _("Error"), _("pkexec command not found. Ensure polkit is installed."))
         except Exception as e:
             QMessageBox.critical(self, _("Error"), f"{_('An error occurred while applying system language:')} {e}")
 
