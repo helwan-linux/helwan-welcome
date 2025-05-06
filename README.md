@@ -2,12 +2,14 @@ This is a version of the Helwan welcome program for the Helwan Linux distributio
 You can download a copy of the code, modify it, develop it, and communicate to offer your additions to the code.
 
 helwan-welcome/
+
 ├── etc/
 │   └── skel/
 │       └── .config/
 │           └── autostart/
 │               ├── helwan-welcome-app
 │                 └── settings.conf
+
 ├── usr/
 │   └── local/
 │       ├── bin/
