@@ -12,7 +12,8 @@ helwan-welcome/
 │   └── skel/
 │       └── .config/
 │           └── autostart/
-│               ├── helwan-welcome-app
+│               --------------
+|            |__helwan-welcome-app
 │               └── settings.conf
 ├── usr/
 │   └── local/
