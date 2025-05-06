@@ -9,7 +9,7 @@ helwan-welcome/
 │           └── autostart/
 │               ├── 
 │               ├── helwan-welcome-app
-│               └── settings.conf
+│                 └── settings.conf
 ├── usr/
 │   └── local/
 │       ├── bin/
