@@ -23,15 +23,15 @@ helwan-welcome/
 │       └── share/
 │           ├── applications/
 │           │   ├── helwan-welcome-app.desktop
-│           │   └── helwan-welcome-app
+│           │  └── helwan-welcome-app
 │           ├── locales/
 │           │   ├── ar/LC_MESSAGES/
 │           │   ├── en/LC_MESSAGES/
 │           │   ├── es/LC_MESSAGES/
 │           │   └── pt/LC_MESSAGES/
 │           ├── sources/
-│           │   ├── helwan-welcome-app.desktop
-│           │   └── helwan-welcome-app.py
+│           │     ├── helwan-welcome-app.desktop
+│           │     └── helwan-welcome-app.py
 │           └── icons/
 │               └── hicolor/
 │                   └── scalable/
