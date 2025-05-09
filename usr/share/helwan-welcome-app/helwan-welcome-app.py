@@ -26,6 +26,18 @@ def load_translation(language_code):
 DEFAULT_LANGUAGE_CODE = 'en'
 _ = load_translation(DEFAULT_LANGUAGE_CODE)
 
+# قائمة بلغات النظام المدعومة (يجب أن تكون هذه اللغات مثبتة على النظام)
+SYSTEM_LANGUAGES = [
+    'ar_EG.UTF-8',
+    'en_US.UTF-8',
+    'es_ES.UTF-8',
+    'pt_PT.UTF-8',
+    'de_DE.UTF-8',
+    'fr_FR.UTF-8',
+    'ru_RU.UTF-8',
+    'zh_CN.UTF-8'
+]
+
 class WelcomeApp(QWidget):
     def __init__(self):
         super().__init__()
@@ -33,7 +45,7 @@ class WelcomeApp(QWidget):
         self.show_on_startup = self.check_startup_enabled()
 
         self.setWindowTitle(_("Welcome to Helwan Linux"))
-        self.setGeometry(100, 100, 400, 600)
+        self.setGeometry(100, 100, 400, 700)  # زيادة الارتفاع لاستيعاب الأزرار الجديدة
         self.setStyleSheet(self.load_styles())
         self.logo = self.load_logo()
 
@@ -87,7 +99,7 @@ class WelcomeApp(QWidget):
             label_attr='app_lang_label',
             combo_attr='app_lang_combobox',
             label_text=_("Application Language:"),
-            items=['en', 'ar', 'es', 'pt'],
+            items=['en', 'ar', 'es', 'pt', 'de', 'fr', 'ru', 'zh_CN'],
             default=self.language_code,
             on_change=self.change_language
         ))
@@ -106,13 +118,21 @@ class WelcomeApp(QWidget):
         update_row.addWidget(self.yay_btn)
         controls.addLayout(update_row)
 
+        # Kernel Installation Buttons
+        kernel_row1 = QHBoxLayout()
+        self.install_lts_btn = self.create_button(_("Install Linux LTS"), self.install_linux_lts)
+        self.install_zen_btn = self.create_button(_("Install Linux Zen"), self.install_linux_zen)
+        kernel_row1.addWidget(self.install_lts_btn)
+        kernel_row1.addWidget(self.install_zen_btn)
+        controls.addLayout(kernel_row1)
+
         # System Language ComboBox
         controls.addLayout(self.create_labeled_combobox(
             label_attr='sys_lang_label',
             combo_attr='system_language_combobox',
             label_text=_("System Language:"),
-            items=['ar_EG.UTF-8', 'en_US.UTF-8', 'es_ES.UTF-8', 'pt_PT.UTF-8'],
-            default='ar_EG.UTF-8',
+            items=SYSTEM_LANGUAGES,
+            default='en_US.UTF-8' if 'en_US.UTF-8' in SYSTEM_LANGUAGES else SYSTEM_LANGUAGES[0] if SYSTEM_LANGUAGES else '',
             on_change=None
         ))
 
@@ -174,6 +194,8 @@ class WelcomeApp(QWidget):
         self.startup_check.setText(_("Show on startup"))
         self.pacman_btn.setText(_("Update System (Pacman)"))
         self.yay_btn.setText(_("Update System (Yay)"))
+        self.install_lts_btn.setText(_("Install Linux LTS"))
+        self.install_zen_btn.setText(_("Install Linux Zen"))
         self.sys_lang_label.setText(_("System Language:"))
         self.apply_lang_btn.setText(_("Apply System Language"))
         self.docs_btn.setText(_("Open Documentation"))
@@ -225,8 +247,8 @@ Terminal=false""")
         lang = self.system_language_combobox.currentText()
         try:
             process = subprocess.Popen(["pkexec", "localectl", "set-locale", f"LANG={lang}"],
-                                     stdout=subprocess.PIPE,
-                                     stderr=subprocess.PIPE)
+                                        stdout=subprocess.PIPE,
+                                        stderr=subprocess.PIPE)
             stdout, stderr = process.communicate()
             if process.returncode == 0:
                 QMessageBox.information(self, _("System Language"), _("System language applied successfully. You might need to restart your system for the changes to take full effect."))
@@ -236,6 +258,21 @@ Terminal=false""")
             QMessageBox.critical(self, _("Error"), _("pkexec command not found. Ensure polkit is installed."))
         except Exception as e:
             QMessageBox.critical(self, _("Error"), f"{_('An error occurred while applying system language:')} {e}")
+
+    def install_linux_lts(self):
+        self._install_kernel("linux-lts", "linux-lts-headers")
+
+    def install_linux_zen(self):
+        self._install_kernel("linux-zen", "linux-zen-headers")
+
+    def _install_kernel(self, kernel_package, headers_package):
+        command = f"sudo pacman -S --needed {kernel_package} {headers_package}"
+        try:
+            subprocess.Popen(["xterm", "-hold", "-e", f"{command}; sudo grub-mkconfig -o /boot/grub/grub.cfg; echo; echo Press Enter to exit..."])
+        except FileNotFoundError:
+            QMessageBox.critical(self, _("Error"), _("xterm is not installed. Please install xterm."))
+        except Exception as e:
+            QMessageBox.critical(self, _("Error"), f"{_('An error occurred during kernel installation:')} {e}")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
