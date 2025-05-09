@@ -6,9 +6,10 @@ import webbrowser
 import subprocess
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox,
-    QComboBox, QProgressBar, QDialog, QHBoxLayout, QMessageBox, QInputDialog, QLineEdit
+    QComboBox, QProgressBar, QDialog, QHBoxLayout, QMessageBox, QInputDialog, QLineEdit,
+    QGroupBox, QGridLayout, QScrollArea
 )
-from PyQt5.QtCore import Qt
+from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap
 import gettext
 
@@ -45,11 +46,34 @@ class WelcomeApp(QWidget):
         self.show_on_startup = self.check_startup_enabled()
 
         self.setWindowTitle(_("Welcome to Helwan Linux"))
-        self.setGeometry(100, 100, 400, 700)  # زيادة الارتفاع لاستيعاب الأزرار الجديدة
+        self.setGeometry(100, 100, 800, 650) # تقليل الارتفاع قليلاً
         self.setStyleSheet(self.load_styles())
         self.logo = self.load_logo()
 
+        self.app_lang_label = None
+        self.app_lang_combobox = None
+        self.startup_check = None
+        self.pacman_btn = None
+        self.yay_btn = None
+        self.install_lts_btn = None
+        self.install_zen_btn = None
+        self.sys_lang_label = None
+        self.system_language_combobox = None
+        self.apply_lang_btn = None
+        self.docs_btn = None
+        self.youtube_btn = None
+        self.neofetch_btn = None
+        self.htop_btn = None
+        self.disk_space_group = None
+        self.disk_space_label = None
+        self.disk_space_status = None
+
         self.init_ui()
+        self.check_disk_space() # فحص مساحة القرص عند البدء
+
+        self.timer = QTimer()
+        self.timer.timeout.connect(self.check_disk_space)
+        self.timer.start(5000) # تحديث كل 5 ثواني
 
     def check_startup_enabled(self):
         autostart_dir = os.path.expanduser("~/.config/autostart")
@@ -59,11 +83,17 @@ class WelcomeApp(QWidget):
     def load_styles(self):
         return """
             QWidget { background-color: #f5f5f5; font-family: 'Segoe UI'; font-size: 13px; }
-            QLabel { color: #333; }
-            QPushButton { background-color: #e0e0e0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 8px 15px; margin-top: 5px; }
+            QLabel { color: #333; margin-bottom: 5px; }
+            QPushButton { background-color: #e0e0e0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 12px; }
             QPushButton:hover { background-color: #d0d0d0; }
-            QCheckBox { color: #333; margin-top: 8px; }
-            QComboBox { background-color: #fff; color: #333; border: 1px solid #ccc; border-radius: 3px; padding: 6px; margin-top: 5px; }
+            QCheckBox { color: #333; margin-top: 5px; margin-bottom: 5px; }
+            QComboBox { background-color: #fff; color: #333; border: 1px solid #ccc; border-radius: 3px; padding: 6px; margin-top: 3px; margin-bottom: 3px; }
+            QGroupBox { border: 1px solid #ccc; border-radius: 5px; margin-top: 10px; padding: 10px; }
+            QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #555; }
+            QLabel#disk_space_status { font-weight: bold; }
+            QLabel#disk_space_status_ok { color: green; }
+            QLabel#disk_space_status_warning { color: orange; }
+            QLabel#disk_space_status_error { color: red; }
         """
 
     def load_logo(self):
@@ -78,6 +108,7 @@ class WelcomeApp(QWidget):
     def init_ui(self):
         layout = QVBoxLayout(self)
         layout.setAlignment(Qt.AlignCenter)
+        layout.setSpacing(8)
 
         if self.logo:
             logo_label = QLabel(self)
@@ -87,77 +118,100 @@ class WelcomeApp(QWidget):
 
         self.greeting = QLabel()
         self.greeting.setAlignment(Qt.AlignCenter)
-        self.greeting.setStyleSheet("font-size: 15px; margin-top: 15px; margin-bottom: 25px; color: #555;")
+        self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #555;")
         layout.addWidget(self.greeting)
 
         controls = QVBoxLayout()
-        controls.setSpacing(12)
+        controls.setSpacing(8)
         layout.addLayout(controls)
 
-        # Application Language ComboBox
-        controls.addLayout(self.create_labeled_combobox(
+        # Application Language
+        app_lang_layout = self.create_labeled_combobox(
             label_attr='app_lang_label',
             combo_attr='app_lang_combobox',
             label_text=_("Application Language:"),
             items=['en', 'ar', 'es', 'pt', 'de', 'fr', 'ru', 'zh_CN'],
             default=self.language_code,
             on_change=self.change_language
-        ))
+        )
+        controls.addLayout(app_lang_layout)
 
-        # Show on Startup Checkbox
-        self.startup_check = QCheckBox()
+        # Startup Settings
+        startup_layout = QHBoxLayout()
+        self.startup_check = QCheckBox(_("Show on startup"))
         self.startup_check.setChecked(self.show_on_startup)
         self.startup_check.stateChanged.connect(self.update_startup_file)
-        controls.addWidget(self.startup_check)
+        startup_layout.addWidget(self.startup_check)
+        controls.addLayout(startup_layout)
 
         # System Update Buttons
-        update_row = QHBoxLayout()
+        update_layout = QHBoxLayout()
         self.pacman_btn = self.create_button(_("Update System (Pacman)"), lambda: self.run_terminal_cmd("sudo pacman -Syu"))
-        self.yay_btn = self.create_button(_("Update System (Yay)"), lambda: self.run_terminal_cmd("yay -Syu"))
-        update_row.addWidget(self.pacman_btn)
-        update_row.addWidget(self.yay_btn)
-        controls.addLayout(update_row)
+        update_layout.addWidget(self.pacman_btn)
+        if self.is_yay_installed():
+            self.yay_btn = self.create_button(_("Update System (Yay)"), lambda: self.run_terminal_cmd("yay -Syu"))
+            update_layout.addWidget(self.yay_btn)
+        controls.addLayout(update_layout)
 
         # Kernel Installation Buttons
-        kernel_row1 = QHBoxLayout()
+        kernel_layout = QHBoxLayout()
         self.install_lts_btn = self.create_button(_("Install Linux LTS"), self.install_linux_lts)
+        kernel_layout.addWidget(self.install_lts_btn)
         self.install_zen_btn = self.create_button(_("Install Linux Zen"), self.install_linux_zen)
-        kernel_row1.addWidget(self.install_lts_btn)
-        kernel_row1.addWidget(self.install_zen_btn)
-        controls.addLayout(kernel_row1)
+        kernel_layout.addWidget(self.install_zen_btn)
+        controls.addLayout(kernel_layout)
 
-        # System Language ComboBox
-        controls.addLayout(self.create_labeled_combobox(
-            label_attr='sys_lang_label',
-            combo_attr='system_language_combobox',
-            label_text=_("System Language:"),
-            items=SYSTEM_LANGUAGES,
-            default='en_US.UTF-8' if 'en_US.UTF-8' in SYSTEM_LANGUAGES else SYSTEM_LANGUAGES[0] if SYSTEM_LANGUAGES else '',
-            on_change=None
-        ))
+        # System Language
+        sys_lang_layout = QHBoxLayout()
+        self.sys_lang_label = QLabel(_("System Language:"))
+        sys_lang_layout.addWidget(self.sys_lang_label)
+        self.system_language_combobox = QComboBox()
+        self.system_language_combobox.addItems(SYSTEM_LANGUAGES)
+        self.system_language_combobox.setCurrentText('en_US.UTF-8' if 'en_US.UTF-8' in SYSTEM_LANGUAGES else SYSTEM_LANGUAGES[0] if SYSTEM_LANGUAGES else '')
+        sys_lang_layout.addWidget(self.system_language_combobox)
+        controls.addLayout(sys_lang_layout)
 
-        # Apply System Language Button
         self.apply_lang_btn = self.create_button(_("Apply System Language"), self.apply_system_language)
         controls.addWidget(self.apply_lang_btn)
 
-        # Docs Buttons
-        docs_row = QHBoxLayout()
+        # Documentation and Support
+        docs_layout = QHBoxLayout()
         self.docs_btn = self.create_button(_("Open Documentation"), lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation"))
+        docs_layout.addWidget(self.docs_btn)
         self.youtube_btn = self.create_button(_("Open YouTube Channel"), lambda: self.open_url("https://www.youtube.com/@HelwanO.S"))
-        docs_row.addWidget(self.docs_btn)
-        docs_row.addWidget(self.youtube_btn)
-        controls.addLayout(docs_row)
+        docs_layout.addWidget(self.youtube_btn)
+        controls.addLayout(docs_layout)
 
-        # System Info Buttons
-        sysinfo_row = QHBoxLayout()
+        # System Information
+        sysinfo_layout = QHBoxLayout()
         self.neofetch_btn = self.create_button(_("Show System Info"), lambda: self.run_terminal_cmd("neofetch"))
+        sysinfo_layout.addWidget(self.neofetch_btn)
         self.htop_btn = self.create_button(_("Performance Monitor"), lambda: self.run_terminal_cmd("htop"))
-        sysinfo_row.addWidget(self.neofetch_btn)
-        sysinfo_row.addWidget(self.htop_btn)
-        controls.addLayout(sysinfo_row)
+        sysinfo_layout.addWidget(self.htop_btn)
+        controls.addLayout(sysinfo_layout)
+
+        # Disk Space Check
+        self.disk_space_group = QGroupBox(_("Disk Space"))
+        disk_space_layout = QHBoxLayout()
+        self.disk_space_label = QLabel(_("Available:"))
+        disk_space_layout.addWidget(self.disk_space_label)
+        self.disk_space_status = QLabel()
+        self.disk_space_status.setObjectName("disk_space_status")
+        disk_space_layout.addWidget(self.disk_space_status)
+        self.disk_space_group.setLayout(disk_space_layout)
+        controls.addWidget(self.disk_space_group)
 
         # أول تعريب للواجهة
         self.retranslate_ui()
+
+    def is_yay_installed(self):
+        try:
+            subprocess.run(["yay", "--version"], check=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+            return True
+        except FileNotFoundError:
+            return False
+        except subprocess.CalledProcessError:
+            return True # يعتبر مثبت إذا لم يظهر خطأ في عدم العثور عليه
 
     def create_button(self, text, action):
         button = QPushButton(text)
@@ -190,18 +244,34 @@ class WelcomeApp(QWidget):
     def retranslate_ui(self):
         self.setWindowTitle(_("Welcome to Helwan Linux"))
         self.greeting.setText(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
-        self.app_lang_label.setText(_("Application Language:"))
-        self.startup_check.setText(_("Show on startup"))
-        self.pacman_btn.setText(_("Update System (Pacman)"))
-        self.yay_btn.setText(_("Update System (Yay)"))
-        self.install_lts_btn.setText(_("Install Linux LTS"))
-        self.install_zen_btn.setText(_("Install Linux Zen"))
-        self.sys_lang_label.setText(_("System Language:"))
-        self.apply_lang_btn.setText(_("Apply System Language"))
-        self.docs_btn.setText(_("Open Documentation"))
-        self.youtube_btn.setText(_("Open YouTube Channel"))
-        self.neofetch_btn.setText(_("Show System Info"))
-        self.htop_btn.setText(_("Performance Monitor"))
+        if self.app_lang_label:
+            self.app_lang_label.setText(_("Application Language:"))
+        if self.startup_check:
+            self.startup_check.setText(_("Show on startup"))
+        if self.pacman_btn:
+            self.pacman_btn.setText(_("Update System (Pacman)"))
+        if hasattr(self, 'yay_btn') and self.yay_btn:
+            self.yay_btn.setText(_("Update System (Yay)"))
+        if self.install_lts_btn:
+            self.install_lts_btn.setText(_("Install Linux LTS"))
+        if self.install_zen_btn:
+            self.install_zen_btn.setText(_("Install Linux Zen"))
+        if self.sys_lang_label:
+            self.sys_lang_label.setText(_("System Language:"))
+        if self.apply_lang_btn:
+            self.apply_lang_btn.setText(_("Apply System Language"))
+        if self.docs_btn:
+            self.docs_btn.setText(_("Open Documentation"))
+        if self.youtube_btn:
+            self.youtube_btn.setText(_("Open YouTube Channel"))
+        if self.neofetch_btn:
+            self.neofetch_btn.setText(_("Show System Info"))
+        if self.htop_btn:
+            self.htop_btn.setText(_("Performance Monitor"))
+        if self.disk_space_group:
+            self.disk_space_group.setTitle(_("Disk Space"))
+            if self.disk_space_label:
+                self.disk_space_label.setText(_("Available:"))
 
     def update_startup_file(self, state):
         try:
@@ -273,6 +343,42 @@ Terminal=false""")
             QMessageBox.critical(self, _("Error"), _("xterm is not installed. Please install xterm."))
         except Exception as e:
             QMessageBox.critical(self, _("Error"), f"{_('An error occurred during kernel installation:')} {e}")
+
+    def check_disk_space(self):
+        try:
+            process = subprocess.Popen(["df", "-h"], stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            stdout, stderr = process.communicate()
+            if process.returncode == 0:
+                lines = stdout.strip().split('\n')[1:]
+                for line in lines:
+                    parts = line.split()
+                    if parts[5] == '/' : # نفترض أن القسم الجذر هو المثبت على /
+                        available = parts[3]
+                        total = parts[1]
+                        used_percentage = int(float(parts[4][:-1]))
+                        if used_percentage > 90:
+                            self.disk_space_status.setText(_("Low ({} / {})").format(available, total))
+                            self.disk_space_status.setStyleSheet("color: red;")
+                        elif used_percentage > 80:
+                            self.disk_space_status.setText(_("Warning ({} / {})").format(available, total))
+                            self.disk_space_status.setStyleSheet("color: orange;")
+                        else:
+                            self.disk_space_status.setText(_("OK ({} / {})").format(available, total))
+                            self.disk_space_status.setStyleSheet("color: green;")
+                        return
+                self.disk_space_status.setText(_("N/A"))
+                self.disk_space_status.setStyleSheet("")
+            else:
+                print(f"Error executing df: Return code {process.returncode}, Stderr: {stderr}")
+                self.disk_space_status.setText(_("Error"))
+                self.disk_space_status.setStyleSheet("color: red;")
+        except FileNotFoundError:
+            self.disk_space_status.setText(_("N/A (df not found)"))
+            self.disk_space_status.setStyleSheet("")
+        except Exception as e:
+            print(f"Exception in check_disk_space: {e}")
+            self.disk_space_status.setText(_("Error"))
+            self.disk_space_status.setStyleSheet("color: red;")
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
