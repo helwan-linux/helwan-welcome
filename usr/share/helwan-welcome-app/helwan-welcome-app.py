@@ -12,6 +12,8 @@ from PyQt5.QtWidgets import (
 from PyQt5.QtCore import Qt, QTimer
 from PyQt5.QtGui import QPixmap
 import gettext
+import platform
+import psutil
 
 # === إعداد الترجمة ===
 def load_translation(language_code):
@@ -44,10 +46,11 @@ class WelcomeApp(QWidget):
         super().__init__()
         self.language_code = DEFAULT_LANGUAGE_CODE
         self.show_on_startup = self.check_startup_enabled()
+        self.current_theme = "Default" # السمة الافتراضية
 
         self.setWindowTitle(_("Welcome to Helwan Linux"))
-        self.setGeometry(100, 100, 800, 650) # تقليل الارتفاع قليلاً
-        self.setStyleSheet(self.load_styles())
+        self.setGeometry(100, 100, 600, 650) # زيادة الارتفاع لاستيعاب معلومات النظام
+        self.load_theme(self.current_theme) # تحميل السمة الافتراضية عند البدء
         self.logo = self.load_logo()
 
         self.app_lang_label = None
@@ -64,37 +67,78 @@ class WelcomeApp(QWidget):
         self.youtube_btn = None
         self.neofetch_btn = None
         self.htop_btn = None
-        self.disk_space_group = None
+        self.system_info_group = None # المجموعة الجديدة لمعلومات النظام
         self.disk_space_label = None
         self.disk_space_status = None
+        self.processor_label = None
+        self.processor_info = None
+        self.memory_label = None
+        self.memory_info = None
+        self.theme_label = None
+        self.theme_combobox = None
 
         self.init_ui()
-        self.check_disk_space() # فحص مساحة القرص عند البدء
+        self.check_disk_space()
+        self.update_system_info() # جلب معلومات النظام عند البدء
 
         self.timer = QTimer()
         self.timer.timeout.connect(self.check_disk_space)
-        self.timer.start(5000) # تحديث كل 5 ثواني
+        self.timer.start(5000)
 
     def check_startup_enabled(self):
         autostart_dir = os.path.expanduser("~/.config/autostart")
         startup_file_path = os.path.join(autostart_dir, "helwan_welcome.desktop")
         return os.path.exists(startup_file_path)
 
-    def load_styles(self):
-        return """
-            QWidget { background-color: #f5f5f5; font-family: 'Segoe UI'; font-size: 13px; }
-            QLabel { color: #333; margin-bottom: 5px; }
-            QPushButton { background-color: #e0e0e0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 12px; }
-            QPushButton:hover { background-color: #d0d0d0; }
-            QCheckBox { color: #333; margin-top: 5px; margin-bottom: 5px; }
-            QComboBox { background-color: #fff; color: #333; border: 1px solid #ccc; border-radius: 3px; padding: 6px; margin-top: 3px; margin-bottom: 3px; }
-            QGroupBox { border: 1px solid #ccc; border-radius: 5px; margin-top: 10px; padding: 10px; }
-            QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #555; }
-            QLabel#disk_space_status { font-weight: bold; }
-            QLabel#disk_space_status_ok { color: green; }
-            QLabel#disk_space_status_warning { color: orange; }
-            QLabel#disk_space_status_error { color: red; }
-        """
+    def load_theme(self, theme_name):
+        if theme_name == "Default":
+            self.setStyleSheet("""
+                QWidget { background-color: #f5f5f5; font-family: 'Segoe UI'; font-size: 13px; color: #333; }
+                QLabel { color: #333; margin-bottom: 5px; }
+                QPushButton { background-color: #e0e0e0; color: #333; border: 1px solid #ccc; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 12px; }
+                QPushButton:hover { background-color: #d0d0d0; }
+                QCheckBox { color: #333; margin-top: 5px; margin-bottom: 5px; }
+                QComboBox { background-color: #fff; color: #333; border: 1px solid #ccc; border-radius: 3px; padding: 6px; margin-top: 3px; margin-bottom: 3px; }
+                QGroupBox { border: 1px solid #ccc; border-radius: 5px; margin-top: 10px; padding: 10px; }
+                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #555; }
+                QLabel#disk_space_status { font-weight: bold; }
+                QLabel#disk_space_status_ok { color: green; }
+                QLabel#disk_space_status_warning { color: orange; }
+                QLabel#disk_space_status_error { color: red; }
+                QLabel#system_info { margin-bottom: 2px; }
+            """)
+        elif theme_name == "Sky Blue":
+            self.setStyleSheet("""
+                QWidget { background-color: #e0f7fa; font-family: 'Segoe UI'; font-size: 13px; color: #212121; }
+                QLabel { color: #212121; margin-bottom: 5px; }
+                QPushButton { background-color: #81d4fa; color: #212121; border: 1px solid #4fc3f7; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 12px; }
+                QPushButton:hover { background-color: #4fc3f7; }
+                QCheckBox { color: #212121; margin-top: 5px; margin-bottom: 5px; }
+                QComboBox { background-color: #b3e5fc; color: #212121; border: 1px solid #81d4fa; border-radius: 3px; padding: 6px; margin-top: 3px; margin-bottom: 3px; }
+                QGroupBox { border: 1px solid #4fc3f7; border-radius: 5px; margin-top: 10px; padding: 10px; }
+                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #0277bd; }
+                QLabel#disk_space_status { font-weight: bold; color: #212121; }
+                QLabel#disk_space_status_ok { color: darkgreen; }
+                QLabel#disk_space_status_warning { color: darkorange; }
+                QLabel#disk_space_status_error { color: darkred; }
+                QLabel#system_info { margin-bottom: 2px; }
+            """)
+        elif theme_name == "Light Black":
+            self.setStyleSheet("""
+                QWidget { background-color: #303030; font-family: 'Segoe UI'; font-size: 13px; color: #f0f0f0; }
+                QLabel { color: #f0f0f0; margin-bottom: 5px; }
+                QPushButton { background-color: #505050; color: #f0f0f0; border: 1px solid #707070; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 12px; }
+                QPushButton:hover { background-color: #707070; }
+                QCheckBox { color: #f0f0f0; margin-top: 5px; margin-bottom: 5px; }
+                QComboBox { background-color: #404040; color: #f0f0f0; border: 1px solid #606060; border-radius: 3px; padding: 6px; margin-top: 3px; margin-bottom: 3px; }
+                QGroupBox { border: 1px solid #606060; border-radius: 5px; margin-top: 10px; padding: 10px; }
+                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #a0a0a0; }
+                QLabel#disk_space_status { font-weight: bold; color: #f0f0f0; }
+                QLabel#disk_space_status_ok { color: lightgreen; }
+                QLabel#disk_space_status_warning { color: yellow; }
+                QLabel#disk_space_status_error { color: red; }
+                QLabel#system_info { margin-bottom: 2px; }
+            """)
 
     def load_logo(self):
         logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
@@ -107,8 +151,8 @@ class WelcomeApp(QWidget):
 
     def init_ui(self):
         layout = QVBoxLayout(self)
-        layout.setAlignment(Qt.AlignCenter)
-        layout.setSpacing(8)
+        layout.setAlignment(Qt.AlignTop) # محاذاة العناصر في الأعلى
+        layout.setSpacing(1)
 
         if self.logo:
             logo_label = QLabel(self)
@@ -124,6 +168,17 @@ class WelcomeApp(QWidget):
         controls = QVBoxLayout()
         controls.setSpacing(8)
         layout.addLayout(controls)
+
+        # Theme Selection
+        theme_layout = QHBoxLayout()
+        self.theme_label = QLabel(_("Application Theme:"))
+        theme_layout.addWidget(self.theme_label)
+        self.theme_combobox = QComboBox()
+        self.theme_combobox.addItems(["Default", "Sky Blue", "Light Black"])
+        self.theme_combobox.setCurrentText(self.current_theme)
+        self.theme_combobox.currentTextChanged.connect(self.load_theme)
+        theme_layout.addWidget(self.theme_combobox)
+        controls.addLayout(theme_layout)
 
         # Application Language
         app_lang_layout = self.create_labeled_combobox(
@@ -182,24 +237,41 @@ class WelcomeApp(QWidget):
         docs_layout.addWidget(self.youtube_btn)
         controls.addLayout(docs_layout)
 
-        # System Information
+        # System Information Group
+        self.system_info_group = QGroupBox(_("System Information"))
+        system_info_layout = QGridLayout()
+
+        # Disk Space
+        self.disk_space_label = QLabel(_("Available Disk Space:"))
+        self.disk_space_status = QLabel()
+        self.disk_space_status.setObjectName("disk_space_status")
+        system_info_layout.addWidget(self.disk_space_label, 0, 0)
+        system_info_layout.addWidget(self.disk_space_status, 0, 1)
+
+        # Processor
+        self.processor_label = QLabel(_("Processor:"))
+        self.processor_info = QLabel()
+        self.processor_info.setObjectName("system_info")
+        system_info_layout.addWidget(self.processor_label, 1, 0)
+        system_info_layout.addWidget(self.processor_info, 1, 1)
+
+        # Memory
+        self.memory_label = QLabel(_("RAM:"))
+        self.memory_info = QLabel()
+        self.memory_info.setObjectName("system_info")
+        system_info_layout.addWidget(self.memory_label, 2, 0)
+        system_info_layout.addWidget(self.memory_info, 2, 1)
+
+        self.system_info_group.setLayout(system_info_layout)
+        controls.addWidget(self.system_info_group)
+
+        # System Information Buttons (Neofetch, Htop) - نقلناها أسفل معلومات النظام
         sysinfo_layout = QHBoxLayout()
-        self.neofetch_btn = self.create_button(_("Show System Info"), lambda: self.run_terminal_cmd("neofetch"))
+        self.neofetch_btn = self.create_button(_("Show System Info Details"), lambda: self.run_terminal_cmd("neofetch"))
         sysinfo_layout.addWidget(self.neofetch_btn)
         self.htop_btn = self.create_button(_("Performance Monitor"), lambda: self.run_terminal_cmd("htop"))
         sysinfo_layout.addWidget(self.htop_btn)
         controls.addLayout(sysinfo_layout)
-
-        # Disk Space Check
-        self.disk_space_group = QGroupBox(_("Disk Space"))
-        disk_space_layout = QHBoxLayout()
-        self.disk_space_label = QLabel(_("Available:"))
-        disk_space_layout.addWidget(self.disk_space_label)
-        self.disk_space_status = QLabel()
-        self.disk_space_status.setObjectName("disk_space_status")
-        disk_space_layout.addWidget(self.disk_space_status)
-        self.disk_space_group.setLayout(disk_space_layout)
-        controls.addWidget(self.disk_space_group)
 
         # أول تعريب للواجهة
         self.retranslate_ui()
@@ -244,6 +316,8 @@ class WelcomeApp(QWidget):
     def retranslate_ui(self):
         self.setWindowTitle(_("Welcome to Helwan Linux"))
         self.greeting.setText(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
+        if self.theme_label:
+            self.theme_label.setText(_("Application Theme:"))
         if self.app_lang_label:
             self.app_lang_label.setText(_("Application Language:"))
         if self.startup_check:
@@ -265,13 +339,17 @@ class WelcomeApp(QWidget):
         if self.youtube_btn:
             self.youtube_btn.setText(_("Open YouTube Channel"))
         if self.neofetch_btn:
-            self.neofetch_btn.setText(_("Show System Info"))
+            self.neofetch_btn.setText(_("Show System Info Details"))
         if self.htop_btn:
             self.htop_btn.setText(_("Performance Monitor"))
-        if self.disk_space_group:
-            self.disk_space_group.setTitle(_("Disk Space"))
+        if self.system_info_group:
+            self.system_info_group.setTitle(_("System Information"))
             if self.disk_space_label:
-                self.disk_space_label.setText(_("Available:"))
+                self.disk_space_label.setText(_("Available Disk Space:"))
+            if self.processor_label:
+                self.processor_label.setText(_("Processor:"))
+            if self.memory_label:
+                self.memory_label.setText(_("RAM:"))
 
     def update_startup_file(self, state):
         try:
@@ -380,8 +458,37 @@ Terminal=false""")
             self.disk_space_status.setText(_("Error"))
             self.disk_space_status.setStyleSheet("color: red;")
 
+    def update_system_info(self):
+        processor_info = None
+        if platform.system() == "Linux":
+            try:
+                with open("/proc/cpuinfo", "r") as f:
+                    for line in f:
+                        if "model name" in line:
+                            processor_info = line.split(":")[1].strip()
+                            break
+            except FileNotFoundError:
+                print("Error: /proc/cpuinfo not found.")
+            except Exception as e:
+                print(f"Error reading /proc/cpuinfo: {e}")
+
+        if not processor_info:
+            processor_info = platform.processor() or _("N/A")
+
+        self.processor_info.setText(processor_info)
+
+        # Memory Info
+        try:
+            mem = psutil.virtual_memory()
+            total_memory_gb = round(mem.total / (1024 ** 3), 2)
+            self.memory_info.setText(f"{total_memory_gb} GB")
+        except Exception as e:
+            print(f"Error getting memory info: {e}")
+            self.memory_info.setText(_("N/A"))
+
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = WelcomeApp()
     window.show()
     sys.exit(app.exec_())
+
