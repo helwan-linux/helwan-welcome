@@ -1,6 +1,6 @@
 # Maintainer: Saeed Badrelden <saeedbadrelden2021@gmail.com>
-pkgname=helwan-welcome-app
-_pkgname=helwan-welcome-app
+pkgname=hel-welcome-app
+_pkgname=hel-welcome-app
 _licensedir='/usr/share/licenses/'
 pkgver=2
 pkgrel=04
@@ -18,12 +18,34 @@ source=(${_pkgname}::"git+${url}")
 sha256sums=('SKIP')
 
 package() {
-	# تثبيت الرخصة
 	install -dm755 "${pkgdir}${_licensedir}${pkgname}"
 	install -m644 "${srcdir}/${_pkgname}/LICENSE" "${pkgdir}${_licensedir}${pkgname}/LICENSE"
 
-	# نسخ مجلد usr بالكامل كما هو
-	cp -r "${srcdir}/${_pkgname}/usr/"* "${pkgdir}/usr/"
+	# إنشاء مجلد لتطبيق الترحيب
+	install -dm755 "${pkgdir}/usr/share/${pkgname}"
+
+	# نسخ كل ملفات بايثون لمجلد التطبيق
+	cp -r "${srcdir}/${_pkgname}/*.py" "${pkgdir}/usr/share/${pkgname}/"
+
+	# إنشاء مجلد للموارد (sources) ونسخه
+	install -dm755 "${pkgdir}/usr/share/${pkgname}/sources"
+	cp -r "${srcdir}/${_pkgname}/sources/"* "${pkgdir}/usr/share/${pkgname}/sources/"
+
+	# إنشاء مجلد للترجمات (locales) ونسخه
+	install -dm755 "${pkgdir}/usr/share/${pkgname}/locales"
+	cp -r "${srcdir}/${_pkgname}/locales/"* "${pkgdir}/usr/share/${pkgname}/locales/"
+
+	# نسخ ملف التشغيل الرئيسي (main.py) لوحده عشان نتأكد إنه موجود
+	install -Dm644 "${srcdir}/${_pkgname}/main.py" "${pkgdir}/usr/share/${pkgname}/main.py"
+
+	# نسخ ملف .desktop للمكان الصح
+	install -Dm644 "${srcdir}/${_pkgname}/helwan_welcome.desktop" "${pkgdir}/usr/share/applications/helwan_welcome.desktop"
+
+	# إضافة سكريبت لتشغيل التطبيق في /usr/bin
+	install -Dm755 /dev/stdin "${pkgdir}/usr/bin/hel-welcome-app" << EOF
+#!/bin/bash
+exec python3 /usr/share/${pkgname}/main.py
+EOF
 
 	# نسخ ملفات الإعدادات الافتراضية (لو موجودة)
 	if [ -d "${srcdir}/${_pkgname}/.config" ]; then
