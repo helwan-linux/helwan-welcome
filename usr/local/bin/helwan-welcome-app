@@ -1,2 +1,2 @@
 #!/usr/bin/env bash
-/usr/bin/python3 /usr/share/helwan-welcome-app/helwan-welcome-app.py
+/usr/bin/python3 /usr/share/helwan-welcome-app/main.py
