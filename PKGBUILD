@@ -18,30 +18,14 @@ source=(${_pkgname}::"git+${url}")
 sha256sums=('SKIP')
 
 package() {
+	# تثبيت الرخصة
 	install -dm755 "${pkgdir}${_licensedir}${pkgname}"
 	install -m644 "${srcdir}/${_pkgname}/LICENSE" "${pkgdir}${_licensedir}${pkgname}/LICENSE"
 
-	# إنشاء مجلد لتطبيق الترحيب
-	install -dm755 "${pkgdir}/usr/share/${pkgname}"
+	# نسخ مجلد usr بالكامل كما هو
+	cp -r "${srcdir}/${_pkgname}/usr/"* "${pkgdir}/usr/"
 
-	# نسخ جميع ملفات بايثون إلى مجلد التطبيق
-	cp -r "${srcdir}/${_pkgname}/*.py" "${pkgdir}/usr/share/${pkgname}/"
-
-	# إنشاء مجلد للموارد (sources) ونسخها
-	install -dm755 "${pkgdir}/usr/share/${pkgname}/sources"
-	cp -r "${srcdir}/${_pkgname}/sources/"* "${pkgdir}/usr/share/${pkgname}/sources/"
-
-	# إنشاء مجلد للترجمات (locales) ونسخها
-	install -dm755 "${pkgdir}/usr/share/${pkgname}/locales"
-	cp -r "${srcdir}/${_pkgname}/locales/"* "${pkgdir}/usr/share/${pkgname}/locales/"
-
-	# نسخ ملف التشغيل الرئيسي (main.py) بشكل منفصل للتأكد من وجوده
-	install -Dm644 "${srcdir}/${_pkgname}/main.py" "${pkgdir}/usr/share/${pkgname}/main.py"
-
-	# نسخ ملف .desktop إلى المكان الصحيح
-	install -Dm644 "${srcdir}/${_pkgname}/helwan_welcome.desktop" "${pkgdir}/usr/share/applications/helwan_welcome.desktop"
-
-	# نسخ ملفات الإعدادات الافتراضية (إذا كانت موجودة)
+	# نسخ ملفات الإعدادات الافتراضية (لو موجودة)
 	if [ -d "${srcdir}/${_pkgname}/.config" ]; then
 		install -dm755 "${pkgdir}/etc/skel/.config"
 		cp -r "${srcdir}/${_pkgname}/.config/"* "${pkgdir}/etc/skel/.config/"
