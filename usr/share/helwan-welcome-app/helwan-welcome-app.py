@@ -139,6 +139,23 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_error { color: red; }
                 QLabel#system_info { margin-bottom: 2px; }
             """)
+            
+        elif theme_name == "Light Purple":  # Light purple theme
+            self.setStyleSheet("""
+                QWidget { background-color: #e6ccff; font-family: 'Segoe UI'; font-size: 13px; color: #4d194d; } /* بنفسجي فاتح للخلفية، بنفسجي داكن للنص */
+                QLabel { color: #4d194d; margin-bottom: 5px; }
+                QPushButton { background-color: #f0d9ff; color: #4d194d; border: 1px solid #b388eb; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 12px; }
+                QPushButton:hover { background-color: #b388eb; }
+                QCheckBox { color: #4d194d; margin-top: 5px; margin-bottom: 5px; }
+                QComboBox { background-color: #f3e5f5; color: #4d194d; border: 1px solid #ce93d8; border-radius: 3px; padding: 6px; margin-top: 3px; margin-bottom: 3px; }
+                QGroupBox { border: 1px solid #ce93d8; border-radius: 5px; margin-top: 10px; padding: 10px; color: #4d194d; }
+                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #8e24aa; } /* بنفسجي أغمق لعنوان المجموعة */
+                QLabel#disk_space_status { font-weight: bold; color: #4d194d; }
+                QLabel#disk_space_status_ok { color: darkgreen; }
+                QLabel#disk_space_status_warning { color: darkorange; }
+                QLabel#disk_space_status_error { color: darkred; }
+                QLabel#system_info { margin-bottom: 2px; color: #4d194d; }
+            """)
 
     def load_logo(self):
         logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
@@ -174,7 +191,7 @@ class WelcomeApp(QWidget):
         self.theme_label = QLabel(_("Application Theme:"))
         theme_layout.addWidget(self.theme_label)
         self.theme_combobox = QComboBox()
-        self.theme_combobox.addItems(["Default", "Sky Blue", "Light Black"])
+        self.theme_combobox.addItems(["Default", "Sky Blue", "Light Black", "Light Purple"])
         self.theme_combobox.setCurrentText(self.current_theme)
         self.theme_combobox.currentTextChanged.connect(self.load_theme)
         theme_layout.addWidget(self.theme_combobox)
