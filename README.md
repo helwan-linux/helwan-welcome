@@ -31,7 +31,11 @@ helwan-welcome/
 │           │   └── pt/LC_MESSAGES/
 │           ├── sources/
 │           │     ├── helwan-welcome-app.desktop
-│           │     └── helwan-welcome-app.py
+│           │     └── nain.py
+                  └── welcome_window.py
+                  └── theme_manager.py
+                  └── system_utils.py
+                  └── language_manager.py
 │           └── icons/
 │               └── hicolor/
 │                   └── scalable/
