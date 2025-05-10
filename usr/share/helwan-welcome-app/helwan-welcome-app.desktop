@@ -10,4 +10,4 @@ Type=Application
 Categories=GTK;Settings;Security;X-GNOME-Settings-Panel;X-GNOME-SystemSettings;X-Unity-Settings-Panel;X-XFCE-SettingsDialog;X-XFCE-SystemSettings;
 Keywords=welcome;tool;
 StartupNotify=true
-Name[en_US]=helwan-welcome-app.desktop
+Name[en_US]=helwan-welcome
