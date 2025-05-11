@@ -67,6 +67,7 @@ APP_LANGUAGES = {
 }
 
 class WelcomeApp(QWidget):
+
     def __init__(self):
         super().__init__()
         self.language_code = DEFAULT_LANGUAGE_CODE
@@ -74,14 +75,13 @@ class WelcomeApp(QWidget):
         self.current_theme = "Default"  # السمة الافتراضية
 
         self.settings = QSettings("Helwan", "WelcomeApp")  # هنا غير "Helwan" باسم مؤسستك
-        self.load_theme(self.current_theme)
         self.logo = self.load_logo()
 
         self.app_lang_label = None
         self.app_lang_combobox = None
         self.startup_check = None
         self.pacman_btn = None
-        self.yay_btn = None  # هنا ضفنا تعريف yay_btn
+        self.yay_btn = None   # هنا ضفنا تعريف yay_btn
         self.install_lts_btn = None
         self.install_zen_btn = None
         self.sys_lang_label = None
@@ -102,7 +102,9 @@ class WelcomeApp(QWidget):
         self.theme_combobox = None
 
         self.init_ui()  # قم بتهيئة واجهة المستخدم أولاً
-        self.load_settings()  # ثم قم بتحميل الإعدادات التي تعتمد عليها
+        self.load_theme(self.current_theme) # ثم قم بتحميل الثيم الذي يعتمد على عناصر الواجهة
+
+        self.load_settings() # ثم قم بتحميل الإعدادات التي تعتمد عليها
 
         self.check_disk_space()
         self.update_system_info()
@@ -148,6 +150,8 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_error { color: red; }
                 QLabel#system_info { margin-bottom: 2px; }
             """)
+            if self.greeting:
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #555;") # لون النص الافتراضي
         elif theme_name == "Sky Blue":
             self.setStyleSheet("""
                 QWidget { background-color: #e0f7fa; font-family: 'Segoe UI'; font-size: 13px; color: #212121; }
@@ -164,24 +168,27 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_error { color: darkred; }
                 QLabel#system_info { margin-bottom: 2px; }
             """)
-        elif theme_name == "Light Black":
+            if self.greeting:
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #212121;") # لون النص للسمة الزرقاء
+        elif theme_name == "Light Black":  # اسم جديد للسمة اللوكس
             self.setStyleSheet("""
-                QWidget { background-color: #404040; font-family: 'Segoe UI'; font-size: 13px; color: #f0f0f0; }
-                QLabel { color: #f0f0f0; margin-bottom: 5px; }
-                QPushButton { background-color: #606060; color: #f0f0f0; border: 1px solid #808080; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; }
-                QPushButton:hover { background-color: #808080; }
-                QCheckBox { color: #f0f0f0; margin-top: 5px; margin-bottom: 5px; }
-                QComboBox { background-color: #505050; color: #f0f0f0; border: 1px solid #707070; border-radius: 3px; padding: 4px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; }
-                QGroupBox { border: 1px solid #707070; border-radius: 5px; margin-top: 10px; padding: 10px; }
-                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #b0b0b0; }
-                QLabel#disk_space_status { font-weight: bold; color: #f0f0f0; }
+                QWidget { background-color: #666666; font-family: 'Segoe UI'; font-size: 13px; color: #d0d0d0; } /* خلفية رمادي غامق، نص رمادي فاتح */
+                QLabel { color: #d0d0d0; margin-bottom: 5px; }
+                QPushButton { background-color: #808080; color: #d0d0d0; border: 1px solid #a0a0a0; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; } /* أزرار رمادي متوسط */
+                QPushButton:hover { background-color: #a0a0a0; } /* هوفر أفتح للأزرار */
+                QCheckBox { color: #d0d0d0; margin-top: 5px; margin-bottom: 5px; }
+                QComboBox { background-color: #737373; color: #d0d0d0; border: 1px solid #999999; border-radius: 3px; padding: 4px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; } /* قوائم منسدلة أغمق شوية */
+                QGroupBox { border: 1px solid #999999; border-radius: 5px; margin-top: 10px; padding: 10px; color: #d0d0d0; }
+                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #cccccc; } /* عنوان المجموعة أفتح */
+                QLabel#disk_space_status { font-weight: bold; color: #d0d0d0; }
                 QLabel#disk_space_status_ok { color: lightgreen; }
                 QLabel#disk_space_status_warning { color: yellow; }
                 QLabel#disk_space_status_error { color: red; }
-                QLabel#system_info { margin-bottom: 2px; }
-                """)
-
-        elif theme_name == "Light Purple":  # Light purple theme
+                QLabel#system_info { margin-bottom: 2px; color: #d0d0d0; }
+            """)
+            if self.greeting:
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #d0d0d0;") # لون نص الترحيب للسمة اللوكس
+        elif theme_name == "Light Purple":
             self.setStyleSheet("""
                 QWidget { background-color: #e6ccff; font-family: 'Segoe UI'; font-size: 13px; color: #4d194d; } /* بنفسجي فاتح للخلفية، بنفسجي داكن للنص */
                 QLabel { color: #4d194d; margin-bottom: 5px; }
@@ -197,6 +204,26 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_error { color: darkred; }
                 QLabel#system_info { margin-bottom: 2px; color: #4d194d; }
             """)
+            if self.greeting:
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #4d194d;") # لون النص للسمة البنفسجية
+        elif theme_name == "Light Black (Faded)":
+            self.setStyleSheet("""
+                QWidget { background-color: #505050; font-family: 'Segoe UI'; font-size: 13px; color: #e0e0e0; } /* افتحنا الخلفية والنص */
+                QLabel { color: #e0e0e0; margin-bottom: 5px; }
+                QPushButton { background-color: #707070; color: #e0e0e0; border: 1px solid #909090; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; } /* افتحنا الأزرار */
+                QPushButton:hover { background-color: #909090; } /* افتحنا لونHover للأزرار */
+                QCheckBox { color: #e0e0e0; margin-top: 5px; margin-bottom: 5px; }
+                QComboBox { background-color: #606060; color: #e0e0e0; border: 1px solid #808080; border-radius: 3px; padding: 4px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; } /* افتحنا القوائم المنسدلة */
+                QGroupBox { border: 1px solid #808080; border-radius: 5px; margin-top: 10px; padding: 10px; color: #e0e0e0; } /* افتحنا حدود وعنوان المجموعات */
+                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #c0c0c0; } /* افتحنا لون عنوان المجموعة */
+                QLabel#disk_space_status { font-weight: bold; color: #e0e0e0; }
+                QLabel#disk_space_status_ok { color: lightgreen; }
+                QLabel#disk_space_status_warning { color: yellow; }
+                QLabel#disk_space_status_error { color: red; }
+                QLabel#system_info { margin-bottom: 2px; color: #e0e0e0; }
+            """)
+            if self.greeting:
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #e0e0e0;") # لون النص للسمة السوداء الفاتحة)
 
     def load_logo(self):
         logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
@@ -220,7 +247,7 @@ class WelcomeApp(QWidget):
 
         self.greeting = QLabel()
         self.greeting.setAlignment(Qt.AlignCenter)
-        self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #555;")
+        self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #e0e0e0;")
         layout.addWidget(self.greeting)
 
         controls = QVBoxLayout()
