@@ -426,8 +426,11 @@ class WelcomeApp(QWidget):
     def open_url(self, url):
         webbrowser.open(url)
 
-    def run_terminal_cmd(self, command, title=_("Running Command")):
-        subprocess.Popen(['xterm', '-e', f'{command}; bash'], shell=False)
+    def run_terminal_cmd(self, cmd):
+        try:
+            subprocess.Popen(["xterm", "-hold", "-e", f"{cmd}; echo; echo Press Enter to exit..."])
+        except FileNotFoundError:
+            QMessageBox.critical(self, _("Error"), _("xterm is not installed. Please install xterm."))
 
     def _execute_command(self, command, dialog):
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
