@@ -417,11 +417,29 @@ class WelcomeApp(QWidget):
         self.run_terminal_cmd("sudo pacman -S --needed linux-zen linux-zen-headers")
 
     def apply_system_language(self):
-        selected_lang = self.system_language_combobox.currentText()
-        lang_code = [code for code, name in SYSTEM_LANGUAGES.items() if name == selected_lang][0]
-        command = f"pkexec localectl set-locale LANG={lang_code}"
-        self.run_terminal_cmd(command, _("Applying System Language"))
-        QMessageBox.information(self, _("Language Change"), _("System language change may require a reboot to take full effect."))
+        selected_lang_name = self.system_language_combobox.currentText()
+        lang_code = None
+        for code, name in SYSTEM_LANGUAGES.items():
+            if name == selected_lang_name:
+                lang_code = code
+                break
+
+        if lang_code:
+            try:
+                process = subprocess.Popen(["pkexec", "localectl", "set-locale", f"LANG={lang_code}"],
+                                             stdout=subprocess.PIPE,
+                                             stderr=subprocess.PIPE)
+                stdout, stderr = process.communicate()
+                if process.returncode == 0:
+                    QMessageBox.information(self, _("System Language"), _("System language applied successfully. You might need to restart your system for the changes to take full effect."))
+                else:
+                    QMessageBox.critical(self, _("Error"), f"{_('Failed to apply system language:')} {stderr.decode()}")
+            except FileNotFoundError:
+                QMessageBox.critical(self, _("Error"), _("pkexec command not found. Ensure polkit is installed."))
+            except Exception as e:
+                QMessageBox.critical(self, _("Error"), f"{_('An error occurred while applying system language:')} {e}")
+        else:
+            QMessageBox.critical(self, _("Error"), _("Invalid system language selected."))
 
     def open_url(self, url):
         webbrowser.open(url)
