@@ -1,0 +1,95 @@
+# Portuguese translations for the base domain.
+# Copyright (C) YEAR ORGANIZATION
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"POT-Creation-Date: 2025-05-09 06:35+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HH:MM+TZ\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: pt\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Bem-vindo ao Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Bem-vindo ao mundo do Helwan Linux! ❤️\nEstamos aqui para ajudá-lo a construir seus sonhos sobre a base mais forte!"
+
+msgid "Application Theme:"
+msgstr "Tema da Aplicação:"
+
+msgid "Application Language:"
+msgstr "Idioma da Aplicação:"
+
+msgid "Show on startup"
+msgstr "Mostrar na inicialização"
+
+msgid "Update System (Pacman)"
+msgstr "Atualizar Sistema (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Atualizar Sistema (Yay)"
+
+msgid "Install Linux LTS"
+msgstr "Instalar Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Instalar Linux Zen"
+
+msgid "System Language:"
+msgstr "Idioma do Sistema:"
+
+msgid "Apply System Language"
+msgstr "Aplicar Idioma do Sistema"
+
+msgid "Open Documentation"
+msgstr "Abrir Documentação"
+
+msgid "Open YouTube Channel"
+msgstr "Abrir Canal do YouTube"
+
+msgid "Show System Info Details"
+msgstr "Mostrar Detalhes da Informação do Sistema"
+
+msgid "Performance Monitor"
+msgstr "Monitor de Desempenho"
+
+msgid "System Information"
+msgstr "Informação do Sistema"
+
+msgid "Available Disk Space:"
+msgstr "Espaço Livre em Disco:"
+
+msgid "Processor:"
+msgstr "Processador:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Language Changed"
+msgstr "Idioma Alterado"
+
+msgid "Language has been changed successfully."
+msgstr "O idioma foi alterado com sucesso."
+
+msgid "Error"
+msgstr "Erro"
+
+msgid "Could not update startup file:"
+msgstr "Não foi possível atualizar o arquivo de inicialização:"
+
+msgid "Could not open URL:"
+msgstr "Não foi possível abrir o URL:"
+
+msgid "xterm is not installed. Please install xterm."
+msgstr "xterm não está instalado. Por favor, instale xterm."
+
+msgid "Failed to apply system language:"
+msgstr "Falha ao aplicar o idioma do"

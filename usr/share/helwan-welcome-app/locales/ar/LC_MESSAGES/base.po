@@ -1,0 +1,123 @@
+# Arabic translations for the base domain.
+# Copyright (C) YEAR ORGANIZATION
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base\n"
+"POT-Creation-Date: 2025-05-11 07:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HH:MM+TZ\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: ar\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=(n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5);\n"
+"X-Generator: Poedit 3.4.1\n"
+
+msgid "Welcome to Helwan Linux"
+msgstr "مرحباً بك في حلوان لينكس"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "مرحباً بك في عالم حلوان لينكس! ❤️\nنحن هنا لمساعدتك في بناء أحلامك على أقوى الأسس!"
+
+msgid "Application Theme:"
+msgstr "سمة التطبيق:"
+
+msgid "Application Language:"
+msgstr "لغة التطبيق:"
+
+msgid "Show on startup"
+msgstr "إظهار عند بدء التشغيل"
+
+msgid "Update System (Pacman)"
+msgstr "تحديث النظام (pacman)"
+
+msgid "Update System (Yay)"
+msgstr "تحديث النظام (yay)"
+
+msgid "Install Linux LTS"
+msgstr "تثبيت لينكس إل تي إس"
+
+msgid "Install Linux Zen"
+msgstr "تثبيت لينكس زين"
+
+msgid "System Language:"
+msgstr "لغة النظام:"
+
+msgid "Apply System Language"
+msgstr "تطبيق لغة النظام"
+
+msgid "Open Documentation"
+msgstr "فتح الوثائق"
+
+msgid "Open YouTube Channel"
+msgstr "فتح قناة يوتيوب"
+
+msgid "Show System Info Details"
+msgstr "إظهار تفاصيل معلومات النظام"
+
+msgid "Performance Monitor"
+msgstr "مراقب الأداء"
+
+msgid "System Information"
+msgstr "معلومات النظام"
+
+msgid "Available Disk Space:"
+msgstr "مساحة القرص المتوفرة:"
+
+msgid "Processor:"
+msgstr "المعالج:"
+
+msgid "RAM:"
+msgstr "ذاكرة الوصول العشوائي:"
+
+msgid "Language Changed"
+msgstr "تم تغيير اللغة"
+
+msgid "Language has been changed successfully."
+msgstr "تم تغيير اللغة بنجاح."
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "Could not update startup file:"
+msgstr "تعذر تحديث ملف بدء التشغيل:"
+
+msgid "Could not open URL:"
+msgstr "تعذر فتح الرابط:"
+
+msgid "xterm is not installed. Please install xterm."
+msgstr "برنامج xterm غير مثبت. يرجى تثبيت xterm."
+
+msgid "Failed to apply system language:"
+msgstr "فشل تطبيق لغة النظام:"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "لم يتم العثور على أمر pkexec. تأكد من تثبيت polkit."
+
+msgid "An error occurred while applying system language:"
+msgstr "حدث خطأ أثناء تطبيق لغة النظام:"
+
+msgid "An error occurred during kernel installation:"
+msgstr "حدث خطأ أثناء تثبيت النواة:"
+
+msgid "Low (%s / %s)"
+msgstr "منخفضة (%s / %s)"
+
+msgid "Warning (%s / %s)"
+msgstr "تحذير (%s / %s)"
+
+msgid "OK (%s / %s)"
+msgstr "جيد (%s / %s)"
+
+msgid "N/A"
+msgstr "غير متوفر"
+
+msgid "Error"
+msgstr "خطأ"
+
+msgid "N/A (df not found)"
+msgstr "غير متوفر (لم يتم العثور على df)"

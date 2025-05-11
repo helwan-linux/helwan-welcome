@@ -1,0 +1,123 @@
+# German translations for the base domain.
+# Copyright (C) YEAR ORGANIZATION
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: base\n"
+"POT-Creation-Date: 2025-05-11 07:39+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HH:MM+TZ\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Poedit 3.4.1\n"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Willkommen bei Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Willkommen in der Welt von Helwan Linux! ❤️\nWir sind hier, um Ihnen zu helfen, Ihre Träume auf dem stärksten Fundament aufzubauen!"
+
+msgid "Application Theme:"
+msgstr "Anwendungsdesign:"
+
+msgid "Application Language:"
+msgstr "Anwendungssprache:"
+
+msgid "Show on startup"
+msgstr "Beim Start anzeigen"
+
+msgid "Update System (Pacman)"
+msgstr "System aktualisieren (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "System aktualisieren (Yay)"
+
+msgid "Install Linux LTS"
+msgstr "Linux LTS installieren"
+
+msgid "Install Linux Zen"
+msgstr "Linux Zen installieren"
+
+msgid "System Language:"
+msgstr "System Sprache:"
+
+msgid "Apply System Language"
+msgstr "System Sprache anwenden"
+
+msgid "Open Documentation"
+msgstr "Dokumentation öffnen"
+
+msgid "Open YouTube Channel"
+msgstr "YouTube-Kanal öffnen"
+
+msgid "Show System Info Details"
+msgstr "Systeminfo-Details anzeigen"
+
+msgid "Performance Monitor"
+msgstr "Leistungsüberwachung"
+
+msgid "System Information"
+msgstr "Systeminformationen"
+
+msgid "Available Disk Space:"
+msgstr "Verfügbarer Festplattenspeicher:"
+
+msgid "Processor:"
+msgstr "Prozessor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Language Changed"
+msgstr "Sprache geändert"
+
+msgid "Language has been changed successfully."
+msgstr "Die Sprache wurde erfolgreich geändert."
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "Could not update startup file:"
+msgstr "Startdatei konnte nicht aktualisiert werden:"
+
+msgid "Could not open URL:"
+msgstr "URL konnte nicht geöffnet werden:"
+
+msgid "xterm is not installed. Please install xterm."
+msgstr "xterm ist nicht installiert. Bitte installieren Sie xterm."
+
+msgid "Failed to apply system language:"
+msgstr "Systemsprache konnte nicht angewendet werden:"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Der Befehl pkexec wurde nicht gefunden. Stellen Sie sicher, dass polkit installiert ist."
+
+msgid "An error occurred while applying system language:"
+msgstr "Beim Anwenden der System Sprache ist ein Fehler aufgetreten:"
+
+msgid "An error occurred during kernel installation:"
+msgstr "Während der Kernelinstallation ist ein Fehler aufgetreten:"
+
+msgid "Low (%s / %s)"
+msgstr "Niedrig (%s / %s)"
+
+msgid "Warning (%s / %s)"
+msgstr "Warnung (%s / %s)"
+
+msgid "OK (%s / %s)"
+msgstr "OK (%s / %s)"
+
+msgid "N/A"
+msgstr "N/V"
+
+msgid "Error"
+msgstr "Fehler"
+
+msgid "N/A (df not found)"
+msgstr "N/V (df nicht gefunden)"
