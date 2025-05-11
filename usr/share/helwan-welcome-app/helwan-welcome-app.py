@@ -166,20 +166,20 @@ class WelcomeApp(QWidget):
             """)
         elif theme_name == "Light Black":
             self.setStyleSheet("""
-                QWidget { background-color: #303030; font-family: 'Segoe UI'; font-size: 13px; color: #f0f0f0; }
+                QWidget { background-color: #404040; font-family: 'Segoe UI'; font-size: 13px; color: #f0f0f0; }
                 QLabel { color: #f0f0f0; margin-bottom: 5px; }
-                QPushButton { background-color: #505050; color: #f0f0f0; border: 1px solid #707070; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; }
-                QPushButton:hover { background-color: #707070; }
+                QPushButton { background-color: #606060; color: #f0f0f0; border: 1px solid #808080; border-radius: 5px; padding: 6px 10px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; }
+                QPushButton:hover { background-color: #808080; }
                 QCheckBox { color: #f0f0f0; margin-top: 5px; margin-bottom: 5px; }
-                QComboBox { background-color: #404040; color: #f0f0f0; border: 1px solid #606060; border-radius: 3px; padding: 4px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; }
-                QGroupBox { border: 1px solid #606060; border-radius: 5px; margin-top: 10px; padding: 10px; }
-                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #a0a0a0; }
+                QComboBox { background-color: #505050; color: #f0f0f0; border: 1px solid #707070; border-radius: 3px; padding: 4px; margin-top: 3px; margin-bottom: 3px; font-size: 10px; }
+                QGroupBox { border: 1px solid #707070; border-radius: 5px; margin-top: 10px; padding: 10px; }
+                QGroupBox::title { subcontrol-origin: margin; left: 10px; padding: 0 5px; color: #b0b0b0; }
                 QLabel#disk_space_status { font-weight: bold; color: #f0f0f0; }
                 QLabel#disk_space_status_ok { color: lightgreen; }
                 QLabel#disk_space_status_warning { color: yellow; }
                 QLabel#disk_space_status_error { color: red; }
                 QLabel#system_info { margin-bottom: 2px; }
-            """)
+                """)
 
         elif theme_name == "Light Purple":  # Light purple theme
             self.setStyleSheet("""
