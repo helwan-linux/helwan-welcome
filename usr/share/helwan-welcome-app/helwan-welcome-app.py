@@ -151,7 +151,7 @@ class WelcomeApp(QWidget):
                 QLabel#system_info { margin-bottom: 2px; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 1px; margin-bottom: 1px; color: #555;") # لون النص الافتراضي
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #555;") # لون النص الافتراضي
         elif theme_name == "Sky Blue":
             self.setStyleSheet("""
                 QWidget { background-color: #e0f7fa; font-family: 'Segoe UI'; font-size: 13px; color: #212121; }
@@ -169,7 +169,7 @@ class WelcomeApp(QWidget):
                 QLabel#system_info { margin-bottom: 2px; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 1px; margin-bottom: 1px; color: #212121;") # لون النص للسمة الزرقاء
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #212121;") # لون النص للسمة الزرقاء
         elif theme_name == "Light Black":  # اسم جديد للسمة اللوكس
             self.setStyleSheet("""
                 QWidget { background-color: #666666; font-family: 'Segoe UI'; font-size: 13px; color: #d0d0d0; } /* خلفية رمادي غامق، نص رمادي فاتح */
@@ -187,7 +187,7 @@ class WelcomeApp(QWidget):
                 QLabel#system_info { margin-bottom: 2px; color: #d0d0d0; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 1px; margin-bottom: 1px; color: #d0d0d0;") # لون نص الترحيب للسمة اللوكس
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #d0d0d0;") # لون نص الترحيب للسمة اللوكس
         elif theme_name == "Light Purple":
             self.setStyleSheet("""
                 QWidget { background-color: #e6ccff; font-family: 'Segoe UI'; font-size: 13px; color: #4d194d; } /* بنفسجي فاتح للخلفية، بنفسجي داكن للنص */
@@ -205,7 +205,7 @@ class WelcomeApp(QWidget):
                 QLabel#system_info { margin-bottom: 2px; color: #4d194d; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 1px; margin-bottom: 1px; color: #4d194d;") # لون النص للسمة البنفسجية
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #4d194d;") # لون النص للسمة البنفسجية
         elif theme_name == "Light Black (Faded)":
             self.setStyleSheet("""
                 QWidget { background-color: #505050; font-family: 'Segoe UI'; font-size: 13px; color: #e0e0e0; } /* افتحنا الخلفية والنص */
@@ -223,7 +223,7 @@ class WelcomeApp(QWidget):
                 QLabel#system_info { margin-bottom: 2px; color: #e0e0e0; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 1px; margin-bottom: 1px; color: #e0e0e0;") # لون النص للسمة السوداء الفاتحة)
+                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #e0e0e0;") # لون النص للسمة السوداء الفاتحة)
 
     def load_logo(self):
         logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
@@ -481,6 +481,8 @@ class WelcomeApp(QWidget):
             ])
         except FileNotFoundError:
             QMessageBox.critical(self, _("Error"), _("xfce4-terminal is not installed. Please install xfce4-terminal."))
+
+
             
     def open_url(self, url):
         webbrowser.open(url)
