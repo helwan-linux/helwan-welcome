@@ -473,9 +473,14 @@ class WelcomeApp(QWidget):
 
     def run_terminal_cmd(self, command, title=_("Running Command")):
         try:
-            subprocess.Popen(["xterm", "-hold", "-T", title, "-e", f"{command}; echo; echo Press Enter to exit..."])
+            subprocess.Popen([
+                "xfce4-terminal",
+                "--hold",
+                "--title", title,
+                "--command", f"bash -c '{command}; echo; echo Press Enter to exit...; read'"
+            ])
         except FileNotFoundError:
-            QMessageBox.critical(self, _("Error"), _("xterm is not installed. Please install xterm."))
+            QMessageBox.critical(self, _("Error"), _("xfce4-terminal is not installed. Please install xfce4-terminal."))
             
     def open_url(self, url):
         webbrowser.open(url)
