@@ -7,7 +7,7 @@ import subprocess
 from PyQt5.QtWidgets import (
     QApplication, QWidget, QVBoxLayout, QLabel, QPushButton, QCheckBox,
     QComboBox, QProgressBar, QDialog, QHBoxLayout, QMessageBox, QInputDialog,
-    QLineEdit, QGroupBox, QGridLayout, QScrollArea
+    QLineEdit, QGroupBox, QGridLayout, QScrollArea, QTabWidget, QSpacerItem, QSizePolicy
 )
 from PyQt5.QtCore import Qt, QTimer, QSettings
 from PyQt5.QtGui import QPixmap
@@ -15,6 +15,7 @@ import gettext
 import platform
 import psutil
 import shutil
+
 
 # === إعداد الترجمة ===
 def load_translation(language_code):
@@ -26,6 +27,7 @@ def load_translation(language_code):
         return translation.gettext
     except FileNotFoundError:
         return lambda s: s
+
 
 DEFAULT_LANGUAGE_CODE = 'en'
 _ = load_translation(DEFAULT_LANGUAGE_CODE)
@@ -51,8 +53,6 @@ SYSTEM_LANGUAGES = {
     'sv_SE.UTF-8': 'Svenska (Sverige)', # السويدي
 }
 
-
-
 # قائمة لغة التطبيق بنفس الطريقة
 APP_LANGUAGES = {
     'ar_EG.UTF-8': 'العربية (مصر)',
@@ -75,7 +75,6 @@ APP_LANGUAGES = {
 }
 
 
-
 class WelcomeApp(QWidget):
 
     def __init__(self):
@@ -91,7 +90,7 @@ class WelcomeApp(QWidget):
         self.app_lang_combobox = None
         self.startup_check = None
         self.pacman_btn = None
-        self.yay_btn = None   # هنا ضفنا تعريف yay_btn
+        self.yay_btn = None  # هنا ضفنا تعريف yay_btn
         self.install_lts_btn = None
         self.install_zen_btn = None
         self.sys_lang_label = None
@@ -110,11 +109,16 @@ class WelcomeApp(QWidget):
         self.memory_info = None
         self.theme_label = None
         self.theme_combobox = None
+        self.clean_paccache_keep_two_check = None  # تأكد من تعريف المتغير هنا
 
-        self.init_ui()  # قم بتهيئة واجهة المستخدم أولاً
-        self.load_theme(self.current_theme) # ثم قم بتحميل الثيم الذي يعتمد على عناصر الواجهة
+        self.tabs = QTabWidget()
+        self.main_tab = QWidget()
+        self.cleaner_tab = QWidget()
 
-        self.load_settings() # ثم قم بتحميل الإعدادات التي تعتمد عليها
+        self.init_ui()
+        self.load_theme(self.current_theme)  # ثم قم بتحميل الثيم الذي يعتمد على عناصر الواجهة
+
+        self.load_settings()  # ثم قم بتحميل الإعدادات التي تعتمد عليها
 
         self.check_disk_space()
         self.update_system_info()
@@ -144,6 +148,7 @@ class WelcomeApp(QWidget):
         return os.path.exists(startup_file_path)
 
     def load_theme(self, theme_name):
+        # ... (نفس كود load_theme السابق)
         if theme_name == "Default":
             self.setStyleSheet("""
                 QWidget { background-color: #f5f5f5; font-family: 'Segoe UI'; font-size: 13px; color: #333; }
@@ -159,9 +164,14 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_warning { color: orange; }
                 QLabel#disk_space_status_error { color: red; }
                 QLabel#system_info { margin-bottom: 2px; }
+                QTabWidget::pane { border: 1px solid #C2C7CB; background: #f5f5f5; }
+                QTabWidget::tab-bar QToolButton { background: #e0e0e0; color: #333; border: 1px solid #ccc; border-radius: 3px; padding: 4px 10px; margin: 2px; font-size: 10px; }
+                QTabWidget::tab-bar QToolButton:hover { background: #d0d0d0; }
+                QTabWidget::tab-bar QToolButton:selected { background: #d0d0d0; font-weight: bold; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #555;") # لون النص الافتراضي
+                self.greeting.setStyleSheet(
+                    "font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #555;")  # لون النص الافتراضي
         elif theme_name == "Sky Blue":
             self.setStyleSheet("""
                 QWidget { background-color: #e0f7fa; font-family: 'Segoe UI'; font-size: 13px; color: #212121; }
@@ -177,9 +187,14 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_warning { color: darkorange; }
                 QLabel#disk_space_status_error { color: darkred; }
                 QLabel#system_info { margin-bottom: 2px; }
+                QTabWidget::pane { border: 1px solid #4fc3f7; background: #e0f7fa; }
+                QTabWidget::tab-bar QToolButton { background: #81d4fa; color: #212121; border: 1px solid #4fc3f7; border-radius: 3px; padding: 4px 10px; margin: 2px; font-size: 10px; }
+                QTabWidget::tab-bar QToolButton:hover { background: #4fc3f7; }
+                QTabWidget::tab-bar QToolButton:selected { background: #4fc3f7; font-weight: bold; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #212121;") # لون النص للسمة الزرقاء
+                self.greeting.setStyleSheet(
+                    "font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #212121;")  # لون النص للسمة الزرقاء
         elif theme_name == "Light Black":  # اسم جديد للسمة اللوكس
             self.setStyleSheet("""
                 QWidget { background-color: #666666; font-family: 'Segoe UI'; font-size: 13px; color: #d0d0d0; } /* خلفية رمادي غامق، نص رمادي فاتح */
@@ -195,9 +210,14 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_warning { color: yellow; }
                 QLabel#disk_space_status_error { color: red; }
                 QLabel#system_info { margin-bottom: 2px; color: #d0d0d0; }
+                QTabWidget::pane { border: 1px solid #999999; background: #666666; color: #d0d0d0; }
+                QTabWidget::tab-bar QToolButton { background: #808080; color: #d0d0d0; border: 1px solid #a0a0a0; border-radius: 3px; padding: 4px 10px; margin: 2px; font-size: 10px; }
+                QTabWidget::tab-bar QToolButton:hover { background: #a0a0a0; }
+                QTabWidget::tab-bar QToolButton:selected { background: #a0a0a0; font-weight: bold; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #d0d0d0;") # لون نص الترحيب للسمة اللوكس
+                self.greeting.setStyleSheet(
+                    "font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #d0d0d0;")  # لون نص الترحيب للسمة اللوكس
         elif theme_name == "Light Purple":
             self.setStyleSheet("""
                 QWidget { background-color: #e6ccff; font-family: 'Segoe UI'; font-size: 13px; color: #4d194d; } /* بنفسجي فاتح للخلفية، بنفسجي داكن للنص */
@@ -213,9 +233,14 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_warning { color: darkorange; }
                 QLabel#disk_space_status_error { color: darkred; }
                 QLabel#system_info { margin-bottom: 2px; color: #4d194d; }
+                QTabWidget::pane { border: 1px solid #ce93d8; background: #e6ccff; color: #4d194d; }
+                QTabWidget::tab-bar QToolButton { background: #f0d9ff; color: #4d194d; border: 1px solid #b388eb; border-radius: 3px; padding: 4px 10px; margin: 2px; font-size: 10px; }
+                QTabWidget::tab-bar QToolButton:hover { background: #b388eb; }
+                QTabWidget::tab-bar QToolButton:selected { background: #b388eb; font-weight: bold; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #4d194d;") # لون النص للسمة البنفسجية
+                self.greeting.setStyleSheet(
+                    "font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #4d194d;")  # لون النص للسمة البنفسجية
         elif theme_name == "Light Black (Faded)":
             self.setStyleSheet("""
                 QWidget { background-color: #505050; font-family: 'Segoe UI'; font-size: 13px; color: #e0e0e0; } /* افتحنا الخلفية والنص */
@@ -231,9 +256,14 @@ class WelcomeApp(QWidget):
                 QLabel#disk_space_status_warning { color: yellow; }
                 QLabel#disk_space_status_error { color: red; }
                 QLabel#system_info { margin-bottom: 2px; color: #e0e0e0; }
+                QTabWidget::pane { border: 1px solid #808080; background: #505050; color: #e0e0e0; }
+                QTabWidget::tab-bar QToolButton { background: #707070; color: #e0e0e0; border: 1px solid #909090; border-radius: 3px; padding: 4px 10px; margin: 2px; font-size: 10px; }
+                QTabWidget::tab-bar QToolButton:hover { background: #909090; }
+                QTabWidget::tab-bar QToolButton:selected { background: #909090; font-weight: bold; }
             """)
             if self.greeting:
-                self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #e0e0e0;") # لون النص للسمة السوداء الفاتحة)
+                self.greeting.setStyleSheet(
+                    "font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #e0e0e0;")  # لون النص للسمة السوداء الفاتحة)
 
     def load_logo(self):
         logo_path = os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png")
@@ -245,45 +275,71 @@ class WelcomeApp(QWidget):
             return None
 
     def init_ui(self):
-        layout = QVBoxLayout(self)
-        layout.setAlignment(Qt.AlignTop) # محاذاة العناصر في الأعلى
-        layout.setSpacing(10)
+        main_layout = QVBoxLayout(self)
+        self.tabs.addTab(self.create_main_tab(), _("Welcome"))
+        self.tabs.addTab(self.create_cleaner_tab(), _("System Cleaner"))
+        # هنا ممكن نضيف تبويب جديد لو عايزين نضيف ميزة حذف مجلدات المزامنة
+        # self.tabs.addTab(self.create_sync_cleaner_tab(), _("Sync Cleaner"))
+        main_layout.addWidget(self.tabs)
+
+        self.setLayout(main_layout)
+        self.setWindowTitle(_("Welcome to Helwan Linux"))
+        self.setGeometry(100, 100, 600, 400)
+
+    # دالة لإنشاء تبويب منظف المزامنة (لسه هنضيف جواه عناصر واجهة المستخدم)
+    def create_sync_cleaner_tab(self):
+        sync_cleaner_tab = QWidget()
+        sync_layout = QVBoxLayout(sync_cleaner_tab)
+
+        sync_label = QLabel(_("Remove Sync Folders"))
+        sync_layout.addWidget(sync_label)
+
+        # هنا ممكن نضيف قائمة بمجلدات المزامنة اللي ممكن يحذفها المستخدم
+        # وزر لبدء عملية الحذف
+
+        sync_layout.addStretch(1)
+        return sync_cleaner_tab
+
+    def create_main_tab(self):
+        main_tab_layout = QVBoxLayout(self.main_tab)
+        main_tab_layout.setAlignment(Qt.AlignTop)
+        main_tab_layout.setSpacing(10)
 
         if self.logo:
             logo_label = QLabel(self)
             logo_label.setPixmap(self.logo)
             logo_label.setAlignment(Qt.AlignCenter)
-            layout.addWidget(logo_label)
+            main_tab_layout.addWidget(logo_label)
 
         self.greeting = QLabel()
         self.greeting.setAlignment(Qt.AlignCenter)
         self.greeting.setStyleSheet("font-size: 15px; margin-top: 10px; margin-bottom: 15px; color: #e0e0e0;")
-        layout.addWidget(self.greeting)
+        main_tab_layout.addWidget(self.greeting)
 
         controls = QVBoxLayout()
-        controls.setSpacing(8)
-        layout.addLayout(controls)
+        controls.setSpacing(1)
+        main_tab_layout.addLayout(controls)
 
-        # System Updates Group - نقلناها إلى هنا وأضفنا أزرار التثبيت
+        # System Updates Group
         update_group = QGroupBox(_("System Updates"))
-        update_layout = QVBoxLayout() # استخدم QVBoxLayout لترتيب رأسي
-        update_layout_buttons = QHBoxLayout() # صف للأزرار الأفقية
-        self.pacman_btn_bottom = self.create_button(_("Update System (Pacman)"), lambda: self.run_terminal_cmd("sudo pacman -Syu"))
+        update_layout = QVBoxLayout()
+        update_layout_buttons = QHBoxLayout()
+        self.pacman_btn_bottom = self.create_button(_("Update System (Pacman)"),
+                                                    lambda: self.run_terminal_cmd("sudo pacman -Syu"))
         update_layout_buttons.addWidget(self.pacman_btn_bottom)
         self.yay_btn_bottom = self.create_button(_("Update System (Yay)"), lambda: self.run_terminal_cmd("yay -Syu"))
         if not self.is_yay_installed():
             self.yay_btn_bottom.setEnabled(False)
             self.yay_btn_bottom.setToolTip(_("Yay is not installed."))
         update_layout_buttons.addWidget(self.yay_btn_bottom)
-        update_layout.addLayout(update_layout_buttons) # إضافة صف أزرار التحديث
+        update_layout.addLayout(update_layout_buttons)
 
-        # أزرار تثبيت النواة
         kernel_install_layout = QHBoxLayout()
         self.install_lts_btn = self.create_button(_("Install Linux LTS"), self.install_linux_lts)
         kernel_install_layout.addWidget(self.install_lts_btn)
         self.install_zen_btn = self.create_button(_("Install Linux Zen"), self.install_linux_zen)
         kernel_install_layout.addWidget(self.install_zen_btn)
-        update_layout.addLayout(kernel_install_layout) # إضافة صف أزرار تثبيت النواة
+        update_layout.addLayout(kernel_install_layout)
 
         update_group.setLayout(update_layout)
         controls.addWidget(update_group)
@@ -296,7 +352,7 @@ class WelcomeApp(QWidget):
         self.theme_combobox.addItems(["Default", "Sky Blue", "Light Black", "Light Purple"])
         self.theme_combobox.setCurrentText(self.current_theme)
         self.theme_combobox.currentTextChanged.connect(self.save_theme)
-        self.theme_combobox.setStyleSheet("font-size: 10px; padding: 4px;") # تصغير حجم خط قائمة الثيمات
+        self.theme_combobox.setStyleSheet("font-size: 10px; padding: 4px;")
         theme_layout.addWidget(self.theme_combobox)
         controls.addLayout(theme_layout)
 
@@ -305,8 +361,8 @@ class WelcomeApp(QWidget):
             label_attr='app_lang_label',
             combo_attr='app_lang_combobox',
             label_text=_("Application Language:"),
-            items=list(APP_LANGUAGES.values()),  # استخدام أسماء اللغات
-            default=APP_LANGUAGES.get(self.language_code, 'English'), # البحث عن الاسم باستخدام الكود
+            items=list(APP_LANGUAGES.values()),
+            default=APP_LANGUAGES.get(self.language_code, 'English'),
             on_change=self.change_language
         )
         controls.addLayout(app_lang_layout)
@@ -325,7 +381,9 @@ class WelcomeApp(QWidget):
         sys_lang_layout.addWidget(self.sys_lang_label)
         self.system_language_combobox = QComboBox()
         self.system_language_combobox.addItems(list(SYSTEM_LANGUAGES.values()))
-        self.system_language_combobox.setCurrentText('en_US.UTF-8' if 'en_US.UTF-8' in SYSTEM_LANGUAGES else list(SYSTEM_LANGUAGES.keys())[0] if SYSTEM_LANGUAGES else '')
+        self.system_language_combobox.setCurrentText(
+            'en_US.UTF-8' if 'en_US.UTF-8' in SYSTEM_LANGUAGES else list(SYSTEM_LANGUAGES.keys())[
+                0] if SYSTEM_LANGUAGES else '')
         sys_lang_layout.addWidget(self.system_language_combobox)
         controls.addLayout(sys_lang_layout)
 
@@ -334,9 +392,11 @@ class WelcomeApp(QWidget):
 
         # Documentation and Support
         docs_layout = QHBoxLayout()
-        self.docs_btn = self.create_button(_("Open Documentation"), lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation"))
+        self.docs_btn = self.create_button(_("Open Documentation"),
+                                           lambda: self.open_url("https://helwan-linux.mystrikingly.com/documentation"))
         docs_layout.addWidget(self.docs_btn)
-        self.youtube_btn = self.create_button(_("Open YouTube Channel"), lambda: self.open_url("https://www.youtube.com/@HelwanO.S"))
+        self.youtube_btn = self.create_button(_("Open YouTube Channel"),
+                                              lambda: self.open_url("https://www.youtube.com/@HelwanO.S"))
         docs_layout.addWidget(self.youtube_btn)
         controls.addLayout(docs_layout)
 
@@ -361,7 +421,7 @@ class WelcomeApp(QWidget):
         self.system_info_group.setLayout(system_info_layout)
         controls.addWidget(self.system_info_group)
 
-        # System Information Buttons (Neofetch, Htop) - نقلناها أسفل معلومات النظام
+        # System Information Buttons (Neofetch, Htop)
         sysinfo_layout = QHBoxLayout()
         self.neofetch_btn = self.create_button(_("Show System Info Details"), lambda: self.run_terminal_cmd("neofetch"))
         sysinfo_layout.addWidget(self.neofetch_btn)
@@ -369,10 +429,87 @@ class WelcomeApp(QWidget):
         sysinfo_layout.addWidget(self.htop_btn)
         controls.addLayout(sysinfo_layout)
 
-        layout.addStretch(1) # إضافة تمدد في نهاية التخطيط الرئيسي
+        # إضافة spacer في نهاية التخطيط لرفع كل المحتوى
+        spacer = QSpacerItem(5, 5, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        main_tab_layout.addItem(spacer)
 
-        # أول تعريب للواجهة
-        self.retranslate_ui()
+        return self.main_tab
+
+    def create_cleaner_tab(self):
+        cleaner_layout = QVBoxLayout(self.cleaner_tab)
+        cleaner_group = QGroupBox(_("Pacman Cleaner"))
+        cleaner_group.setObjectName("Pacman Cleaner")
+        pacman_cleaner_layout = QVBoxLayout()
+
+        self.clean_pacman_cache_full_check = QCheckBox(
+            _("Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."))
+        self.clean_pacman_cache_full_check.setObjectName("clean_pacman_cache_full_check")  # عشان الترجمة
+        pacman_cleaner_layout.addWidget(self.clean_pacman_cache_full_check)
+
+        self.remove_orphan_packages_check = QCheckBox(
+            _("Remove Orphan Packages - Packages that are no longer required by any installed package."))
+        self.remove_orphan_packages_check.setObjectName("remove_orphan_packages_check")  # عشان الترجمة
+        pacman_cleaner_layout.addWidget(self.remove_orphan_packages_check)
+
+        self.clean_paccache_keep_two_check = QCheckBox(_("Clean Old Packages (Keep Last 2 Versions)"))
+        self.clean_paccache_keep_two_check.setObjectName("clean_paccache_keep_two_check")  # عشان الترجمة
+        pacman_cleaner_layout.addWidget(self.clean_paccache_keep_two_check)
+
+        #self.clean_paccache_uninstalled_check = QCheckBox(_("Remove Uninstalled Packages from Cache"))
+        #self.clean_paccache_uninstalled_check.setObjectName("clean_paccache_uninstalled_check")  # عشان الترجمة
+        #pacman_cleaner_layout.addWidget(self.clean_paccache_uninstalled_check)
+
+        self.run_pacman_cleanup_button = self.create_button(_("Run Pacman Cleanup"), self.run_pacman_cleanup)
+        self.run_pacman_cleanup_button.setObjectName("run_pacman_cleanup_button")  # عشان الترجمة
+        pacman_cleaner_layout.addWidget(self.run_pacman_cleanup_button)
+
+        cleaner_group.setLayout(pacman_cleaner_layout)
+        cleaner_layout.addWidget(cleaner_group)
+        cleaner_layout.addStretch(1)
+        return self.cleaner_tab
+
+    def run_pacman_cleanup(self):
+        commands = []
+
+        if self.clean_pacman_cache_full_check.isChecked():
+            commands.append("sudo pacman -Scc")
+
+        if self.remove_orphan_packages_check.isChecked():
+            orphans = subprocess.getoutput("pacman -Qtdq")
+            if orphans.strip():
+                commands.append("sudo pacman -Rns $(pacman -Qtdq)")
+            else:
+                #print("No orphan packages found; skipping removal.")
+                pass
+
+        if self.clean_paccache_keep_two_check.isChecked():
+            commands.append("sudo paccache -rk2 --quiet")
+
+        #if self.clean_paccache_uninstalled_check.isChecked():
+            #commands.append("sudo paccache -u -k0 --quiet")  # لازم -k0 مع -u
+
+        if commands:
+            full_command = " && ".join(commands)
+            confirmation_text = _("You are about to run the following commands with root privileges:\n\n") + \
+                                "\n".join(commands) + _("\n\nAre you sure you want to continue?")
+            reply = QMessageBox.question(self, _("Confirmation"), confirmation_text,
+                                         QMessageBox.Yes | QMessageBox.No, QMessageBox.No)
+
+            if reply == QMessageBox.Yes:
+                self.run_terminal_cmd(full_command, _("Running Pacman Cleanup"))
+                QMessageBox.information(self, _("Cleanup Done"), _("Pacman cleanup tasks completed."))
+        else:
+            QMessageBox.information(self, _("Info"), _("No Pacman cleanup options selected."))
+
+    def remove_sync_folder(self, folder_path):
+        command = f"pkexec rm -rf '{folder_path}'"
+        title = _("Removing Sync Folder")
+        message = _(
+            "This action requires administrator privileges to remove the sync folder. You might be asked for your password.")
+        reply = QMessageBox.warning(self, title, message, QMessageBox.Ok | QMessageBox.Cancel)
+        if reply == QMessageBox.Ok:
+            self.run_terminal_cmd(command, title)
+            QMessageBox.information(self, title, _("Sync folder removal initiated."))
 
     def create_labeled_combobox(self, label_attr, combo_attr, label_text, items, default, on_change=None):
         layout = QHBoxLayout()
@@ -396,7 +533,7 @@ class WelcomeApp(QWidget):
         button = QPushButton(text)
         button.clicked.connect(on_click)
         # يمكنك هنا محاولة تصغير حجم الخط أو تغيير أبعاد الزر
-        button.setStyleSheet("font-size: 10px; padding: 4px 8px;") # تقليل حجم الخط والحشو
+        button.setStyleSheet("font-size: 10px; padding: 4px 8px;")  # تقليل حجم الخط والحشو
         return button
 
     def update_startup_file(self, state):
@@ -415,8 +552,10 @@ class WelcomeApp(QWidget):
                 f.write("Comment=Welcome application for Helwan Linux\n")
                 if self.logo:
                     # افتراض أن الشعار موجود في نفس دليل السكريبت أو يمكنك توفير مسار مطلق
-                    logo_base_name = os.path.basename(os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png"))
-                    f.write(f"Icon={os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sources', logo_base_name)}\n")
+                    logo_base_name = os.path.basename(
+                        os.path.join(os.path.dirname(os.path.abspath(__file__)), "sources", "logo.png"))
+                    f.write(
+                        f"Icon={os.path.join(os.path.dirname(os.path.abspath(__file__)), 'sources', logo_base_name)}\n")
         else:
             if os.path.exists(startup_file_path):
                 os.remove(startup_file_path)
@@ -431,7 +570,8 @@ class WelcomeApp(QWidget):
                 self.language_code = code
                 self.retranslate_ui()
                 self.settings.setValue("language_index", self.app_lang_combobox.currentIndex())
-                QMessageBox.information(self, _("Language Changed"), _("Application language has been changed. Some changes may require an application restart."))
+                QMessageBox.information(self, _("Language Changed"),
+                                        _("Application language has been changed. Some changes may require an application restart."))
                 return
         print(f"Warning: Language code not found for {language_name}")
 
@@ -448,10 +588,10 @@ class WelcomeApp(QWidget):
             return False
 
     def install_linux_lts(self):
-        self.run_terminal_cmd("sudo pacman -S --needed linux-lts linux-lts-headers")
+        self.run_terminal_cmd("pkexec pacman -S --needed linux-lts linux-lts-headers")
 
     def install_linux_zen(self):
-        self.run_terminal_cmd("sudo pacman -S --needed linux-zen linux-zen-headers")
+        self.run_terminal_cmd("pkexec pacman -S --needed linux-zen linux-zen-headers")
 
     def apply_system_language(self):
         selected_lang_name = self.system_language_combobox.currentText()
@@ -464,11 +604,12 @@ class WelcomeApp(QWidget):
         if lang_code:
             try:
                 process = subprocess.Popen(["pkexec", "localectl", "set-locale", f"LANG={lang_code}"],
-                                             stdout=subprocess.PIPE,
-                                             stderr=subprocess.PIPE)
+                                           stdout=subprocess.PIPE,
+                                           stderr=subprocess.PIPE)
                 stdout, stderr = process.communicate()
                 if process.returncode == 0:
-                    QMessageBox.information(self, _("System Language"), _("System language applied successfully. You might need to restart your system for the changes to take full effect."))
+                    QMessageBox.information(self, _("System Language"),
+                                            _("System language applied successfully. You might need to restart your system for the changes to take full effect."))
                 else:
                     QMessageBox.critical(self, _("Error"), f"{_('Failed to apply system language:')} {stderr.decode()}")
             except FileNotFoundError:
@@ -478,8 +619,8 @@ class WelcomeApp(QWidget):
         else:  # <-- هذا هو السطر 432
             QMessageBox.critical(self, _("Error"), _("Invalid system language selected."))
 
-        def open_url(self, url):
-            webbrowser.open(url)
+    def open_url(self, url):
+        webbrowser.open(url)
 
     def run_terminal_cmd(self, command, title=_("Running Command")):
         try:
@@ -487,15 +628,13 @@ class WelcomeApp(QWidget):
                 "xfce4-terminal",
                 "--hold",
                 "--title", title,
-                "--command", f"bash -c '{command}; echo; echo Press Enter to exit...; read'"
+                "--command",
+                f"bash -ic '{command}; echo; echo Press Enter to exit...; read'"
             ])
         except FileNotFoundError:
             QMessageBox.critical(self, _("Error"), _("xfce4-terminal is not installed. Please install xfce4-terminal."))
 
 
-            
-    def open_url(self, url):
-        webbrowser.open(url)
 
     def _execute_command(self, command, dialog):
         process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
@@ -509,9 +648,9 @@ class WelcomeApp(QWidget):
     def check_disk_space(self):
         try:
             total, used, free = shutil.disk_usage("/")
-            free_gb = free // (2**30)
+            free_gb = free // (2 ** 30)
             warning_threshold = 10  # GB
-            error_threshold = 5   # GB
+            error_threshold = 5  # GB
 
             self.disk_space_status.setText(f"{free_gb} GB {_('Free')}")
             if free_gb < error_threshold:
@@ -554,6 +693,10 @@ class WelcomeApp(QWidget):
 
     def retranslate_ui(self):
         self.setWindowTitle(_("Welcome to Helwan Linux"))
+        self.tabs.setTabText(0, _("Welcome"))
+        self.tabs.setTabText(1, _("System Cleaner"))
+        # if self.tabs.count() > 2:
+        #     self.tabs.setTabText(2, _("Sync Cleaner")) # لو ضفنا تبويب منظف المزامنة
         if self.app_lang_label:
             self.app_lang_label.setText(_("Application Language:"))
         if self.startup_check:
@@ -592,11 +735,32 @@ class WelcomeApp(QWidget):
             self.htop_btn.setText(_("Performance Monitor"))
         if self.theme_label:
             self.theme_label.setText(_("Application Theme:"))
-        self.greeting.setText(_("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
+        self.greeting.setText(
+            _("Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"))
+        cleaner_group = self.findChild(QGroupBox, "Pacman Cleaner")
+        if cleaner_group:
+            cleaner_group.setTitle(_("Pacman Cleaner"))
+            clean_cache_check = self.findChild(QCheckBox, "clean_pacman_cache_full_check")
+            if clean_cache_check:
+                clean_cache_check.setText(
+                    _("Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."))
+            remove_orphan_check = self.findChild(QCheckBox, "remove_orphan_packages_check")
+            if remove_orphan_check:
+                remove_orphan_check.setText(
+                    _("Remove Orphan Packages - Packages that are no longer required by any installed package."))
+            clean_paccache_keep_check = self.findChild(QCheckBox, "clean_paccache_keep_two_check")
+            if clean_paccache_keep_check:
+                clean_paccache_keep_check.setText(_("Clean Old Packages (Keep Last 2 Versions)"))
+            clean_uninstalled_check = self.findChild(QCheckBox, "clean_paccache_uninstalled_check")
+            if clean_uninstalled_check:
+                clean_uninstalled_check.setText(_("Remove Uninstalled Packages from Cache"))
+            run_cleanup_button = self.findChild(QPushButton, "run_pacman_cleanup_button")
+            if run_cleanup_button:
+                run_cleanup_button.setText(_("Run Pacman Cleanup"))
+
 
 if __name__ == '__main__':
     app = QApplication(sys.argv)
     window = WelcomeApp()
-    window.setWindowTitle("Welcome to Helwan Linux")
     window.show()
     sys.exit(app.exec_())

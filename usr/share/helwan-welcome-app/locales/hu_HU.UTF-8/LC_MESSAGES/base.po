@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: hu_HU.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Hiba történt a rendszer nyelvének alkalmazása közben:"
+
+msgid "Application Language:"
+msgstr "Alkalmazás nyelve:"
+
+msgid "Application Theme:"
+msgstr "Alkalmazás témája:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Az alkalmazás nyelve megváltozott. Néhány változtatáshoz szükség lehet az alkalmazás újraindítására."
+
+msgid "Apply System Language"
+msgstr "Rendszer nyelvének alkalmazása"
+
+msgid "Available Disk Space:"
+msgstr "Elérhető lemezterület:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Régi csomagok törlése (utolsó 2 verzió megtartása)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Pacman gyorsítótárának törlése (teljes) - Figyelem! Ez eltávolítja az összes letöltött csomagot."
+
+msgid "Cleanup Done"
+msgstr "Tisztítás kész"
+
+msgid "Confirmation"
+msgstr "Megerősítés"
+
+msgid "Error"
+msgstr "Hiba"
+
+msgid "Failed to apply system language:"
+msgstr "A rendszer nyelvének alkalmazása sikertelen:"
+
+msgid "Free"
+msgstr "Szabad"
+
+msgid "Info"
+msgstr "Információ"
+
+msgid "Install Linux LTS"
+msgstr "Linux LTS telepítése"
+
+msgid "Install Linux Zen"
+msgstr "Linux Zen telepítése"
+
+msgid "Invalid system language selected."
+msgstr "Érvénytelen rendszer nyelve kiválasztva."
+
+msgid "Language Changed"
+msgstr "Nyelv megváltozott"
+
+msgid "N/A"
+msgstr "N/A"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Nincs kiválasztva Pacman tisztítási beállítás."
+
+msgid "Open Documentation"
+msgstr "Dokumentáció megnyitása"
+
+msgid "Open YouTube Channel"
+msgstr "YouTube csatorna megnyitása"
+
+msgid "Pacman Cleaner"
+msgstr "Pacman tisztító"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Pacman tisztítási feladatok befejezve."
+
+msgid "Performance Monitor"
+msgstr "Teljesítményfigyelő"
+
+msgid "Processor:"
+msgstr "Processzor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Árva csomagok eltávolítása - Olyan csomagok, amelyekre egyetlen telepített csomagnak sincs szüksége."
+
+msgid "Remove Sync Folders"
+msgstr "Szinkronizálási mappák eltávolítása"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Nem telepített csomagok eltávolítása a gyorsítótárból"
+
+msgid "Removing Sync Folder"
+msgstr "Szinkronizálási mappa eltávolítása"
+
+msgid "Run Pacman Cleanup"
+msgstr "Pacman tisztítás futtatása"
+
+msgid "Running Command"
+msgstr "Parancs futtatása"
+
+msgid "Running Pacman Cleanup"
+msgstr "Pacman tisztítás futtatása"
+
+msgid "Show System Info Details"
+msgstr "Rendszerinformáció részleteinek megjelenítése"
+
+msgid "Show on startup"
+msgstr "Indításkor megjelenítés"
+
+msgid "Success"
+msgstr "Siker"
+
+msgid "Sync Cleaner"
+msgstr "Szinkronizálási tisztító"
+
+msgid "Sync folder removal initiated."
+msgstr "Szinkronizálási mappa eltávolítása elindítva."
+
+msgid "System Cleaner"
+msgstr "Rendszertisztító"
+
+msgid "System Information"
+msgstr "Rendszerinformációk"
+
+msgid "System Language"
+msgstr "Rendszer nyelve"
+
+msgid "System Language:"
+msgstr "Rendszer nyelve:"
+
+msgid "System Updates"
+msgstr "Rendszerfrissítések"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "A rendszer nyelve sikeresen alkalmazva. A változások teljes érvényesüléséhez szükség lehet a rendszer újraindítására."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Ez a művelet rendszergazdai jogosultságokat igényel a szinkronizálási mappa eltávolításához. Lehet, hogy meg kell adnia a jelszavát."
+
+msgid "Update System (Pacman)"
+msgstr "Rendszer frissítése (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Rendszer frissítése (Yay)"
+
+msgid "Welcome"
+msgstr "Üdvözöljük"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Üdvözöljük a Helwan Linuxon"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Üdvözöljük a Helwan Linux világában! ❤️\nAzért vagyunk itt, hogy segítsünk álmai megvalósításában a legerősebb alapokon!"
+
+msgid "Yay is not installed."
+msgstr "A Yay nincs telepítve."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "A következő parancsokat root jogosultságokkal fogja futtatni:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nBiztosan folytatni szeretné?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "A pkexec parancs nem található. Győződjön meg róla, hogy a polkit telepítve van."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "Az xfce4-terminal nincs telepítve. Telepítse az xfce4-terminalt."
