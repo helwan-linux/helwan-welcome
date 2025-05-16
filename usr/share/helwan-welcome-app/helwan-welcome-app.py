@@ -419,6 +419,7 @@ class WelcomeApp(QWidget):
         system_info_layout.addWidget(self.memory_label, 2, 0)
         system_info_layout.addWidget(self.memory_info, 2, 1)
         self.system_info_group.setLayout(system_info_layout)
+        self.system_info_group.setMaximumHeight(110)  # أو أي رقم يناسبك
         controls.addWidget(self.system_info_group)
 
         # System Information Buttons (Neofetch, Htop)
