@@ -1,0 +1,116 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-16 12:00+0000\n"
+"PO-Revision-Date: 2025-05-16 12:00+0000\n"
+"Last-Translator: Your Name <youremail@example.com>\n"
+"Language-Team: Danish <danish@example.com>\n"
+"Language: da\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Velkommen til Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Velkommen til Helwan Linux-verdenen! ❤️\nVi er her for at hjælpe dig med at bygge dine drømme på det stærkeste fundament!"
+
+msgid "Application Theme:"
+msgstr "Programtema:"
+
+msgid "Application Language:"
+msgstr "Programsprog:"
+
+msgid "Show on startup"
+msgstr "Vis ved opstart"
+
+msgid "Update System (Pacman)"
+msgstr "Opdater systemet (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Opdater systemet (Yay)"
+
+msgid "Install Linux LTS"
+msgstr "Installer Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Installer Linux Zen"
+
+msgid "System Language:"
+msgstr "System sprog:"
+
+msgid "Apply System Language"
+msgstr "Anvend system sprog"
+
+msgid "Open Documentation"
+msgstr "Åbn dokumentation"
+
+msgid "Open YouTube Channel"
+msgstr "Åbn YouTube-kanal"
+
+msgid "Show System Info Details"
+msgstr "Vis systemoplysninger"
+
+msgid "Performance Monitor"
+msgstr "Ydelsesovervågning"
+
+msgid "System Information"
+msgstr "Systeminformation"
+
+msgid "Available Disk Space:"
+msgstr "Tilgængelig diskplads:"
+
+msgid "Processor:"
+msgstr "Processor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Language Changed"
+msgstr "Sprog ændret"
+
+msgid "Language has been changed successfully."
+msgstr "Sproget er blevet ændret succesfuldt."
+
+msgid "Error"
+msgstr "Fejl"
+
+msgid "Could not update startup file:"
+msgstr "Kunne ikke opdatere opstartsfil:"
+
+msgid "Could not open URL:"
+msgstr "Kunne ikke åbne URL:"
+
+msgid "xterm is not installed. Please install xterm."
+msgstr "xterm er ikke installeret. Installer venligst xterm."
+
+msgid "Failed to apply system language:"
+msgstr "Kunne ikke anvende system sprog:"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "pkexec-kommandoen blev ikke fundet. Sørg for, at polkit er installeret."
+
+msgid "An error occurred while applying system language:"
+msgstr "Der opstod en fejl under anvendelsen af system sproget:"
+
+msgid "An error occurred during kernel installation:"
+msgstr "Der opstod en fejl under kerneinstallationen:"
+
+msgid "Low (%s / %s)"
+msgstr "Lav (%s / %s)"
+
+msgid "Warning (%s / %s)"
+msgstr "Advarsel (%s / %s)"
+
+msgid "OK (%s / %s)"
+msgstr "OK (%s / %s)"
+
+msgid "N/A"
+msgstr "Ikke tilgængelig"
+
+msgid "N/A (df not found)"
+msgstr "Ikke tilgængelig (df ikke fundet)"
+

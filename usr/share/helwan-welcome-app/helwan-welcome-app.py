@@ -45,26 +45,36 @@ SYSTEM_LANGUAGES = {
     'pl_PL.UTF-8': 'Polski',
     'ro_RO.UTF-8': 'Română',
     'ur_PK.UTF-8': 'اردو',
-    'fa_IR.UTF-8': 'فارسی'
+    'fa_IR.UTF-8': 'فارسی',
+    'hu_HU.UTF-8': 'Magyar',
+    'da_DK.UTF-8': 'Dansk (Danmark)',    # الدنماركي
+    'sv_SE.UTF-8': 'Svenska (Sverige)', # السويدي
 }
+
+
 
 # قائمة لغة التطبيق بنفس الطريقة
 APP_LANGUAGES = {
-    'en': 'English',
-    'ar': 'العربية',
-    'es': 'Español',
-    'pt': 'Português',
-    'de': 'Deutsch',
-    'fr': 'Français',
-    'ru': 'Русский',
-    'zh_CN': '中文',
-    'ja': '日本語',
-    'it': 'Italiano',
-    'pl': 'Polski',
-    'ro': 'Română',
-    'ur': 'اردو',
-    'fa': 'فارسی'
+    'ar_EG.UTF-8': 'العربية (مصر)',
+    'en_US.UTF-8': 'English (US)',
+    'es_ES.UTF-8': 'Español (España)',
+    'pt_PT.UTF-8': 'Português (Portugal)',
+    'de_DE.UTF-8': 'Deutsch (Deutschland)',
+    'fr_FR.UTF-8': 'Français (France)',
+    'ru_RU.UTF-8': 'Русский (Россия)',
+    'zh_CN.UTF-8': '中文 (简体)',
+    'ja_JP.UTF-8': '日本語',
+    'it_IT.UTF-8': 'Italiano',
+    'pl_PL.UTF-8': 'Polski',
+    'ro_RO.UTF-8': 'Română',
+    'ur_PK.UTF-8': 'اردو',
+    'fa_IR.UTF-8': 'فارسی',
+    'hu_HU.UTF-8': 'Magyar',
+    'da_DK.UTF-8': 'Dansk (Danmark)',    # الدنماركي
+    'sv_SE.UTF-8': 'Svenska (Sverige)', # السويدي
 }
+
+
 
 class WelcomeApp(QWidget):
 

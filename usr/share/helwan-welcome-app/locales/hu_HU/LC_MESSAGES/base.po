@@ -1,0 +1,116 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux 1.0\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-16 12:00+0000\n"
+"PO-Revision-Date: 2025-05-16 12:00+0000\n"
+"Last-Translator: Your Name <youremail@example.com>\n"
+"Language-Team: Hungarian <hungarian@example.com>\n"
+"Language: hu\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Üdvözöljük a Helwan Linuxban"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Üdvözöljük a Helwan Linux világában! ❤️\nAzért vagyunk itt, hogy segítsünk megvalósítani álmaidat a legerősebb alapokon!"
+
+msgid "Application Theme:"
+msgstr "Alkalmazás témája:"
+
+msgid "Application Language:"
+msgstr "Alkalmazás nyelve:"
+
+msgid "Show on startup"
+msgstr "Megjelenítés indításkor"
+
+msgid "Update System (Pacman)"
+msgstr "Rendszer frissítése (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Rendszer frissítése (Yay)"
+
+msgid "Install Linux LTS"
+msgstr "Linux LTS telepítése"
+
+msgid "Install Linux Zen"
+msgstr "Linux Zen telepítése"
+
+msgid "System Language:"
+msgstr "Rendszernyelv:"
+
+msgid "Apply System Language"
+msgstr "Rendszernyelv alkalmazása"
+
+msgid "Open Documentation"
+msgstr "Dokumentáció megnyitása"
+
+msgid "Open YouTube Channel"
+msgstr "YouTube csatorna megnyitása"
+
+msgid "Show System Info Details"
+msgstr "Rendszerinformációk megjelenítése"
+
+msgid "Performance Monitor"
+msgstr "Teljesítménymonitor"
+
+msgid "System Information"
+msgstr "Rendszerinformáció"
+
+msgid "Available Disk Space:"
+msgstr "Elérhető lemezterület:"
+
+msgid "Processor:"
+msgstr "Processzor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Language Changed"
+msgstr "A nyelv megváltozott"
+
+msgid "Language has been changed successfully."
+msgstr "A nyelvet sikeresen megváltoztattuk."
+
+msgid "Error"
+msgstr "Hiba"
+
+msgid "Could not update startup file:"
+msgstr "Nem sikerült frissíteni az indítófájlt:"
+
+msgid "Could not open URL:"
+msgstr "Nem sikerült megnyitni az URL-t:"
+
+msgid "xterm is not installed. Please install xterm."
+msgstr "Az xterm nincs telepítve. Kérjük, telepítse az xterm-et."
+
+msgid "Failed to apply system language:"
+msgstr "Nem sikerült alkalmazni a rendszernyelvet:"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "A pkexec parancs nem található. Győződjön meg róla, hogy a polkit telepítve van."
+
+msgid "An error occurred while applying system language:"
+msgstr "Hiba történt a rendszernyelv alkalmazása során:"
+
+msgid "An error occurred during kernel installation:"
+msgstr "Hiba történt a kernel telepítése közben:"
+
+msgid "Low (%s / %s)"
+msgstr "Alacsony (%s / %s)"
+
+msgid "Warning (%s / %s)"
+msgstr "Figyelmeztetés (%s / %s)"
+
+msgid "OK (%s / %s)"
+msgstr "Rendben (%s / %s)"
+
+msgid "N/A"
+msgstr "Nem elérhető"
+
+msgid "N/A (df not found)"
+msgstr "Nem elérhető (a df nem található)"
+
