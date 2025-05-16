@@ -303,7 +303,7 @@ class WelcomeApp(QWidget):
     def create_main_tab(self):
         main_tab_layout = QVBoxLayout(self.main_tab)
         main_tab_layout.setAlignment(Qt.AlignTop)
-        main_tab_layout.setSpacing(10)
+        main_tab_layout.setSpacing(1)
 
         if self.logo:
             logo_label = QLabel(self)
@@ -352,7 +352,7 @@ class WelcomeApp(QWidget):
         self.theme_combobox.addItems(["Default", "Sky Blue", "Light Black", "Light Purple"])
         self.theme_combobox.setCurrentText(self.current_theme)
         self.theme_combobox.currentTextChanged.connect(self.save_theme)
-        self.theme_combobox.setStyleSheet("font-size: 10px; padding: 4px;")
+        self.theme_combobox.setStyleSheet("font-size: 10px; padding: 1px;")
         theme_layout.addWidget(self.theme_combobox)
         controls.addLayout(theme_layout)
 
@@ -430,7 +430,7 @@ class WelcomeApp(QWidget):
         controls.addLayout(sysinfo_layout)
 
         # إضافة spacer في نهاية التخطيط لرفع كل المحتوى
-        spacer = QSpacerItem(5, 5, QSizePolicy.Minimum, QSizePolicy.Expanding)
+        spacer = QSpacerItem(1, 1, QSizePolicy.Minimum, QSizePolicy.Expanding)
         main_tab_layout.addItem(spacer)
 
         return self.main_tab
