@@ -105,7 +105,7 @@ APP_LANGUAGES = languages = {
     
     'uk_UA.UTF-8': 'Українська (Україна)',        # الأوكرانية
     'nl_NL.UTF-8': 'Nederlands (Nederland)',       # الهولندية
-    'no_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
+    'nb_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
     'fi_FI.UTF-8': 'Suomi (Suomi)',                # الفنلندية
     'th_TH.UTF-8': 'ไทย (ประเทศไทย)',              # التايلاندية
 }
