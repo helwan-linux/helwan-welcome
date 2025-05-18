@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: nl_NL.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Er is een fout opgetreden bij het toepassen van de systeemtaal:"
+
+msgid "Application Language:"
+msgstr "Toepassingstaal:"
+
+msgid "Application Theme:"
+msgstr "Toepassingsthema:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "De toepassings taal is gewijzigd. Sommige wijzigingen kunnen een herstart van de toepassing vereisen."
+
+msgid "Apply System Language"
+msgstr "Systeemtaal toepassen"
+
+msgid "Available Disk Space:"
+msgstr "Beschikbare schijfruimte:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Oude pakketten opschonen (laat de laatste 2 versies staan)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Volledige Pacman-cache opschonen - Waarschuwing! Dit verwijdert alle gedownloade pakketten."
+
+msgid "Cleanup Done"
+msgstr "Opschoning voltooid"
+
+msgid "Confirmation"
+msgstr "Bevestiging"
+
+msgid "Error"
+msgstr "Fout"
+
+msgid "Failed to apply system language:"
+msgstr "Het toepassen van de systeemtaal is mislukt:"
+
+msgid "Free"
+msgstr "Vrij"
+
+msgid "Info"
+msgstr "Informatie"
+
+msgid "Install Linux LTS"
+msgstr "Installeer Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Installeer Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Ongeldige systeemtaal geselecteerd."
+
+msgid "Language Changed"
+msgstr "Taal gewijzigd"
+
+msgid "N/A"
+msgstr "Niet beschikbaar"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Geen Pacman-opruimopties geselecteerd."
+
+msgid "Open Documentation"
+msgstr "Documentatie openen"
+
+msgid "Open YouTube Channel"
+msgstr "YouTube-kanaal openen"
+
+msgid "Pacman Cleaner"
+msgstr "Pacman-opruimer"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Pacman-opruimtaken voltooid."
+
+msgid "Performance Monitor"
+msgstr "Prestatiemonitor"
+
+msgid "Processor:"
+msgstr "Processor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Verwijder verweesde pakketten - pakketten die niet meer nodig zijn door geïnstalleerde pakketten."
+
+msgid "Remove Sync Folders"
+msgstr "Synchronisatiemap verwijderen"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Verwijder niet-geïnstalleerde pakketten uit cache"
+
+msgid "Removing Sync Folder"
+msgstr "Synchronisatiemap wordt verwijderd"
+
+msgid "Run Pacman Cleanup"
+msgstr "Voer Pacman-opruiming uit"
+
+msgid "Running Command"
+msgstr "Commando uitvoeren"
+
+msgid "Running Pacman Cleanup"
+msgstr "Pacman-opruiming uitvoeren"
+
+msgid "Show System Info Details"
+msgstr "Toon systeeminfo details"
+
+msgid "Show on startup"
+msgstr "Toon bij opstarten"
+
+msgid "Success"
+msgstr "Succes"
+
+msgid "Sync Cleaner"
+msgstr "Synchronisatie-opruimer"
+
+msgid "Sync folder removal initiated."
+msgstr "Verwijdering synchronisatiemap gestart."
+
+msgid "System Cleaner"
+msgstr "Systeemopruimer"
+
+msgid "System Information"
+msgstr "Systeeminformatie"
+
+msgid "System Language"
+msgstr "Systeemtaal"
+
+msgid "System Language:"
+msgstr "Systeemtaal:"
+
+msgid "System Updates"
+msgstr "Systeemupdates"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Systeemtaal succesvol toegepast. Mogelijk moet u uw systeem opnieuw opstarten om de wijzigingen volledig door te voeren."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Voor het verwijderen van de synchronisatiemap zijn beheerdersrechten vereist. Mogelijk wordt om uw wachtwoord gevraagd."
+
+msgid "Update System (Pacman)"
+msgstr "Systeem bijwerken (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Systeem bijwerken (Yay)"
+
+msgid "Welcome"
+msgstr "Welkom"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Welkom bij Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Welkom in de wereld van Helwan Linux! ❤️\nWij helpen u uw dromen te bouwen op het sterkste fundament!"
+
+msgid "Yay is not installed."
+msgstr "Yay is niet geïnstalleerd."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "U staat op het punt de volgende opdrachten met rootrechten uit te voeren:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nWeet u zeker dat u wilt doorgaan?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Pkexec-commando niet gevonden. Zorg dat polkit is geïnstalleerd."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "Xfce4-terminal is niet geïnstalleerd. Installeer xfce4-terminal alstublieft."

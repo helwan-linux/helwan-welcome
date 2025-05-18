@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: th_TH.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "เกิดข้อผิดพลาดขณะตั้งค่าภาษาของระบบ:"
+
+msgid "Application Language:"
+msgstr "ภาษาของแอปพลิเคชัน:"
+
+msgid "Application Theme:"
+msgstr "ธีมของแอปพลิเคชัน:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "เปลี่ยนภาษาของแอปพลิเคชันเรียบร้อยแล้ว การเปลี่ยนแปลงบางอย่างอาจต้องรีสตาร์ทแอปพลิเคชัน"
+
+msgid "Apply System Language"
+msgstr "ตั้งค่าภาษาของระบบ"
+
+msgid "Available Disk Space:"
+msgstr "พื้นที่ว่างบนดิสก์:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "ลบแพ็กเกจเก่า (เก็บไว้ 2 เวอร์ชันล่าสุด)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "ล้างแคช Pacman ทั้งหมด - ระวัง! การกระทำนี้จะลบแพ็กเกจที่ดาวน์โหลดทั้งหมด"
+
+msgid "Cleanup Done"
+msgstr "ทำความสะอาดเสร็จสิ้น"
+
+msgid "Confirmation"
+msgstr "การยืนยัน"
+
+msgid "Error"
+msgstr "ข้อผิดพลาด"
+
+msgid "Failed to apply system language:"
+msgstr "ไม่สามารถตั้งค่าภาษาของระบบได้:"
+
+msgid "Free"
+msgstr "ว่าง"
+
+msgid "Info"
+msgstr "ข้อมูล"
+
+msgid "Install Linux LTS"
+msgstr "ติดตั้ง Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "ติดตั้ง Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "เลือกภาษาของระบบไม่ถูกต้อง"
+
+msgid "Language Changed"
+msgstr "เปลี่ยนภาษาแล้ว"
+
+msgid "N/A"
+msgstr "ไม่มีข้อมูล"
+
+msgid "No Pacman cleanup options selected."
+msgstr "ไม่ได้เลือกตัวเลือกการล้าง Pacman ใด ๆ"
+
+msgid "Open Documentation"
+msgstr "เปิดเอกสารประกอบ"
+
+msgid "Open YouTube Channel"
+msgstr "เปิดช่อง YouTube"
+
+msgid "Pacman Cleaner"
+msgstr "เครื่องมือทำความสะอาด Pacman"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "งานล้าง Pacman เสร็จสมบูรณ์"
+
+msgid "Performance Monitor"
+msgstr "ตัวติดตามประสิทธิภาพ"
+
+msgid "Processor:"
+msgstr "โปรเซสเซอร์:"
+
+msgid "RAM:"
+msgstr "หน่วยความจำ (RAM):"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "ลบแพ็กเกจกำพร้า – แพ็กเกจที่ไม่มีโปรแกรมใดใช้งานแล้ว"
+
+msgid "Remove Sync Folders"
+msgstr "ลบโฟลเดอร์ซิงค์"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "ลบแพ็กเกจที่ถอนการติดตั้งแล้วจากแคช"
+
+msgid "Removing Sync Folder"
+msgstr "กำลังลบโฟลเดอร์ซิงค์"
+
+msgid "Run Pacman Cleanup"
+msgstr "เรียกใช้งานล้าง Pacman"
+
+msgid "Running Command"
+msgstr "กำลังดำเนินการคำสั่ง"
+
+msgid "Running Pacman Cleanup"
+msgstr "กำลังล้าง Pacman"
+
+msgid "Show System Info Details"
+msgstr "แสดงรายละเอียดข้อมูลระบบ"
+
+msgid "Show on startup"
+msgstr "แสดงเมื่อเริ่มต้น"
+
+msgid "Success"
+msgstr "สำเร็จ"
+
+msgid "Sync Cleaner"
+msgstr "เครื่องมือทำความสะอาดซิงค์"
+
+msgid "Sync folder removal initiated."
+msgstr "เริ่มลบโฟลเดอร์ซิงค์แล้ว"
+
+msgid "System Cleaner"
+msgstr "เครื่องมือทำความสะอาดระบบ"
+
+msgid "System Information"
+msgstr "ข้อมูลระบบ"
+
+msgid "System Language"
+msgstr "ภาษาของระบบ"
+
+msgid "System Language:"
+msgstr "ภาษาของระบบ:"
+
+msgid "System Updates"
+msgstr "อัปเดตระบบ"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "ตั้งค่าภาษาของระบบเรียบร้อยแล้ว อาจจำเป็นต้องรีสตาร์ทเครื่องเพื่อให้การเปลี่ยนแปลงมีผลเต็มที่"
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "การกระทำนี้ต้องใช้สิทธิ์ผู้ดูแลระบบในการลบโฟลเดอร์ซิงค์ อาจถูกถามรหัสผ่าน"
+
+msgid "Update System (Pacman)"
+msgstr "อัปเดตระบบ (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "อัปเดตระบบ (Yay)"
+
+msgid "Welcome"
+msgstr "ยินดีต้อนรับ"
+
+msgid "Welcome to Helwan Linux"
+msgstr "ยินดีต้อนรับสู่ Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "ยินดีต้อนรับสู่โลกของ Helwan Linux! ❤️\nเราพร้อมช่วยคุณสร้างฝันบนรากฐานที่มั่นคงที่สุด!"
+
+msgid "Yay is not installed."
+msgstr "ยังไม่ได้ติดตั้ง Yay"
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "คุณกำลังจะเรียกใช้คำสั่งต่อไปนี้ด้วยสิทธิ์ root:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nคุณแน่ใจหรือไม่ว่าต้องการดำเนินการต่อ?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "ไม่พบคำสั่ง pkexec โปรดตรวจสอบให้แน่ใจว่าได้ติดตั้ง polkit แล้ว"
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "ไม่ได้ติดตั้ง xfce4-terminal กรุณาติดตั้ง xfce4-terminal"

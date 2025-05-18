@@ -33,7 +33,7 @@ DEFAULT_LANGUAGE_CODE = 'en'
 _ = load_translation(DEFAULT_LANGUAGE_CODE)
 
 # قائمة بلغات النظام المدعومة مع الأسماء المقابلة
-SYSTEM_LANGUAGES = {
+SYSTEM_LANGUAGES = languages = {
     'ar_EG.UTF-8': 'العربية (مصر)',
     'en_US.UTF-8': 'English (US)',
     'es_ES.UTF-8': 'Español (España)',
@@ -61,12 +61,19 @@ SYSTEM_LANGUAGES = {
     'ko_KR.UTF-8': '한국어 (대한민국)',             # الكورية
     'fil_PH.UTF-8': 'Filipino (Pilipinas)',       # الفلبينية
     'vi_VN.UTF-8': 'Tiếng Việt (Việt Nam)',       # الفيتنامية
+
+    
+    'uk_UA.UTF-8': 'Українська (Україна)',        # الأوكرانية
+    'nl_NL.UTF-8': 'Nederlands (Nederland)',       # الهولندية
+    'no_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
+    'fi_FI.UTF-8': 'Suomi (Suomi)',                # الفنلندية
+    'th_TH.UTF-8': 'ไทย (ประเทศไทย)',              # التايلاندية
 }
 
 
 
 # قائمة لغة التطبيق بنفس الطريقة
-APP_LANGUAGES = {
+APP_LANGUAGES = languages = {
     'ar_EG.UTF-8': 'العربية (مصر)',
     'en_US.UTF-8': 'English (US)',
     'es_ES.UTF-8': 'Español (España)',
@@ -94,7 +101,15 @@ APP_LANGUAGES = {
     'ko_KR.UTF-8': '한국어 (대한민국)',             # الكورية
     'fil_PH.UTF-8': 'Filipino (Pilipinas)',       # الفلبينية
     'vi_VN.UTF-8': 'Tiếng Việt (Việt Nam)',       # الفيتنامية
+
+    
+    'uk_UA.UTF-8': 'Українська (Україна)',        # الأوكرانية
+    'nl_NL.UTF-8': 'Nederlands (Nederland)',       # الهولندية
+    'no_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
+    'fi_FI.UTF-8': 'Suomi (Suomi)',                # الفنلندية
+    'th_TH.UTF-8': 'ไทย (ประเทศไทย)',              # التايلاندية
 }
+
 
 
 
