@@ -79,9 +79,6 @@ SYSTEM_LANGUAGES = languages = {
 }
 
 
-
-
-
 # قائمة لغة التطبيق بنفس الطريقة
 APP_LANGUAGES = languages = {
     'ar_EG.UTF-8': 'العربية (مصر)',
@@ -127,11 +124,6 @@ APP_LANGUAGES = languages = {
     'mt_MT.UTF-8': 'Malti (Malta)',                # المالطية
     'sq_AL.UTF-8': 'Shqip (Shqipëri)',             # الألبانية
 }
-
-
-
-
-
 
 
 class WelcomeApp(QWidget):
