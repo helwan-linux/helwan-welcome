@@ -62,13 +62,17 @@ SYSTEM_LANGUAGES = languages = {
     'fil_PH.UTF-8': 'Filipino (Pilipinas)',       # الفلبينية
     'vi_VN.UTF-8': 'Tiếng Việt (Việt Nam)',       # الفيتنامية
 
-    
     'uk_UA.UTF-8': 'Українська (Україна)',        # الأوكرانية
     'nl_NL.UTF-8': 'Nederlands (Nederland)',       # الهولندية
-    'no_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
+    'nb_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
     'fi_FI.UTF-8': 'Suomi (Suomi)',                # الفنلندية
     'th_TH.UTF-8': 'ไทย (ประเทศไทย)',              # التايلاندية
+
+    # الإضافات المطلوبة:
+    'bg_BG.UTF-8': 'Български (България)',          # البلغارية
+    'he_IL.UTF-8': 'עברית (ישראל)',                 # العبرية
 }
+
 
 
 
@@ -102,13 +106,17 @@ APP_LANGUAGES = languages = {
     'fil_PH.UTF-8': 'Filipino (Pilipinas)',       # الفلبينية
     'vi_VN.UTF-8': 'Tiếng Việt (Việt Nam)',       # الفيتنامية
 
-    
     'uk_UA.UTF-8': 'Українська (Україна)',        # الأوكرانية
     'nl_NL.UTF-8': 'Nederlands (Nederland)',       # الهولندية
     'nb_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
     'fi_FI.UTF-8': 'Suomi (Suomi)',                # الفنلندية
     'th_TH.UTF-8': 'ไทย (ประเทศไทย)',              # التايلاندية
+
+    # الإضافات المطلوبة:
+    'bg_BG.UTF-8': 'Български (България)',          # البلغارية
+    'he_IL.UTF-8': 'עברית (ישראל)',                 # العبرية
 }
+
 
 
 
