@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: ko_KR.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "시스템 언어를 적용하는 동안 오류가 발생했습니다:"
+
+msgid "Application Language:"
+msgstr "애플리케이션 언어:"
+
+msgid "Application Theme:"
+msgstr "애플리케이션 테마:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "애플리케이션 언어가 변경되었습니다. 일부 변경 사항은 애플리케이션 재시작이 필요할 수 있습니다."
+
+msgid "Apply System Language"
+msgstr "시스템 언어 적용"
+
+msgid "Available Disk Space:"
+msgstr "사용 가능한 디스크 공간:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "오래된 패키지 정리 (최근 2개 버전 유지)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Pacman 캐시 정리 (전체) - 경고! 이 작업은 모든 다운로드된 패키지를 제거합니다."
+
+msgid "Cleanup Done"
+msgstr "정리 완료"
+
+msgid "Confirmation"
+msgstr "확인"
+
+msgid "Error"
+msgstr "오류"
+
+msgid "Failed to apply system language:"
+msgstr "시스템 언어 적용 실패:"
+
+msgid "Free"
+msgstr "여유 공간"
+
+msgid "Info"
+msgstr "정보"
+
+msgid "Install Linux LTS"
+msgstr "Linux LTS 설치"
+
+msgid "Install Linux Zen"
+msgstr "Linux Zen 설치"
+
+msgid "Invalid system language selected."
+msgstr "잘못된 시스템 언어가 선택되었습니다."
+
+msgid "Language Changed"
+msgstr "언어 변경됨"
+
+msgid "N/A"
+msgstr "해당 없음"
+
+msgid "No Pacman cleanup options selected."
+msgstr "선택된 Pacman 정리 옵션이 없습니다."
+
+msgid "Open Documentation"
+msgstr "문서 열기"
+
+msgid "Open YouTube Channel"
+msgstr "유튜브 채널 열기"
+
+msgid "Pacman Cleaner"
+msgstr "Pacman 클리너"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Pacman 정리 작업이 완료되었습니다."
+
+msgid "Performance Monitor"
+msgstr "성능 모니터"
+
+msgid "Processor:"
+msgstr "프로세서:"
+
+msgid "RAM:"
+msgstr "메모리 (RAM):"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "고아 패키지 제거 - 더 이상 설치된 패키지가 필요로 하지 않는 패키지."
+
+msgid "Remove Sync Folders"
+msgstr "동기화 폴더 제거"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "설치되지 않은 패키지를 캐시에서 제거"
+
+msgid "Removing Sync Folder"
+msgstr "동기화 폴더 제거 중"
+
+msgid "Run Pacman Cleanup"
+msgstr "Pacman 정리 실행"
+
+msgid "Running Command"
+msgstr "명령 실행 중"
+
+msgid "Running Pacman Cleanup"
+msgstr "Pacman 정리 실행 중"
+
+msgid "Show System Info Details"
+msgstr "시스템 정보 세부 사항 보기"
+
+msgid "Show on startup"
+msgstr "시작 시 표시"
+
+msgid "Success"
+msgstr "성공"
+
+msgid "Sync Cleaner"
+msgstr "동기화 클리너"
+
+msgid "Sync folder removal initiated."
+msgstr "동기화 폴더 제거가 시작되었습니다."
+
+msgid "System Cleaner"
+msgstr "시스템 클리너"
+
+msgid "System Information"
+msgstr "시스템 정보"
+
+msgid "System Language"
+msgstr "시스템 언어"
+
+msgid "System Language:"
+msgstr "시스템 언어:"
+
+msgid "System Updates"
+msgstr "시스템 업데이트"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "시스템 언어가 성공적으로 적용되었습니다. 변경 사항을 완전히 적용하려면 시스템을 재시작해야 할 수 있습니다."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "이 작업은 동기화 폴더를 제거하기 위해 관리자 권한이 필요합니다. 비밀번호를 입력하라는 메시지가 표시될 수 있습니다."
+
+msgid "Update System (Pacman)"
+msgstr "시스템 업데이트 (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "시스템 업데이트 (Yay)"
+
+msgid "Welcome"
+msgstr "환영합니다"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Helwan Linux에 오신 것을 환영합니다"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Helwan Linux 세계에 오신 것을 환영합니다! ❤️\n저희는 여러분이 가장 강력한 기반 위에 꿈을 실현할 수 있도록 돕습니다!"
+
+msgid "Yay is not installed."
+msgstr "Yay가 설치되어 있지 않습니다."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "다음 명령을 루트 권한으로 실행하려고 합니다:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\n계속하시겠습니까?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "pkexec 명령을 찾을 수 없습니다. polkit이 설치되어 있는지 확인하세요."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal이 설치되어 있지 않습니다. xfce4-terminal을 설치하세요."

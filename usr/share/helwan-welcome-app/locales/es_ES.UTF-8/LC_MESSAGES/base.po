@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: es_ES.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Ocurrió un error al aplicar el idioma del sistema:"
+
+msgid "Application Language:"
+msgstr "Idioma de la aplicación:"
+
+msgid "Application Theme:"
+msgstr "Tema de la aplicación:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Se ha cambiado el idioma de la aplicación. Algunos cambios podrían requerir reiniciar la aplicación."
+
+msgid "Apply System Language"
+msgstr "Aplicar idioma del sistema"
+
+msgid "Available Disk Space:"
+msgstr "Espacio de disco disponible:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Limpiar paquetes antiguos (mantener las 2 últimas versiones)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Limpiar caché de Pacman (completo) - ¡Advertencia! Esto eliminará todos los paquetes descargados."
+
+msgid "Cleanup Done"
+msgstr "Limpieza finalizada"
+
+msgid "Confirmation"
+msgstr "Confirmación"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Failed to apply system language:"
+msgstr "Falló al aplicar el idioma del sistema:"
+
+msgid "Free"
+msgstr "Libre"
+
+msgid "Info"
+msgstr "Información"
+
+msgid "Install Linux LTS"
+msgstr "Instalar Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Instalar Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Se seleccionó un idioma de sistema no válido."
+
+msgid "Language Changed"
+msgstr "Idioma cambiado"
+
+msgid "N/A"
+msgstr "N/A"
+
+msgid "No Pacman cleanup options selected."
+msgstr "No se seleccionaron opciones de limpieza de Pacman."
+
+msgid "Open Documentation"
+msgstr "Abrir documentación"
+
+msgid "Open YouTube Channel"
+msgstr "Abrir canal de YouTube"
+
+msgid "Pacman Cleaner"
+msgstr "Limpiador de Pacman"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Tareas de limpieza de Pacman completadas."
+
+msgid "Performance Monitor"
+msgstr "Monitor de rendimiento"
+
+msgid "Processor:"
+msgstr "Procesador:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Eliminar paquetes huérfanos - Paquetes que ya no son requeridos por ningún paquete instalado."
+
+msgid "Remove Sync Folders"
+msgstr "Eliminar carpetas de sincronización"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Eliminar paquetes no instalados de la caché"
+
+msgid "Removing Sync Folder"
+msgstr "Eliminando carpeta de sincronización"
+
+msgid "Run Pacman Cleanup"
+msgstr "Ejecutar limpieza de Pacman"
+
+msgid "Running Command"
+msgstr "Ejecutando comando"
+
+msgid "Running Pacman Cleanup"
+msgstr "Ejecutando limpieza de Pacman"
+
+msgid "Show System Info Details"
+msgstr "Mostrar detalles de información del sistema"
+
+msgid "Show on startup"
+msgstr "Mostrar al inicio"
+
+msgid "Success"
+msgstr "Éxito"
+
+msgid "Sync Cleaner"
+msgstr "Limpiador de sincronización"
+
+msgid "Sync folder removal initiated."
+msgstr "Se inició la eliminación de la carpeta de sincronización."
+
+msgid "System Cleaner"
+msgstr "Limpiador del sistema"
+
+msgid "System Information"
+msgstr "Información del sistema"
+
+msgid "System Language"
+msgstr "Idioma del sistema"
+
+msgid "System Language:"
+msgstr "Idioma del sistema:"
+
+msgid "System Updates"
+msgstr "Actualizaciones del sistema"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "El idioma del sistema se aplicó correctamente. Es posible que necesite reiniciar su sistema para que los cambios surtan efecto por completo."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Esta acción requiere privilegios de administrador para eliminar la carpeta de sincronización. Es posible que se le pida su contraseña."
+
+msgid "Update System (Pacman)"
+msgstr "Actualizar sistema (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Actualizar sistema (Yay)"
+
+msgid "Welcome"
+msgstr "Bienvenido"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Bienvenido a Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "¡Bienvenido al mundo de Helwan Linux! ❤️\n¡Estamos aquí para ayudarte a construir tus sueños sobre la base más sólida!"
+
+msgid "Yay is not installed."
+msgstr "Yay no está instalado."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Estás a punto de ejecutar los siguientes comandos con privilegios de root:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\n¿Estás seguro de que quieres continuar?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "No se encontró el comando pkexec. Asegúrate de que polkit esté instalado."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal no está instalado. Por favor, instala xfce4-terminal."

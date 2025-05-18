@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: id_ID.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Terjadi kesalahan saat menerapkan bahasa sistem:"
+
+msgid "Application Language:"
+msgstr "Bahasa Aplikasi:"
+
+msgid "Application Theme:"
+msgstr "Tema Aplikasi:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Bahasa aplikasi telah diubah. Beberapa perubahan mungkin memerlukan restart aplikasi."
+
+msgid "Apply System Language"
+msgstr "Terapkan Bahasa Sistem"
+
+msgid "Available Disk Space:"
+msgstr "Ruang Disk Tersedia:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Bersihkan Paket Lama (Simpan 2 Versi Terakhir)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Bersihkan Cache Pacman (Penuh) - Peringatan! Ini akan menghapus semua paket yang diunduh."
+
+msgid "Cleanup Done"
+msgstr "Pembersihan Selesai"
+
+msgid "Confirmation"
+msgstr "Konfirmasi"
+
+msgid "Error"
+msgstr "Kesalahan"
+
+msgid "Failed to apply system language:"
+msgstr "Gagal menerapkan bahasa sistem:"
+
+msgid "Free"
+msgstr "Gratis"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Install Linux LTS"
+msgstr "Pasang Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Pasang Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Bahasa sistem yang dipilih tidak valid."
+
+msgid "Language Changed"
+msgstr "Bahasa Berubah"
+
+msgid "N/A"
+msgstr "Tidak Ada"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Tidak ada opsi pembersihan Pacman yang dipilih."
+
+msgid "Open Documentation"
+msgstr "Buka Dokumentasi"
+
+msgid "Open YouTube Channel"
+msgstr "Buka Saluran YouTube"
+
+msgid "Pacman Cleaner"
+msgstr "Pembersih Pacman"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Tugas pembersihan Pacman selesai."
+
+msgid "Performance Monitor"
+msgstr "Monitor Performa"
+
+msgid "Processor:"
+msgstr "Prosesor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Hapus Paket Yatim - Paket yang tidak lagi diperlukan oleh paket terpasang manapun."
+
+msgid "Remove Sync Folders"
+msgstr "Hapus Folder Sinkronisasi"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Hapus Paket yang Tidak Terpasang dari Cache"
+
+msgid "Removing Sync Folder"
+msgstr "Menghapus Folder Sinkronisasi"
+
+msgid "Run Pacman Cleanup"
+msgstr "Jalankan Pembersihan Pacman"
+
+msgid "Running Command"
+msgstr "Menjalankan Perintah"
+
+msgid "Running Pacman Cleanup"
+msgstr "Menjalankan Pembersihan Pacman"
+
+msgid "Show System Info Details"
+msgstr "Tampilkan Detail Info Sistem"
+
+msgid "Show on startup"
+msgstr "Tampilkan saat startup"
+
+msgid "Success"
+msgstr "Sukses"
+
+msgid "Sync Cleaner"
+msgstr "Pembersih Sinkronisasi"
+
+msgid "Sync folder removal initiated."
+msgstr "Penghapusan folder sinkronisasi dimulai."
+
+msgid "System Cleaner"
+msgstr "Pembersih Sistem"
+
+msgid "System Information"
+msgstr "Informasi Sistem"
+
+msgid "System Language"
+msgstr "Bahasa Sistem"
+
+msgid "System Language:"
+msgstr "Bahasa Sistem:"
+
+msgid "System Updates"
+msgstr "Pembaruan Sistem"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Bahasa sistem berhasil diterapkan. Anda mungkin perlu memulai ulang sistem untuk perubahan sepenuhnya berlaku."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Tindakan ini memerlukan hak administrator untuk menghapus folder sinkronisasi. Anda mungkin diminta memasukkan kata sandi."
+
+msgid "Update System (Pacman)"
+msgstr "Perbarui Sistem (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Perbarui Sistem (Yay)"
+
+msgid "Welcome"
+msgstr "Selamat Datang"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Selamat Datang di Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Selamat datang di dunia Helwan Linux! ❤️\nKami di sini untuk membantu Anda membangun impian Anda di fondasi terkuat!"
+
+msgid "Yay is not installed."
+msgstr "Yay tidak terpasang."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Anda akan menjalankan perintah berikut dengan hak root:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nApakah Anda yakin ingin melanjutkan?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Perintah pkexec tidak ditemukan. Pastikan polkit sudah terpasang."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal tidak terpasang. Silakan pasang xfce4-terminal."

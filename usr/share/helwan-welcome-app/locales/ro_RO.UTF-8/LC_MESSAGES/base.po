@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: ro_RO.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "A apărut o eroare la aplicarea limbii sistemului:"
+
+msgid "Application Language:"
+msgstr "Limba aplicației:"
+
+msgid "Application Theme:"
+msgstr "Tema aplicației:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Limba aplicației a fost schimbată. Unele modificări pot necesita repornirea aplicației."
+
+msgid "Apply System Language"
+msgstr "Aplică limba sistemului"
+
+msgid "Available Disk Space:"
+msgstr "Spațiu disc disponibil:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Curăță pachetele vechi (păstrează ultimele 2 versiuni)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Curăță memoria cache Pacman (complet) - Atenție! Aceasta va elimina toate pachetele descărcate."
+
+msgid "Cleanup Done"
+msgstr "Curățare finalizată"
+
+msgid "Confirmation"
+msgstr "Confirmare"
+
+msgid "Error"
+msgstr "Eroare"
+
+msgid "Failed to apply system language:"
+msgstr "Nu s-a reușit aplicarea limbii sistemului:"
+
+msgid "Free"
+msgstr "Liber"
+
+msgid "Info"
+msgstr "Info"
+
+msgid "Install Linux LTS"
+msgstr "Instalează Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Instalează Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Limba sistemului selectată este invalidă."
+
+msgid "Language Changed"
+msgstr "Limba schimbată"
+
+msgid "N/A"
+msgstr "N/A"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Nu au fost selectate opțiuni de curățare Pacman."
+
+msgid "Open Documentation"
+msgstr "Deschide documentația"
+
+msgid "Open YouTube Channel"
+msgstr "Deschide canalul YouTube"
+
+msgid "Pacman Cleaner"
+msgstr "Curățător Pacman"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Sarcinile de curățare Pacman au fost finalizate."
+
+msgid "Performance Monitor"
+msgstr "Monitor de performanță"
+
+msgid "Processor:"
+msgstr "Procesor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Elimină pachetele orfane - Pachete care nu mai sunt necesare de niciun pachet instalat."
+
+msgid "Remove Sync Folders"
+msgstr "Elimină folderele de sincronizare"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Elimină pachetele dezinstalate din cache"
+
+msgid "Removing Sync Folder"
+msgstr "Se elimină folderul de sincronizare"
+
+msgid "Run Pacman Cleanup"
+msgstr "Rulează curățarea Pacman"
+
+msgid "Running Command"
+msgstr "Se rulează comanda"
+
+msgid "Running Pacman Cleanup"
+msgstr "Se rulează curățarea Pacman"
+
+msgid "Show System Info Details"
+msgstr "Arată detaliile informațiilor sistemului"
+
+msgid "Show on startup"
+msgstr "Arată la pornire"
+
+msgid "Success"
+msgstr "Succes"
+
+msgid "Sync Cleaner"
+msgstr "Curățător sincronizare"
+
+msgid "Sync folder removal initiated."
+msgstr "Începută eliminarea folderului de sincronizare."
+
+msgid "System Cleaner"
+msgstr "Curățător sistem"
+
+msgid "System Information"
+msgstr "Informații sistem"
+
+msgid "System Language"
+msgstr "Limba sistemului"
+
+msgid "System Language:"
+msgstr "Limba sistemului:"
+
+msgid "System Updates"
+msgstr "Actualizări sistem"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Limba sistemului a fost aplicată cu succes. Este posibil să fie necesară repornirea sistemului pentru ca modificările să aibă efect complet."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Această acțiune necesită privilegii de administrator pentru a elimina folderul de sincronizare. Vi se poate solicita parola."
+
+msgid "Update System (Pacman)"
+msgstr "Actualizează sistemul (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Actualizează sistemul (Yay)"
+
+msgid "Welcome"
+msgstr "Bun venit"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Bun venit la Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Bun venit în lumea Helwan Linux! ❤️\nSuntem aici pentru a vă ajuta să vă construiți visele pe cea mai puternică fundație!"
+
+msgid "Yay is not installed."
+msgstr "Yay nu este instalat."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Sunteți pe cale să rulați următoarele comenzi cu privilegii root:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nSigur doriți să continuați?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Comanda pkexec nu a fost găsită. Asigurați-vă că polkit este instalat."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal nu este instalat. Vă rugăm să instalați xfce4-terminal."

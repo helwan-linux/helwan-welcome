@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: hi_HI.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "सिस्टम भाषा लागू करते समय एक त्रुटि हुई:"
+
+msgid "Application Language:"
+msgstr "एप्लिकेशन भाषा:"
+
+msgid "Application Theme:"
+msgstr "एप्लिकेशन थीम:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "एप्लिकेशन की भाषा बदल दी गई है। कुछ बदलावों के लिए एप्लिकेशन को पुनः प्रारंभ करना पड़ सकता है।"
+
+msgid "Apply System Language"
+msgstr "सिस्टम भाषा लागू करें"
+
+msgid "Available Disk Space:"
+msgstr "उपलब्ध डिस्क स्थान:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "पुराने पैकेज साफ़ करें (आखिरी 2 संस्करण रखें)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Pacman कैश साफ़ करें (पूरा) - चेतावनी! यह सभी डाउनलोड किए गए पैकेज हटा देगा।"
+
+msgid "Cleanup Done"
+msgstr "साफ़-सफाई पूरी हुई"
+
+msgid "Confirmation"
+msgstr "पुष्टि"
+
+msgid "Error"
+msgstr "त्रुटि"
+
+msgid "Failed to apply system language:"
+msgstr "सिस्टम भाषा लागू करने में विफल:"
+
+msgid "Free"
+msgstr "मुक्त"
+
+msgid "Info"
+msgstr "जानकारी"
+
+msgid "Install Linux LTS"
+msgstr "Linux LTS इंस्टॉल करें"
+
+msgid "Install Linux Zen"
+msgstr "Linux Zen इंस्टॉल करें"
+
+msgid "Invalid system language selected."
+msgstr "अमान्य सिस्टम भाषा चुनी गई है।"
+
+msgid "Language Changed"
+msgstr "भाषा बदली गई"
+
+msgid "N/A"
+msgstr "उपलब्ध नहीं"
+
+msgid "No Pacman cleanup options selected."
+msgstr "कोई Pacman सफ़ाई विकल्प चयनित नहीं किया गया।"
+
+msgid "Open Documentation"
+msgstr "दस्तावेज़ खोलें"
+
+msgid "Open YouTube Channel"
+msgstr "YouTube चैनल खोलें"
+
+msgid "Pacman Cleaner"
+msgstr "Pacman क्लीनर"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Pacman सफ़ाई कार्य पूर्ण हुए।"
+
+msgid "Performance Monitor"
+msgstr "प्रदर्शन मॉनीटर"
+
+msgid "Processor:"
+msgstr "प्रोसेसर:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "अनाथ पैकेज हटाएं - जिन्हें अब कोई स्थापित पैकेज आवश्यक नहीं मानता।"
+
+msgid "Remove Sync Folders"
+msgstr "सिंक फ़ोल्डर हटाएं"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "कैश से अनइंस्टॉल किए गए पैकेज हटाएं"
+
+msgid "Removing Sync Folder"
+msgstr "सिंक फ़ोल्डर हटा रहे हैं"
+
+msgid "Run Pacman Cleanup"
+msgstr "Pacman सफ़ाई चलाएं"
+
+msgid "Running Command"
+msgstr "कमांड चल रही है"
+
+msgid "Running Pacman Cleanup"
+msgstr "Pacman सफ़ाई चल रही है"
+
+msgid "Show System Info Details"
+msgstr "सिस्टम जानकारी विवरण दिखाएं"
+
+msgid "Show on startup"
+msgstr "स्टार्टअप पर दिखाएं"
+
+msgid "Success"
+msgstr "सफलता"
+
+msgid "Sync Cleaner"
+msgstr "सिंक क्लीनर"
+
+msgid "Sync folder removal initiated."
+msgstr "सिंक फ़ोल्डर हटाने की प्रक्रिया शुरू की गई।"
+
+msgid "System Cleaner"
+msgstr "सिस्टम क्लीनर"
+
+msgid "System Information"
+msgstr "सिस्टम जानकारी"
+
+msgid "System Language"
+msgstr "सिस्टम भाषा"
+
+msgid "System Language:"
+msgstr "सिस्टम भाषा:"
+
+msgid "System Updates"
+msgstr "सिस्टम अपडेट"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "सिस्टम भाषा सफलतापूर्वक लागू की गई। परिवर्तन पूरी तरह से लागू करने के लिए सिस्टम को पुनः चालू करना पड़ सकता है।"
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "सिंक फ़ोल्डर हटाने के लिए व्यवस्थापक विशेषाधिकार आवश्यक हैं। आपसे पासवर्ड माँगा जा सकता है।"
+
+msgid "Update System (Pacman)"
+msgstr "सिस्टम अपडेट करें (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "सिस्टम अपडेट करें (Yay)"
+
+msgid "Welcome"
+msgstr "स्वागत है"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Helwan Linux में आपका स्वागत है"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Helwan Linux की दुनिया में आपका स्वागत है! ❤️\nहम यहाँ हैं ताकि आप अपने सपनों को सबसे मजबूत नींव पर बना सकें!"
+
+msgid "Yay is not installed."
+msgstr "Yay इंस्टॉल नहीं है।"
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "आप निम्नलिखित कमांड्स रूट विशेषाधिकारों के साथ चलाने वाले हैं:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nक्या आप वाकई जारी रखना चाहते हैं?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "pkexec कमांड नहीं मिली। सुनिश्चित करें कि polkit इंस्टॉल है।"
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal इंस्टॉल नहीं है। कृपया xfce4-terminal इंस्टॉल करें।"

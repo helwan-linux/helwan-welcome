@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: vi_VN.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Đã xảy ra lỗi khi áp dụng ngôn ngữ hệ thống:"
+
+msgid "Application Language:"
+msgstr "Ngôn ngữ Ứng dụng:"
+
+msgid "Application Theme:"
+msgstr "Giao Diện Ứng Dụng:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Ngôn ngữ ứng dụng đã được thay đổi. Một số thay đổi có thể yêu cầu khởi động lại ứng dụng."
+
+msgid "Apply System Language"
+msgstr "Áp dụng Ngôn ngữ Hệ thống"
+
+msgid "Available Disk Space:"
+msgstr "Dung lượng Đĩa có Sẵn:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Dọn Gói Cũ (Giữ Lại 2 Phiên Bản Gần Nhất)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Xóa Bộ Nhớ Tạm Pacman (Toàn Bộ) - Cảnh báo! Điều này sẽ xóa tất cả các gói đã tải xuống."
+
+msgid "Cleanup Done"
+msgstr "Dọn Dẹp Hoàn Tất"
+
+msgid "Confirmation"
+msgstr "Xác Nhận"
+
+msgid "Error"
+msgstr "Lỗi"
+
+msgid "Failed to apply system language:"
+msgstr "Không thể áp dụng ngôn ngữ hệ thống:"
+
+msgid "Free"
+msgstr "Trống"
+
+msgid "Info"
+msgstr "Thông Tin"
+
+msgid "Install Linux LTS"
+msgstr "Cài Đặt Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Cài Đặt Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Ngôn ngữ hệ thống được chọn không hợp lệ."
+
+msgid "Language Changed"
+msgstr "Đã Thay Đổi Ngôn Ngữ"
+
+msgid "N/A"
+msgstr "Không Có"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Chưa chọn tùy chọn dọn dẹp Pacman nào."
+
+msgid "Open Documentation"
+msgstr "Mở Tài Liệu"
+
+msgid "Open YouTube Channel"
+msgstr "Mở Kênh YouTube"
+
+msgid "Pacman Cleaner"
+msgstr "Trình Dọn Dẹp Pacman"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Các tác vụ dọn dẹp Pacman đã hoàn thành."
+
+msgid "Performance Monitor"
+msgstr "Trình Theo Dõi Hiệu Suất"
+
+msgid "Processor:"
+msgstr "Bộ xử lý:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Xóa các Gói Mồ Côi - Các gói không còn được gói nào khác yêu cầu."
+
+msgid "Remove Sync Folders"
+msgstr "Xóa Thư Mục Đồng Bộ"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Xóa Gói Không Cài Đặt khỏi Bộ Nhớ Tạm"
+
+msgid "Removing Sync Folder"
+msgstr "Đang Xóa Thư Mục Đồng Bộ"
+
+msgid "Run Pacman Cleanup"
+msgstr "Chạy Dọn Dẹp Pacman"
+
+msgid "Running Command"
+msgstr "Đang Chạy Lệnh"
+
+msgid "Running Pacman Cleanup"
+msgstr "Đang Chạy Dọn Dẹp Pacman"
+
+msgid "Show System Info Details"
+msgstr "Hiển Thị Thông Tin Hệ Thống Chi Tiết"
+
+msgid "Show on startup"
+msgstr "Hiển thị khi khởi động"
+
+msgid "Success"
+msgstr "Thành Công"
+
+msgid "Sync Cleaner"
+msgstr "Trình Dọn Dẹp Đồng Bộ"
+
+msgid "Sync folder removal initiated."
+msgstr "Đã bắt đầu xóa thư mục đồng bộ."
+
+msgid "System Cleaner"
+msgstr "Trình Dọn Dẹp Hệ Thống"
+
+msgid "System Information"
+msgstr "Thông Tin Hệ Thống"
+
+msgid "System Language"
+msgstr "Ngôn Ngữ Hệ Thống"
+
+msgid "System Language:"
+msgstr "Ngôn Ngữ Hệ Thống:"
+
+msgid "System Updates"
+msgstr "Cập Nhật Hệ Thống"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Ngôn ngữ hệ thống đã được áp dụng thành công. Có thể bạn cần khởi động lại hệ thống để các thay đổi có hiệu lực hoàn toàn."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Hành động này yêu cầu quyền quản trị để xóa thư mục đồng bộ. Có thể bạn sẽ được yêu cầu nhập mật khẩu."
+
+msgid "Update System (Pacman)"
+msgstr "Cập Nhật Hệ Thống (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Cập Nhật Hệ Thống (Yay)"
+
+msgid "Welcome"
+msgstr "Chào Mừng"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Chào mừng đến với Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Chào mừng đến với thế giới của Helwan Linux! ❤️\nChúng tôi ở đây để giúp bạn xây dựng ước mơ của mình trên nền tảng vững chắc nhất!"
+
+msgid "Yay is not installed."
+msgstr "Yay chưa được cài đặt."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Bạn sắp chạy các lệnh sau với quyền root:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nBạn có chắc chắn muốn tiếp tục không?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Không tìm thấy lệnh pkexec. Hãy đảm bảo rằng polkit đã được cài đặt."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal chưa được cài đặt. Vui lòng cài đặt xfce4-terminal."

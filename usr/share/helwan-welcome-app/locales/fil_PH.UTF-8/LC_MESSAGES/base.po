@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: fil_PH.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Nagkaroon ng error habang ina-apply ang wika ng sistema:"
+
+msgid "Application Language:"
+msgstr "Wika ng Aplikasyon:"
+
+msgid "Application Theme:"
+msgstr "Tema ng Aplikasyon:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Nagbago ang wika ng aplikasyon. Maaaring kailanganin ang pag-restart ng aplikasyon para sa ilang pagbabago."
+
+msgid "Apply System Language"
+msgstr "I-apply ang Wika ng Sistema"
+
+msgid "Available Disk Space:"
+msgstr "Available na Disk Space:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Linisin ang Lumang Packages (Panatilihin ang Huling 2 Bersyon)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Linisin ang Pacman Cache (Buong Cache) - Babala! Tatanggalin nito ang lahat ng na-download na packages."
+
+msgid "Cleanup Done"
+msgstr "Tapos na ang Paglilinis"
+
+msgid "Confirmation"
+msgstr "Kumpirmasyon"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Failed to apply system language:"
+msgstr "Nabigong i-apply ang wika ng sistema:"
+
+msgid "Free"
+msgstr "Libreng"
+
+msgid "Info"
+msgstr "Impormasyon"
+
+msgid "Install Linux LTS"
+msgstr "I-install ang Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "I-install ang Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Invalid na wika ng sistema ang napili."
+
+msgid "Language Changed"
+msgstr "Nagbago ang Wika"
+
+msgid "N/A"
+msgstr "Wala"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Walang Pacman cleanup options na napili."
+
+msgid "Open Documentation"
+msgstr "Buksan ang Dokumentasyon"
+
+msgid "Open YouTube Channel"
+msgstr "Buksan ang YouTube Channel"
+
+msgid "Pacman Cleaner"
+msgstr "Pacman Cleaner"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Natapos ang mga gawain sa paglilinis ng Pacman."
+
+msgid "Performance Monitor"
+msgstr "Performance Monitor"
+
+msgid "Processor:"
+msgstr "Processor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Tanggalin ang Orphan Packages - Mga package na hindi na kailangan ng anumang naka-install na package."
+
+msgid "Remove Sync Folders"
+msgstr "Tanggalin ang Sync Folders"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Tanggalin ang mga Hindi Na-install na Package mula sa Cache"
+
+msgid "Removing Sync Folder"
+msgstr "Tinatanggal ang Sync Folder"
+
+msgid "Run Pacman Cleanup"
+msgstr "Patakbuhin ang Pacman Cleanup"
+
+msgid "Running Command"
+msgstr "Pinapatakbo ang Command"
+
+msgid "Running Pacman Cleanup"
+msgstr "Pinapatakbo ang Pacman Cleanup"
+
+msgid "Show System Info Details"
+msgstr "Ipakita ang Detalye ng System Info"
+
+msgid "Show on startup"
+msgstr "Ipakita sa startup"
+
+msgid "Success"
+msgstr "Tagumpay"
+
+msgid "Sync Cleaner"
+msgstr "Sync Cleaner"
+
+msgid "Sync folder removal initiated."
+msgstr "Sinimulan ang pagtanggal ng sync folder."
+
+msgid "System Cleaner"
+msgstr "System Cleaner"
+
+msgid "System Information"
+msgstr "Impormasyon ng Sistema"
+
+msgid "System Language"
+msgstr "Wika ng Sistema"
+
+msgid "System Language:"
+msgstr "Wika ng Sistema:"
+
+msgid "System Updates"
+msgstr "Mga Update ng Sistema"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Matagumpay na na-apply ang wika ng sistema. Maaaring kailanganin mong i-restart ang iyong sistema para tuluyang magkabisa ang mga pagbabago."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Kinakailangan ang administrator privileges para tanggalin ang sync folder. Maaaring hingin ang iyong password."
+
+msgid "Update System (Pacman)"
+msgstr "I-update ang Sistema (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "I-update ang Sistema (Yay)"
+
+msgid "Welcome"
+msgstr "Maligayang Pagdating"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Maligayang Pagdating sa Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Maligayang pagdating sa mundo ng Helwan Linux! ❤️\nNarito kami upang tulungan kang buuin ang iyong mga pangarap sa pinakamalakas na pundasyon!"
+
+msgid "Yay is not installed."
+msgstr "Hindi naka-install ang Yay."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Ikaw ay magpapatakbo ng mga sumusunod na command gamit ang root privileges:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nSigurado ka bang gusto mong magpatuloy?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Hindi nakita ang pkexec command. Siguraduhing naka-install ang polkit."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "Hindi naka-install ang xfce4-terminal. Paki-install ang xfce4-terminal."

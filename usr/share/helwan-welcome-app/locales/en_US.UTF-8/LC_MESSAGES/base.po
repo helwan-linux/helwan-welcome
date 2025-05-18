@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: en_US.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr ""
+
+msgid "Application Language:"
+msgstr ""
+
+msgid "Application Theme:"
+msgstr ""
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr ""
+
+msgid "Apply System Language"
+msgstr ""
+
+msgid "Available Disk Space:"
+msgstr ""
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr ""
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr ""
+
+msgid "Cleanup Done"
+msgstr ""
+
+msgid "Confirmation"
+msgstr ""
+
+msgid "Error"
+msgstr ""
+
+msgid "Failed to apply system language:"
+msgstr ""
+
+msgid "Free"
+msgstr ""
+
+msgid "Info"
+msgstr ""
+
+msgid "Install Linux LTS"
+msgstr ""
+
+msgid "Install Linux Zen"
+msgstr ""
+
+msgid "Invalid system language selected."
+msgstr ""
+
+msgid "Language Changed"
+msgstr ""
+
+msgid "N/A"
+msgstr ""
+
+msgid "No Pacman cleanup options selected."
+msgstr ""
+
+msgid "Open Documentation"
+msgstr ""
+
+msgid "Open YouTube Channel"
+msgstr ""
+
+msgid "Pacman Cleaner"
+msgstr ""
+
+msgid "Pacman cleanup tasks completed."
+msgstr ""
+
+msgid "Performance Monitor"
+msgstr ""
+
+msgid "Processor:"
+msgstr ""
+
+msgid "RAM:"
+msgstr ""
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr ""
+
+msgid "Remove Sync Folders"
+msgstr ""
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr ""
+
+msgid "Removing Sync Folder"
+msgstr ""
+
+msgid "Run Pacman Cleanup"
+msgstr ""
+
+msgid "Running Command"
+msgstr ""
+
+msgid "Running Pacman Cleanup"
+msgstr ""
+
+msgid "Show System Info Details"
+msgstr ""
+
+msgid "Show on startup"
+msgstr ""
+
+msgid "Success"
+msgstr ""
+
+msgid "Sync Cleaner"
+msgstr ""
+
+msgid "Sync folder removal initiated."
+msgstr ""
+
+msgid "System Cleaner"
+msgstr ""
+
+msgid "System Information"
+msgstr ""
+
+msgid "System Language"
+msgstr ""
+
+msgid "System Language:"
+msgstr ""
+
+msgid "System Updates"
+msgstr ""
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr ""
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr ""
+
+msgid "Update System (Pacman)"
+msgstr ""
+
+msgid "Update System (Yay)"
+msgstr ""
+
+msgid "Welcome"
+msgstr ""
+
+msgid "Welcome to Helwan Linux"
+msgstr ""
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr ""
+
+msgid "Yay is not installed."
+msgstr ""
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr ""
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr ""
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr ""
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr ""
