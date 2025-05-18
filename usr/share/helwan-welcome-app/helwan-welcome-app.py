@@ -55,23 +55,29 @@ SYSTEM_LANGUAGES = languages = {
 
     # الإضافات الجديدة:
     'bn_BD.UTF-8': 'বাংলা (বাংলাদেশ)',            # البنغالية
-    'ta_IN.UTF-8': 'தமிழ் (இந்தியா)',            # التاميلية
+    'ta_IN.UTF-8': 'தமிழ் (இந்தியா)',             # التاميلية
     'tr_TR.UTF-8': 'Türkçe (Türkiye)',            # التركية
     'id_ID.UTF-8': 'Bahasa Indonesia',            # الإندونيسية
-    'ko_KR.UTF-8': '한국어 (대한민국)',             # الكورية
+    'ko_KR.UTF-8': '한국어 (대한민국)',              # الكورية
     'fil_PH.UTF-8': 'Filipino (Pilipinas)',       # الفلبينية
     'vi_VN.UTF-8': 'Tiếng Việt (Việt Nam)',       # الفيتنامية
-
     'uk_UA.UTF-8': 'Українська (Україна)',        # الأوكرانية
-    'nl_NL.UTF-8': 'Nederlands (Nederland)',       # الهولندية
-    'nb_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
-    'fi_FI.UTF-8': 'Suomi (Suomi)',                # الفنلندية
-    'th_TH.UTF-8': 'ไทย (ประเทศไทย)',              # التايلاندية
+    'nl_NL.UTF-8': 'Nederlands (Nederland)',      # الهولندية
+    'nb_NO.UTF-8': 'Norsk (Norge)',               # النرويجية
+    'fi_FI.UTF-8': 'Suomi (Suomi)',               # الفنلندية
+    'th_TH.UTF-8': 'ไทย (ประเทศไทย)',             # التايلاندية
+    'bg_BG.UTF-8': 'Български (България)',         # البلغارية
+    'he_IL.UTF-8': 'עברית (ישראל)',                # العبرية
 
     # الإضافات المطلوبة:
-    'bg_BG.UTF-8': 'Български (България)',          # البلغارية
-    'he_IL.UTF-8': 'עברית (ישראל)',                 # العبرية
+    'ca_ES.UTF-8': 'Català (Espanya)',             # الكاتالونية
+    'lv_LV.UTF-8': 'Latviešu (Latvija)',           # اللاتفية
+    'sr_RS.UTF-8': 'Српски (Србија)',              # الصربية
+    'sk_SK.UTF-8': 'Slovenčina (Slovensko)',       # السلوفاكية
+    'mt_MT.UTF-8': 'Malti (Malta)',                # المالطية
+    'sq_AL.UTF-8': 'Shqip (Shqipëri)',             # الألبانية
 }
+
 
 
 
@@ -99,23 +105,29 @@ APP_LANGUAGES = languages = {
 
     # الإضافات الجديدة:
     'bn_BD.UTF-8': 'বাংলা (বাংলাদেশ)',            # البنغالية
-    'ta_IN.UTF-8': 'தமிழ் (இந்தியா)',            # التاميلية
+    'ta_IN.UTF-8': 'தமிழ் (இந்தியா)',             # التاميلية
     'tr_TR.UTF-8': 'Türkçe (Türkiye)',            # التركية
     'id_ID.UTF-8': 'Bahasa Indonesia',            # الإندونيسية
-    'ko_KR.UTF-8': '한국어 (대한민국)',             # الكورية
+    'ko_KR.UTF-8': '한국어 (대한민국)',              # الكورية
     'fil_PH.UTF-8': 'Filipino (Pilipinas)',       # الفلبينية
     'vi_VN.UTF-8': 'Tiếng Việt (Việt Nam)',       # الفيتنامية
-
     'uk_UA.UTF-8': 'Українська (Україна)',        # الأوكرانية
-    'nl_NL.UTF-8': 'Nederlands (Nederland)',       # الهولندية
-    'nb_NO.UTF-8': 'Norsk (Norge)',                # النرويجية
-    'fi_FI.UTF-8': 'Suomi (Suomi)',                # الفنلندية
-    'th_TH.UTF-8': 'ไทย (ประเทศไทย)',              # التايلاندية
+    'nl_NL.UTF-8': 'Nederlands (Nederland)',      # الهولندية
+    'nb_NO.UTF-8': 'Norsk (Norge)',               # النرويجية
+    'fi_FI.UTF-8': 'Suomi (Suomi)',               # الفنلندية
+    'th_TH.UTF-8': 'ไทย (ประเทศไทย)',             # التايلاندية
+    'bg_BG.UTF-8': 'Български (България)',         # البلغارية
+    'he_IL.UTF-8': 'עברית (ישראל)',                # العبرية
 
     # الإضافات المطلوبة:
-    'bg_BG.UTF-8': 'Български (България)',          # البلغارية
-    'he_IL.UTF-8': 'עברית (ישראל)',                 # العبرية
+    'ca_ES.UTF-8': 'Català (Espanya)',             # الكاتالونية
+    'lv_LV.UTF-8': 'Latviešu (Latvija)',           # اللاتفية
+    'sr_RS.UTF-8': 'Српски (Србија)',              # الصربية
+    'sk_SK.UTF-8': 'Slovenčina (Slovensko)',       # السلوفاكية
+    'mt_MT.UTF-8': 'Malti (Malta)',                # المالطية
+    'sq_AL.UTF-8': 'Shqip (Shqipëri)',             # الألبانية
 }
+
 
 
 

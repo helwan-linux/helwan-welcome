@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: sk_SK.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Pri nastavovaní systémového jazyka došlo k chybe:"
+
+msgid "Application Language:"
+msgstr "Jazyk aplikácie:"
+
+msgid "Application Theme:"
+msgstr "Téma aplikácie:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Jazyk aplikácie bol zmenený. Niektoré zmeny môžu vyžadovať reštart aplikácie."
+
+msgid "Apply System Language"
+msgstr "Použiť systémový jazyk"
+
+msgid "Available Disk Space:"
+msgstr "Dostupné miesto na disku:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Vyčistiť staré balíčky (ponechať posledné 2 verzie)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Vyčistiť vyrovnávaciu pamäť Pacmanu (úplne) - Upozornenie! Odstránia sa všetky stiahnuté balíčky."
+
+msgid "Cleanup Done"
+msgstr "Čistenie dokončené"
+
+msgid "Confirmation"
+msgstr "Potvrdenie"
+
+msgid "Error"
+msgstr "Chyba"
+
+msgid "Failed to apply system language:"
+msgstr "Nepodarilo sa nastaviť systémový jazyk:"
+
+msgid "Free"
+msgstr "Voľné"
+
+msgid "Info"
+msgstr "Informácie"
+
+msgid "Install Linux LTS"
+msgstr "Nainštalovať Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Nainštalovať Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Bol vybraný neplatný systémový jazyk."
+
+msgid "Language Changed"
+msgstr "Jazyk bol zmenený"
+
+msgid "N/A"
+msgstr "Nedostupné"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Nie sú vybrané žiadne možnosti čistenia Pacmanu."
+
+msgid "Open Documentation"
+msgstr "Otvoriť dokumentáciu"
+
+msgid "Open YouTube Channel"
+msgstr "Otvoriť kanál YouTube"
+
+msgid "Pacman Cleaner"
+msgstr "Čistič Pacmanu"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Úlohy čistenia Pacmanu boli dokončené."
+
+msgid "Performance Monitor"
+msgstr "Monitor výkonu"
+
+msgid "Processor:"
+msgstr "Procesor:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Odstrániť sirotie balíčky – balíčky, ktoré už nie sú potrebné žiadnym nainštalovaným balíčkom."
+
+msgid "Remove Sync Folders"
+msgstr "Odstrániť synchronizačné priečinky"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Odstrániť neinštalované balíčky z vyrovnávacej pamäte"
+
+msgid "Removing Sync Folder"
+msgstr "Odstraňovanie synchronizačného priečinka"
+
+msgid "Run Pacman Cleanup"
+msgstr "Spustiť čistenie Pacmanu"
+
+msgid "Running Command"
+msgstr "Spúšťanie príkazu"
+
+msgid "Running Pacman Cleanup"
+msgstr "Prebieha čistenie Pacmanu"
+
+msgid "Show System Info Details"
+msgstr "Zobraziť podrobnosti o systéme"
+
+msgid "Show on startup"
+msgstr "Zobraziť pri štarte"
+
+msgid "Success"
+msgstr "Úspech"
+
+msgid "Sync Cleaner"
+msgstr "Čistič synchronizácie"
+
+msgid "Sync folder removal initiated."
+msgstr "Odstránenie synchronizačného priečinka bolo spustené."
+
+msgid "System Cleaner"
+msgstr "Čistič systému"
+
+msgid "System Information"
+msgstr "Systémové informácie"
+
+msgid "System Language"
+msgstr "Systémový jazyk"
+
+msgid "System Language:"
+msgstr "Systémový jazyk:"
+
+msgid "System Updates"
+msgstr "Aktualizácie systému"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Systémový jazyk bol úspešne nastavený. Možno bude potrebné reštartovať systém, aby sa zmeny plne prejavili."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Táto akcia vyžaduje oprávnenia správcu na odstránenie synchronizačného priečinka. Môže byť vyžiadané vaše heslo."
+
+msgid "Update System (Pacman)"
+msgstr "Aktualizovať systém (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Aktualizovať systém (Yay)"
+
+msgid "Welcome"
+msgstr "Vitajte"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Vitajte v Helwan Linuxe"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Vitajte vo svete Helwan Linux! ❤️\nSme tu, aby sme vám pomohli postaviť vaše sny na najsilnejších základoch!"
+
+msgid "Yay is not installed."
+msgstr "Yay nie je nainštalovaný."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Chystáte sa spustiť nasledujúce príkazy s oprávneniami root:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nSte si istý, že chcete pokračovať?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Príkaz pkexec nebol nájdený. Uistite sa, že je nainštalovaný polkit."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal nie je nainštalovaný. Nainštalujte prosím xfce4-terminal."

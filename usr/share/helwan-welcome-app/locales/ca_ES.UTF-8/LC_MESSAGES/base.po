@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: ca_ES.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "S'ha produït un error en aplicar l'idioma del sistema:"
+
+msgid "Application Language:"
+msgstr "Idioma de l'aplicació:"
+
+msgid "Application Theme:"
+msgstr "Tema de l'aplicació:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "S'ha canviat l'idioma de l'aplicació. Alguns canvis poden requerir reiniciar l'aplicació."
+
+msgid "Apply System Language"
+msgstr "Aplicar l'idioma del sistema"
+
+msgid "Available Disk Space:"
+msgstr "Espai de disc disponible:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Netejar paquets antics (mantenir les dues últimes versions)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Netejar la memòria cau de Pacman (completa) - Atenció! Això eliminarà tots els paquets descarregats."
+
+msgid "Cleanup Done"
+msgstr "Neteja completada"
+
+msgid "Confirmation"
+msgstr "Confirmació"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Failed to apply system language:"
+msgstr "No s'ha pogut aplicar l'idioma del sistema:"
+
+msgid "Free"
+msgstr "Lliure"
+
+msgid "Info"
+msgstr "Informació"
+
+msgid "Install Linux LTS"
+msgstr "Instal·lar Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Instal·lar Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "S'ha seleccionat un idioma del sistema no vàlid."
+
+msgid "Language Changed"
+msgstr "Idioma canviat"
+
+msgid "N/A"
+msgstr "N/D"
+
+msgid "No Pacman cleanup options selected."
+msgstr "No s'han seleccionat opcions de neteja de Pacman."
+
+msgid "Open Documentation"
+msgstr "Obrir documentació"
+
+msgid "Open YouTube Channel"
+msgstr "Obrir canal de YouTube"
+
+msgid "Pacman Cleaner"
+msgstr "Netejador de Pacman"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Tasques de neteja de Pacman completades."
+
+msgid "Performance Monitor"
+msgstr "Monitor de rendiment"
+
+msgid "Processor:"
+msgstr "Processador:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Eliminar paquets orfes - Paquets que ja no són requerits per cap paquet instal·lat."
+
+msgid "Remove Sync Folders"
+msgstr "Eliminar carpetes de sincronització"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Eliminar paquets desinstal·lats de la memòria cau"
+
+msgid "Removing Sync Folder"
+msgstr "Eliminant carpeta de sincronització"
+
+msgid "Run Pacman Cleanup"
+msgstr "Executar neteja de Pacman"
+
+msgid "Running Command"
+msgstr "Executant comanda"
+
+msgid "Running Pacman Cleanup"
+msgstr "Executant neteja de Pacman"
+
+msgid "Show System Info Details"
+msgstr "Mostrar detalls de la informació del sistema"
+
+msgid "Show on startup"
+msgstr "Mostrar a l'inici"
+
+msgid "Success"
+msgstr "Èxit"
+
+msgid "Sync Cleaner"
+msgstr "Netejador de sincronització"
+
+msgid "Sync folder removal initiated."
+msgstr "S'ha iniciat l'eliminació de la carpeta de sincronització."
+
+msgid "System Cleaner"
+msgstr "Netejador del sistema"
+
+msgid "System Information"
+msgstr "Informació del sistema"
+
+msgid "System Language"
+msgstr "Idioma del sistema"
+
+msgid "System Language:"
+msgstr "Idioma del sistema:"
+
+msgid "System Updates"
+msgstr "Actualitzacions del sistema"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "L'idioma del sistema s'ha aplicat correctament. Potser caldrà reiniciar el sistema perquè els canvis tinguin efecte complet."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Aquesta acció requereix privilegis d'administrador per eliminar la carpeta de sincronització. És possible que se us demani la contrasenya."
+
+msgid "Update System (Pacman)"
+msgstr "Actualitzar sistema (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Actualitzar sistema (Yay)"
+
+msgid "Welcome"
+msgstr "Benvingut"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Benvingut a Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Benvingut al món de Helwan Linux! ❤️\nSom aquí per ajudar-te a construir els teus somnis sobre la base més sòlida!"
+
+msgid "Yay is not installed."
+msgstr "Yay no està instal·lat."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Esteu a punt d'executar les següents comandes amb privilegis de root:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nEsteu segur que voleu continuar?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "No s'ha trobat la comanda pkexec. Assegureu-vos que polkit està instal·lat."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal no està instal·lat. Si us plau, instal·leu xfce4-terminal."

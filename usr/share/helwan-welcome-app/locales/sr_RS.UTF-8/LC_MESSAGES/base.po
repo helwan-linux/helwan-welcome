@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: sr_RS.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Дошло је до грешке приликом подешавања језика система:"
+
+msgid "Application Language:"
+msgstr "Језик апликације:"
+
+msgid "Application Theme:"
+msgstr "Тема апликације:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Језик апликације је промењен. Неке промене могу захтевати поновно покретање апликације."
+
+msgid "Apply System Language"
+msgstr "Примени системски језик"
+
+msgid "Available Disk Space:"
+msgstr "Доступно простора на диску:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Очисти старе пакете (задржи последње 2 верзије)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Очисти Pacman кеш (потпуно) - Упозорење! Ово ће уклонити све преузете пакете."
+
+msgid "Cleanup Done"
+msgstr "Чишћење завршено"
+
+msgid "Confirmation"
+msgstr "Потврда"
+
+msgid "Error"
+msgstr "Грешка"
+
+msgid "Failed to apply system language:"
+msgstr "Неуспешно подешавање језика система:"
+
+msgid "Free"
+msgstr "Слободно"
+
+msgid "Info"
+msgstr "Инфо"
+
+msgid "Install Linux LTS"
+msgstr "Инсталирај Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Инсталирај Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Изабран је неважећи системски језик."
+
+msgid "Language Changed"
+msgstr "Језик је промењен"
+
+msgid "N/A"
+msgstr "Н/П"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Није изабрана ниједна опција за чишћење Pacman-а."
+
+msgid "Open Documentation"
+msgstr "Отвори документацију"
+
+msgid "Open YouTube Channel"
+msgstr "Отвори YouTube канал"
+
+msgid "Pacman Cleaner"
+msgstr "Pacman чистач"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Задаци чишћења Pacman-а су завршени."
+
+msgid "Performance Monitor"
+msgstr "Монитор перформанси"
+
+msgid "Processor:"
+msgstr "Процесор:"
+
+msgid "RAM:"
+msgstr "РАМ:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Уклони сирочад пакете – пакете који више нису потребни ниједном инсталираном пакету."
+
+msgid "Remove Sync Folders"
+msgstr "Уклони фасцикле за синхронизацију"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Уклони неинсталиране пакете из кеша"
+
+msgid "Removing Sync Folder"
+msgstr "Уклањање фасцикле за синхронизацију"
+
+msgid "Run Pacman Cleanup"
+msgstr "Покрени чишћење Pacman-а"
+
+msgid "Running Command"
+msgstr "Извршавање команде"
+
+msgid "Running Pacman Cleanup"
+msgstr "У току је чишћење Pacman-а"
+
+msgid "Show System Info Details"
+msgstr "Прикажи детаље о систему"
+
+msgid "Show on startup"
+msgstr "Прикажи при покретању"
+
+msgid "Success"
+msgstr "Успех"
+
+msgid "Sync Cleaner"
+msgstr "Чистач синхронизације"
+
+msgid "Sync folder removal initiated."
+msgstr "Покренуто уклањање фасцикле за синхронизацију."
+
+msgid "System Cleaner"
+msgstr "Системски чистач"
+
+msgid "System Information"
+msgstr "Информације о систему"
+
+msgid "System Language"
+msgstr "Системски језик"
+
+msgid "System Language:"
+msgstr "Системски језик:"
+
+msgid "System Updates"
+msgstr "Ажурирања система"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Системски језик је успешно примењен. Можда ће бити потребно да поново покренете систем да би промене ступиле на снагу."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Ова радња захтева администраторска овлашћења за уклањање фасцикле за синхронизацију. Можда ће вам бити затражена лозинка."
+
+msgid "Update System (Pacman)"
+msgstr "Ажурирај систем (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Ажурирај систем (Yay)"
+
+msgid "Welcome"
+msgstr "Добродошли"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Добродошли у Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Добродошли у свет Helwan Linux-а! ❤️\nОвде смо да вам помогнемо да изградите своје снове на најјачим темељима!"
+
+msgid "Yay is not installed."
+msgstr "Yay није инсталиран."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Спремате се да покренете следеће команде са root овлашћењима:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nДа ли сте сигурни да желите да наставите?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Команда pkexec није пронађена. Уверите се да је polkit инсталиран."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal није инсталиран. Молимо инсталирајте xfce4-terminal."

@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: mt_MT.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Seħħet żball waqt l-applikazzjoni tal-lingwa tas-sistema:"
+
+msgid "Application Language:"
+msgstr "Lingwa tal-Applikazzjoni:"
+
+msgid "Application Theme:"
+msgstr "Tema tal-Applikazzjoni:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Il-lingwa tal-applikazzjoni nbidlet. Xi bidliet jistgħu jeħtieġu li terġa’ tibda l-applikazzjoni."
+
+msgid "Apply System Language"
+msgstr "Applika l-Lingwa tas-Sistema"
+
+msgid "Available Disk Space:"
+msgstr "Spazju Disk Disponibbli:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Naddaf Pakketti Qodma (Żomm l-Aħħar 2 Verżjonijiet)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Naddaf il-Cache ta’ Pacman (Sħiħ) - Twissija! Dan se jneħħi l-pakketti kollha li tniżżlu."
+
+msgid "Cleanup Done"
+msgstr "Tindif Lest"
+
+msgid "Confirmation"
+msgstr "Konferma"
+
+msgid "Error"
+msgstr "Żball"
+
+msgid "Failed to apply system language:"
+msgstr "Ma rnexxiex tapplika l-lingwa tas-sistema:"
+
+msgid "Free"
+msgstr "Liberu"
+
+msgid "Info"
+msgstr "Informazzjoni"
+
+msgid "Install Linux LTS"
+msgstr "Installa Linux LTS"
+
+msgid "Install Linux Zen"
+msgstr "Installa Linux Zen"
+
+msgid "Invalid system language selected."
+msgstr "Intgħażlet lingwa tas-sistema invalida."
+
+msgid "Language Changed"
+msgstr "Il-Lingwa Inbidlet"
+
+msgid "N/A"
+msgstr "Mhux Applikabbli"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Ma ntgħażlu l-ebda għażliet ta’ tindif Pacman."
+
+msgid "Open Documentation"
+msgstr "Iftaħ id-Dokumentazzjoni"
+
+msgid "Open YouTube Channel"
+msgstr "Iftaħ il-Kanal YouTube"
+
+msgid "Pacman Cleaner"
+msgstr "Tindif ta’ Pacman"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Il-kompiti tat-tindif ta’ Pacman lesti."
+
+msgid "Performance Monitor"
+msgstr "Monitor tal-Prestazzjoni"
+
+msgid "Processor:"
+msgstr "Proċessur:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Neħħi Pakketti Orfni - Pakketti li m'għadhomx meħtieġa minn pakketti oħra installati."
+
+msgid "Remove Sync Folders"
+msgstr "Neħħi Fowlders tas-Sinkronizzazzjoni"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Neħħi Pakketti Mhux Installati mill-Cache"
+
+msgid "Removing Sync Folder"
+msgstr "Qed Ineħħi l-Fowlder tas-Sinkronizzazzjoni"
+
+msgid "Run Pacman Cleanup"
+msgstr "Esegwi Tindif ta’ Pacman"
+
+msgid "Running Command"
+msgstr "Qed Esegwi l-Kmand"
+
+msgid "Running Pacman Cleanup"
+msgstr "Qed Jirrekorri Tindif ta’ Pacman"
+
+msgid "Show System Info Details"
+msgstr "Uri Dettalji tas-Sistema"
+
+msgid "Show on startup"
+msgstr "Uri meta tibda"
+
+msgid "Success"
+msgstr "Suċċess"
+
+msgid "Sync Cleaner"
+msgstr "Tindif tas-Sinkronizzazzjoni"
+
+msgid "Sync folder removal initiated."
+msgstr "Il-fowlder tas-sinkronizzazzjoni beda jitneħħa."
+
+msgid "System Cleaner"
+msgstr "Tindif tas-Sistema"
+
+msgid "System Information"
+msgstr "Informazzjoni tas-Sistema"
+
+msgid "System Language"
+msgstr "Lingwa tas-Sistema"
+
+msgid "System Language:"
+msgstr "Lingwa tas-Sistema:"
+
+msgid "System Updates"
+msgstr "Aġġornamenti tas-Sistema"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Il-lingwa tas-sistema ġiet applikata b’suċċess. Tista’ jkollok bżonn terġa’ tibda s-sistema biex il-bidliet japplikaw kompletament."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Din l-azzjoni teħtieġ permessi ta’ amministratur biex tneħħi l-fowlder tas-sinkronizzazzjoni. Tista’ tintalab għall-password tiegħek."
+
+msgid "Update System (Pacman)"
+msgstr "Aġġorna s-Sistema (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Aġġorna s-Sistema (Yay)"
+
+msgid "Welcome"
+msgstr "Merħba"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Merħba f’Helwan Linux"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Merħba fid-dinja ta’ Helwan Linux! ❤️\nAħna hawn biex ngħinuk tibni l-ħolm tiegħek fuq l-aktar pedament b’saħħtu!"
+
+msgid "Yay is not installed."
+msgstr "Yay mhux installat."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Se tkun qed teżegwixxi l-kmandi li ġejjin b’privileġġi ta’ root:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nŻgur li trid tkompli?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "Il-kmand pkexec ma nstabx. Kun żgur li polkit huwa installat."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal mhuwiex installat. Jekk jogħġbok installa xfce4-terminal."
