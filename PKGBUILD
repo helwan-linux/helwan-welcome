@@ -1,8 +1,6 @@
 # Maintainer: Saeed Badrelden <saeedbadrelden2021@gmail.com>
 pkgname=hel-welcome-app
 _pkgname=hel-welcome-app
-_destname1="/etc/skel/.config/"
-_destname2="/usr/"
 pkgver=4
 pkgrel=00
 pkgdesc="Welcome application for helwanlinux"
@@ -17,11 +15,36 @@ install='readme.install'
 options=(!strip !emptydirs)
 source=(${_pkgname}::"git+${url}")
 sha256sums=('SKIP')
+
 package() {
-	install -dm755 ${pkgdir}${_licensedir}${_pkgname}
-	install -m644  ${srcdir}/${_pkgname}/LICENSE ${pkgdir}${_licensedir}${_pkgname}
-	mkdir -p "${pkgdir}${_destname1}"
-	cp -r "${srcdir}/${_pkgname}/${_destname1}/"* "${pkgdir}${_destname1}"
-	mkdir -p "${pkgdir}${_destname2}"
-	cp -r "${srcdir}/${_pkgname}/${_destname2}/"* "${pkgdir}${_destname2}"
+  # تثبيت الملف التنفيذي (سكربت بايثون) في المسار الصحيح
+  install -Dm755 "${srcdir}/${_pkgname}/NewGen/helwan-welcome-app.py" "$pkgdir/usr/bin/helwan-welcome-app"
+
+  # إنشاء مجلد تطبيقات إذا لم يكن موجودًا
+  install -dm755 "$pkgdir/usr/share/applications"
+
+  # تثبيت ملف .desktop في المسار الصحيح
+  install -Dm644 "${srcdir}/${_pkgname}/usr/share/applications/helwan-welcome-app.desktop" "$pkgdir/usr/share/applications/helwan-welcome-app.desktop"
+
+  # إنشاء مجلد أيقونات التطبيقات القابلة للتطوير إذا لم يكن موجودًا
+  install -dm755 "$pkgdir/usr/share/icons/hicolor/scalable/apps"
+  install -dm755 "$pkgdir/usr/share/icons/hicolor/512x512/apps"
+
+  # تثبيت ملفات الأيقونة في المسارات الصحيحة
+  find "${srcdir}/${_pkgname}/usr/share/hicolor" -name "helwan-welcom.*" -print0 | while IFS= read -r -d $'\0' file; do
+    if [[ "$(basename "$file")" == "helwan-welcom.svg" ]]; then
+      install -Dm644 "$file" "$pkgdir/usr/share/icons/hicolor/scalable/apps/helwan-welcome.svg"
+    elif [[ "$(basename "$file")" == "helwan-welcom.png" ]]; then
+      install -Dm644 "$file" "$pkgdir/usr/share/icons/hicolor/512x512/apps/helwan-welcome.png"
+    fi
+  done
+
+  # نسخ ملفات الترجمة إذا كانت موجودة
+  find "${srcdir}/${_pkgname}/usr/share/helwan-welcome-app/locales" -name "*.mo" -print0 | while IFS= read -r -d $'\0' file; do
+    install -Dm644 "$file" "$pkgdir/usr/share/locale/$(dirname "$(echo "$file" | sed 's|.*/||')")/LC_MESSAGES/$(basename "$file")"
+  done
+
+  # نسخ أي ملفات ترخيص أخرى بشكل صحيح
+  install -dm755 "$pkgdir/usr/share/licenses/${pkgname}"
+  install -Dm644 "${srcdir}/${_pkgname}/LICENSE" "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
 }
