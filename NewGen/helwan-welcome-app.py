@@ -536,6 +536,10 @@ class WelcomeApp(QWidget):
 		dev_btn = self.create_button(_("Install Development Tools"),
 									 lambda: self.run_terminal_cmd("sudo pacman -S --needed base-devel git cmake"))
 		layout.addWidget(dev_btn)
+		
+		prog_btn = self.create_button(_("Install Programming Languages"),
+									 lambda: self.run_terminal_cmd("sudo pacman -S --needed rust lua"))
+		layout.addWidget(prog_btn)
 
 		# Multimedia
 		multimedia_btn = self.create_button(_("Install Multimedia Suite"),
