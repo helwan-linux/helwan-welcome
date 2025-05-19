@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # CREATED BY Saeed Badrelden <saeedbadrelden2021@gmail.com>
+# Helwan Welcome App for Helwan Linux Distro
 import sys
 import os
 import webbrowser
@@ -327,15 +328,18 @@ class WelcomeApp(QWidget):
 
 	def init_ui(self):
 		main_layout = QVBoxLayout(self)
-		self.tabs.addTab(self.create_main_tab(), _("Welcome"))
-		self.tabs.addTab(self.create_cleaner_tab(), _("System Cleaner"))
-		# هنا ممكن نضيف تبويب جديد لو عايزين نضيف ميزة حذف مجلدات المزامنة
-		# self.tabs.addTab(self.create_sync_cleaner_tab(), _("Sync Cleaner"))
+		self.tabs = QTabWidget()
+
+		self.tabs.addTab(self.create_main_tab(), self.tr("Welcome"))
+		self.tabs.addTab(self.create_cleaner_tab(), self.tr("System Cleaner"))
+		self.tabs.addTab(self.create_software_groups_tab(), self.tr("Software Groups"))  # تبويب جديد
+
 		main_layout.addWidget(self.tabs)
 
 		self.setLayout(main_layout)
-		self.setWindowTitle(_("Welcome to Helwan Linux"))
+		self.setWindowTitle(self.tr("Welcome to Helwan Linux"))
 		self.setGeometry(100, 100, 600, 400)
+
 
 	# دالة لإنشاء تبويب منظف المزامنة (لسه هنضيف جواه عناصر واجهة المستخدم)
 	def create_sync_cleaner_tab(self):
@@ -519,6 +523,46 @@ class WelcomeApp(QWidget):
 		cleaner_layout.addWidget(cleaner_group)
 		cleaner_layout.addStretch(1)
 		return self.cleaner_tab
+		
+	def create_software_groups_tab(self):
+		self.software_tab = QWidget()
+		software_tab_layout = QVBoxLayout(self.software_tab)
+		software_tab_layout.setAlignment(Qt.AlignTop)
+
+		group_box = QGroupBox(_("Software Groups Installer"))
+		layout = QVBoxLayout()
+
+		# Development Tools
+		dev_btn = self.create_button(_("Install Development Tools"),
+									 lambda: self.run_terminal_cmd("sudo pacman -S --needed base-devel git cmake"))
+		layout.addWidget(dev_btn)
+
+		# Multimedia
+		multimedia_btn = self.create_button(_("Install Multimedia Suite"),
+											lambda: self.run_terminal_cmd("sudo pacman -S --needed vlc gimp audacity"))
+		layout.addWidget(multimedia_btn)
+
+		# Internet Tools
+		internet_btn = self.create_button(_("Install Internet Tools"),
+										  lambda: self.run_terminal_cmd("sudo pacman -S --needed firefox filezilla transmission-gtk"))
+		layout.addWidget(internet_btn)
+
+		# Office Suite
+		office_btn = self.create_button(_("Install Office Suite"),
+										lambda: self.run_terminal_cmd("sudo pacman -S --needed libreoffice-fresh hunspell-en_US"))
+		layout.addWidget(office_btn)
+
+		# Extra: Gaming Tools
+		gaming_btn = self.create_button(_("Install Gaming Tools"),
+										lambda: self.run_terminal_cmd("sudo pacman -S --needed steam lutris"))
+		layout.addWidget(gaming_btn)
+
+		group_box.setLayout(layout)
+		software_tab_layout.addWidget(group_box)
+		software_tab_layout.addStretch(1)
+
+		return self.software_tab
+
 
 	def run_pacman_cleanup(self):
 		commands = []
@@ -663,11 +707,7 @@ class WelcomeApp(QWidget):
 					f"{_('Failed to apply system language:')} {error}")
 		else:
 			QMessageBox.critical(self, _("Error"), _("Invalid system language selected."))
-
-
-
 	
-
 	def activate_locale_manually(self, lang_code):
 		locale_gen_path = "/etc/locale.gen"
 		locale_default_path = "/etc/default/locale"
@@ -708,8 +748,6 @@ class WelcomeApp(QWidget):
 		except Exception as e:
 			return False, str(e)
 
-
-
 	def open_url(self, url):
 		webbrowser.open(url)
 
@@ -724,8 +762,6 @@ class WelcomeApp(QWidget):
 			])
 		except FileNotFoundError:
 			QMessageBox.critical(self, _("Error"), _("xfce4-terminal is not installed. Please install xfce4-terminal."))
-
-
 
 	def _execute_command(self, command, dialog):
 		process = subprocess.Popen(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
