@@ -182,7 +182,7 @@ class WelcomeApp(QWidget):
 		if self.app_lang_combobox:
 			saved_language_index = self.settings.value("language_index", 0, type=int)
 			self.app_lang_combobox.setCurrentIndex(saved_language_index)
-			self.change_language(self.app_lang_combobox.currentText())
+			#self.change_language(self.app_lang_combobox.currentText())
 
 		# استرجاع السمة المحفوظة وتطبيقها
 		if self.theme_combobox:
@@ -415,7 +415,7 @@ class WelcomeApp(QWidget):
 			label_text=_("Application Language:"),
 			items=list(APP_LANGUAGES.values()),
 			default=APP_LANGUAGES.get(self.language_code, 'English'),
-			on_change=self.change_language
+			#on_change=self.change_language
 		)
 		controls.addLayout(app_lang_layout)
 
@@ -617,16 +617,22 @@ class WelcomeApp(QWidget):
 	def change_language(self, language_name):
 		for code, name in APP_LANGUAGES.items():
 			if name == language_name:
+				if code == getattr(self, 'language_code', None):
+					return  # نفس اللغة الحالية، لا داعي للتغيير أو عرض الرسالة
+
 				new_gettext = load_translation(code)
 				global _
 				_ = new_gettext
 				self.language_code = code
 				self.retranslate_ui()
 				self.settings.setValue("language_index", self.app_lang_combobox.currentIndex())
+
+				# عرض الرسالة مرة واحدة فقط بعد تغيير فعلي
 				QMessageBox.information(self, _("Language Changed"),
 										_("Application language has been changed. Some changes may require an application restart."))
 				return
 		print(f"Warning: Language code not found for {language_name}")
+
 
 	def save_theme(self, theme_name):
 		self.current_theme = theme_name
