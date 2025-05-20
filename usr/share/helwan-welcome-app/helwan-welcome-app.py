@@ -415,7 +415,7 @@ class WelcomeApp(QWidget):
 			label_text=_("Application Language:"),
 			items=list(APP_LANGUAGES.values()),
 			default=APP_LANGUAGES.get(self.language_code, 'English'),
-			#on_change=self.change_language
+			on_change=self.change_language
 		)
 		controls.addLayout(app_lang_layout)
 
