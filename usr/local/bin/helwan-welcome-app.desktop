@@ -10,4 +10,4 @@ Type=Application
 Categories=Accessories;SystemTools;Settings;Utility;
 Keywords=welcome;tool;helwan-welcome;settings;
 StartupNotify=true
-Name[en_US]=helwan-welcome.desktop
+Name[en_US]=Welcome
