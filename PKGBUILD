@@ -17,6 +17,11 @@ source=(${_pkgname}::"git+${url}")
 sha256sums=('SKIP')
 
 package() {
+
+    # تثبيت مجلد التطبيق بالكامل إلى /usr/share
+    install -Dm755 -d "$pkgdir/usr/share/helwan-welcome-app"
+    cp -r "${srcdir}/${_pkgname}/usr/share/helwan-welcome-app/" "$pkgdir/usr/share/"
+    
   # تثبيت الملف التنفيذي (سكربت بايثون) في المسار الصحيح
   install -Dm755 "${srcdir}/${_pkgname}/usr/share/helwan-welcome-app/helwan-welcome-app.py" "$pkgdir/usr/bin/helwan-welcome-app"
 
