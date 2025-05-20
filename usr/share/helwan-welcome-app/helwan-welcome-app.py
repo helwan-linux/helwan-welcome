@@ -19,14 +19,13 @@ import shutil
 
 # === إعداد الترجمة ===
 def load_translation(language_code):
-	current_dir = os.path.dirname(os.path.abspath(__file__))
-	locale_path = os.path.join(current_dir, 'locales')
-	try:
-		translation = gettext.translation('base', localedir=locale_path, languages=[language_code])
-		translation.install()
-		return translation.gettext
-	except FileNotFoundError:
-		return lambda s: s
+    locale_path = '/usr/share/locale'
+    try:
+        translation = gettext.translation('base', localedir=locale_path, languages=[language_code])
+        translation.install()
+        return translation.gettext
+    except FileNotFoundError:
+        return lambda s: s
 
 
 DEFAULT_LANGUAGE_CODE = 'en'
@@ -180,18 +179,18 @@ class WelcomeApp(QWidget):
 
 	def load_settings(self):
 		# استرجاع اللغة المحفوظة وتطبيقها
-		saved_language_index = self.settings.value("language_index", 0, type=int)
 		if self.app_lang_combobox:
+			saved_language_index = self.settings.value("language_index", 0, type=int)
 			self.app_lang_combobox.setCurrentIndex(saved_language_index)
 			self.change_language(self.app_lang_combobox.currentText())
 
 		# استرجاع السمة المحفوظة وتطبيقها
-		saved_theme = self.settings.value("theme", "Default", type=str)
 		if self.theme_combobox:
+			saved_theme = self.settings.value("theme", "Default", type=str)
 			index = self.theme_combobox.findText(saved_theme)
 			if index != -1:
 				self.theme_combobox.setCurrentIndex(index)
-			self.load_theme(saved_theme)
+				self.load_theme(saved_theme)
 
 	def check_startup_enabled(self):
 		autostart_dir = os.path.expanduser("~/.config/autostart")
@@ -336,6 +335,8 @@ class WelcomeApp(QWidget):
 		self.setLayout(main_layout)
 		self.setWindowTitle(_("Welcome to Helwan Linux"))
 		self.setGeometry(100, 100, 600, 400)
+
+		self.load_settings()
 
 	# دالة لإنشاء تبويب منظف المزامنة (لسه هنضيف جواه عناصر واجهة المستخدم)
 	def create_sync_cleaner_tab(self):
