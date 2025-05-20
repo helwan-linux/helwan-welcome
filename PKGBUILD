@@ -18,7 +18,7 @@ sha256sums=('SKIP')
 
 package() {
   # تثبيت الملف التنفيذي (سكربت بايثون) في المسار الصحيح
-  install -Dm755 "${srcdir}/${_pkgname}/NewGen/helwan-welcome-app.py" "$pkgdir/usr/bin/helwan-welcome-app"
+  install -Dm755 "${srcdir}/${_pkgname}/usr/share/helwan-welcome-app/helwan-welcome-app.py" "$pkgdir/usr/bin/helwan-welcome-app"
 
   # إنشاء مجلد تطبيقات إذا لم يكن موجودًا
   install -dm755 "$pkgdir/usr/share/applications"
@@ -40,9 +40,10 @@ package() {
   done
 
   # نسخ ملفات الترجمة إذا كانت موجودة
-  find "${srcdir}/${_pkgname}/usr/share/helwan-welcome-app/locales" -name "*.mo" -print0 | while IFS= read -r -d $'\0' file; do
-    install -Dm644 "$file" "$pkgdir/usr/share/locale/$(dirname "$(echo "$file" | sed 's|.*/||')")/LC_MESSAGES/$(basename "$file")"
-  done
+  find "${srcdir}/${_pkgname}/usr/share/helwan-welcome-app/locales" -name "base.mo" -print0 | while IFS= read -r -d $'\0' file; do
+  lang_dir=$(dirname "$(dirname "$(echo "$file" | sed 's|.*/||')")")
+  install -Dm644 "$file" "$pkgdir/usr/share/locale/$lang_dir/LC_MESSAGES/base.mo"
+done
 
   # نسخ أي ملفات ترخيص أخرى بشكل صحيح
   install -dm755 "$pkgdir/usr/share/licenses/${pkgname}"
