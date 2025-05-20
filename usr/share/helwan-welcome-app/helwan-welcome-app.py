@@ -182,7 +182,7 @@ class WelcomeApp(QWidget):
 		if self.app_lang_combobox:
 			saved_language_index = self.settings.value("language_index", 0, type=int)
 			self.app_lang_combobox.setCurrentIndex(saved_language_index)
-			#self.change_language(self.app_lang_combobox.currentText())
+			self.change_language(self.app_lang_combobox.currentText())
 
 		# استرجاع السمة المحفوظة وتطبيقها
 		if self.theme_combobox:
