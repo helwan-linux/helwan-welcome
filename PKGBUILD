@@ -1,8 +1,8 @@
 # Maintainer: Saeed Badrelden <saeedbadrelden2021@gmail.com>
 pkgname=hel-welcome-app
 _pkgname=hel-welcome-app
-pkgver=4
-pkgrel=00
+pkgver=3
+pkgrel=02
 pkgdesc="Welcome application for helwanlinux"
 arch=('any')
 url="https://github.com/helwan-linux/helwan-welcome"
@@ -45,8 +45,8 @@ package() {
   done
 
   # نسخ ملفات الترجمة إذا كانت موجودة
-  find "${srcdir}/${_pkgname}/usr/share/helwan-welcome-app/locales" -name "base.mo" -print0 | while IFS= read -r -d $'\0' file; do
-  lang_dir=$(dirname "$(dirname "$(echo "$file" | sed 's|.*/||')")")
+find "${srcdir}/${_pkgname}/usr/share/helwan-welcome-app/locales" -name "base.mo" -print0 | while IFS= read -r -d $'\0' file; do
+  lang_dir=$(basename "$(dirname "$(dirname "$file")")")
   install -Dm644 "$file" "$pkgdir/usr/share/locale/$lang_dir/LC_MESSAGES/base.mo"
 done
 
