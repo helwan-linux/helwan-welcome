@@ -75,6 +75,7 @@ SYSTEM_LANGUAGES = languages = {
 	'sk_SK.UTF-8': 'Slovenčina (Slovensko)',       # السلوفاكية
 	'mt_MT.UTF-8': 'Malti (Malta)',                # المالطية
 	'sq_AL.UTF-8': 'Shqip (Shqipëri)',             # الألبانية
+	'mn_MN.UTF-8': 'Монгол (Монгол)',
 }
 
 
@@ -122,6 +123,7 @@ APP_LANGUAGES = languages = {
 	'sk_SK.UTF-8': 'Slovenčina (Slovensko)',       # السلوفاكية
 	'mt_MT.UTF-8': 'Malti (Malta)',                # المالطية
 	'sq_AL.UTF-8': 'Shqip (Shqipëri)',             # الألبانية
+	'mn_MN.UTF-8': 'Монгол (Монгол)',
 }
 
 
