@@ -1,0 +1,174 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: Helwan Linux\n"
+"Language: mn_MN.UTF-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+msgid "An error occurred while applying system language:"
+msgstr "Системийн хэлийг тохируулах явцад алдаа гарлаа:"
+
+msgid "Application Language:"
+msgstr "Аппликейшний хэл:"
+
+msgid "Application Theme:"
+msgstr "Аппликейшний сэдэв:"
+
+msgid "Application language has been changed. Some changes may require an application restart."
+msgstr "Аппликейшний хэл өөрчлөгдлөө. Зарим өөрчлөлт аппликейшнийг дахин эхлүүлэхийг шаардаж магадгүй."
+
+msgid "Apply System Language"
+msgstr "Системийн хэлийг хэрэглэх"
+
+msgid "Available Disk Space:"
+msgstr "Боломжтой дискийн зай:"
+
+msgid "Clean Old Packages (Keep Last 2 Versions)"
+msgstr "Хуучин багцуудыг цэвэрлэх (Сүүлийн 2 хувилбарыг хадгалах)"
+
+msgid "Clean Pacman Cache (Full) - Warning! This will remove all downloaded packages."
+msgstr "Pacman кэшийг цэвэрлэх (Бүрэн) - Анхааруулга! Энэ нь татаж авсан бүх багцуудыг устгах болно."
+
+msgid "Cleanup Done"
+msgstr "Цэвэрлэгээ дууслаа"
+
+msgid "Confirmation"
+msgstr "Баталгаажуулалт"
+
+msgid "Error"
+msgstr "Алдаа"
+
+msgid "Failed to apply system language:"
+msgstr "Системийн хэлийг хэрэглэхэд алдаа гарлаа:"
+
+msgid "Free"
+msgstr "Чөлөөт"
+
+msgid "Info"
+msgstr "Мэдээлэл"
+
+msgid "Install Linux LTS"
+msgstr "Linux LTS суулгах"
+
+msgid "Install Linux Zen"
+msgstr "Linux Zen суулгах"
+
+msgid "Invalid system language selected."
+msgstr "Хүчингүй системийн хэл сонгогдсон."
+
+msgid "Language Changed"
+msgstr "Хэл өөрчлөгдсөн"
+
+msgid "N/A"
+msgstr "Байхгүй"
+
+msgid "No Pacman cleanup options selected."
+msgstr "Pacman цэвэрлэх сонголт хийгдээгүй."
+
+msgid "Open Documentation"
+msgstr "Баримт бичиг нээх"
+
+msgid "Open YouTube Channel"
+msgstr "YouTube суваг нээх"
+
+msgid "Pacman Cleaner"
+msgstr "Pacman Цэвэрлэгч"
+
+msgid "Pacman cleanup tasks completed."
+msgstr "Pacman цэвэрлэх ажлууд дууслаа."
+
+msgid "Performance Monitor"
+msgstr "Гүйцэтгэлийн хяналт"
+
+msgid "Processor:"
+msgstr "Процессор:"
+
+msgid "RAM:"
+msgstr "RAM:"
+
+msgid "Remove Orphan Packages - Packages that are no longer required by any installed package."
+msgstr "Өнчин багцуудыг устгах - Суулгасан ямар ч багцад шаардлагагүй болсон багцууд."
+
+msgid "Remove Sync Folders"
+msgstr "Синк хавтасуудыг устгах"
+
+msgid "Remove Uninstalled Packages from Cache"
+msgstr "Суулгаагүй багцуудыг кэшээс устгах"
+
+msgid "Removing Sync Folder"
+msgstr "Синк хавтасыг устгаж байна"
+
+msgid "Run Pacman Cleanup"
+msgstr "Pacman цэвэрлэгээг ажиллуулах"
+
+msgid "Running Command"
+msgstr "Тушаалыг ажиллуулж байна"
+
+msgid "Running Pacman Cleanup"
+msgstr "Pacman цэвэрлэгээг ажиллуулж байна"
+
+msgid "Show System Info Details"
+msgstr "Системийн мэдээллийн дэлгэрэнгүйг харуулах"
+
+msgid "Show on startup"
+msgstr "Эхлүүлэх үед харуулах"
+
+msgid "Success"
+msgstr "Амжилттай"
+
+msgid "Sync Cleaner"
+msgstr "Синк Цэвэрлэгч"
+
+msgid "Sync folder removal initiated."
+msgstr "Синк хавтасыг устгах үйл явц эхэлсэн."
+
+msgid "System Cleaner"
+msgstr "Системийн Цэвэрлэгч"
+
+msgid "System Information"
+msgstr "Системийн мэдээлэл"
+
+msgid "System Language"
+msgstr "Системийн хэл"
+
+msgid "System Language:"
+msgstr "Системийн хэл:"
+
+msgid "System Updates"
+msgstr "Системийн шинэчлэлтүүд"
+
+msgid "System language applied successfully. You might need to restart your system for the changes to take full effect."
+msgstr "Системийн хэл амжилттай хэрэглэгдлээ. Өөрчлөлтүүд бүрэн хэрэгжихийн тулд та системээ дахин эхлүүлэх шаардлагатай байж магадгүй."
+
+msgid "This action requires administrator privileges to remove the sync folder. You might be asked for your password."
+msgstr "Энэ үйлдэл нь синк хавтасыг устгахын тулд админ эрх шаарддаг. Танаас нууц үгээ асууж магадгүй."
+
+msgid "Update System (Pacman)"
+msgstr "Системийг шинэчлэх (Pacman)"
+
+msgid "Update System (Yay)"
+msgstr "Системийг шинэчлэх (Yay)"
+
+msgid "Welcome"
+msgstr "Тавтай морил"
+
+msgid "Welcome to Helwan Linux"
+msgstr "Helwan Linux-т тавтай морил"
+
+msgid "Welcome to the world of Helwan Linux! ❤️\nWe are here to help you build your dreams on the strongest foundation!"
+msgstr "Helwan Linux-ийн ертөнцөд тавтай морил! ❤️\nБид таны мөрөөдлийг хамгийн бат бөх суурин дээр бүтээхэд туслахад бэлэн байна!"
+
+msgid "Yay is not installed."
+msgstr "Yay суулгагдаагүй байна."
+
+msgid "You are about to run the following commands with root privileges:\n\n"
+msgstr "Та дараах командуудыг root эрхээр ажиллуулах гэж байна:\n\n"
+
+msgid "\n\nAre you sure you want to continue?"
+msgstr "\n\nТа үргэлжлүүлэхдээ итгэлтэй байна уу?"
+
+msgid "pkexec command not found. Ensure polkit is installed."
+msgstr "pkexec команд олдсонгүй. polkit суулгагдсан эсэхийг шалгана уу."
+
+msgid "xfce4-terminal is not installed. Please install xfce4-terminal."
+msgstr "xfce4-terminal суулгагдаагүй байна. xfce4-terminal-ийг суулгана уу."
