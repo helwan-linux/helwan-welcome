@@ -663,28 +663,22 @@ class WelcomeApp(QWidget):
 				break
 
 		if lang_code:
-			success, error = self.activate_locale_manually(lang_code)
-			if success:
-				QMessageBox.information(self, _("System Language"),
-					_("System language applied successfully. You might need to restart your system for the changes to take full effect."))
-			else:
-				QMessageBox.critical(self, _("Error"),
-					f"{_('Failed to apply system language:')} {error}")
-		else:
+			try:
+				process = subprocess.Popen(["pkexec", "localectl", "set-locale", f"LANG={lang_code}"],
+										   stdout=subprocess.PIPE,
+										   stderr=subprocess.PIPE)
+				stdout, stderr = process.communicate()
+				if process.returncode == 0:
+					QMessageBox.information(self, _("System Language"),
+											_("System language applied successfully. You might need to restart your system for the changes to take full effect."))
+				else:
+					QMessageBox.critical(self, _("Error"), f"{_('Failed to apply system language:')} {stderr.decode()}")
+			except FileNotFoundError:
+				QMessageBox.critical(self, _("Error"), _("pkexec command not found. Ensure polkit is installed."))
+			except Exception as e:
+				QMessageBox.critical(self, _("Error"), f"{_('An error occurred while applying system language:')} {e}")
+		else:  # <-- هذا هو السطر 432
 			QMessageBox.critical(self, _("Error"), _("Invalid system language selected."))
-	
-
-
-
-	def activate_locale_manually(self, lang_code):
-		try:
-			cmd = f"sudo bash -c 'sed -i \"/^{lang_code}.UTF-8 UTF-8/ s/^#//\" /etc/locale.gen && locale-gen && echo LANG={lang_code}.UTF-8 > /etc/default/locale'"
-			subprocess.Popen([
-				"xfce4-terminal", "--title=Apply System Language", "--hold", "-e", cmd
-			])
-			return True, None
-		except Exception as e:
-			return False, str(e)
 
 
 	def open_url(self, url):
