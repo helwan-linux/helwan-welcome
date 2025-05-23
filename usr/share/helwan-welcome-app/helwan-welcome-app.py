@@ -677,81 +677,14 @@ class WelcomeApp(QWidget):
 
 
 	def activate_locale_manually(self, lang_code):
-	    locale_gen_path = "/etc/locale.gen"
-	    locale_default_path = "/etc/default/locale"
-	    locale_line = f"{lang_code}.UTF-8 UTF-8"
-	
-	    try:
-	        # ✅ تحقق من صلاحية sudo مرة واحدة فقط
-	        try:
-	            subprocess.run(["sudo", "-v"], check=True)
-	        except subprocess.CalledProcessError:
-	            return False, "You do not have sudo privileges or password was incorrect."
-	
-	        # ✅ تحقق من وجود الملف
-	        if not os.path.exists(locale_gen_path):
-	            return False, f"{locale_gen_path} does not exist. Cannot activate locale."
-	
-	        # ✅ قراءة محتوى /etc/locale.gen
-	        try:
-	            result = subprocess.run(["sudo", "cat", locale_gen_path], capture_output=True, text=True, check=True)
-	            lines = result.stdout.splitlines()
-	        except subprocess.CalledProcessError as e:
-	            return False, f"Failed to read {locale_gen_path} with sudo: {e}"
-	
-	        # ✅ تعديل السطر المطلوب
-	        line_exists = False
-	        for i, line in enumerate(lines):
-	            if locale_line in line:
-	                line_exists = True
-	                if line.lstrip().startswith("#"):
-	                    lines[i] = line.replace("#", "", 1)
-	                break
-	
-	        if not line_exists:
-	            lines.append(locale_line)
-	
-	        new_content = "\n".join(lines) + "\n"
-	
-	        # ✅ كتابة التعديلات إلى locale.gen
-	        try:
-	            process = subprocess.run(
-	                ["sudo", "tee", locale_gen_path],
-	                input=new_content.encode('utf-8'),
-	                check=True,
-	                capture_output=True
-	            )
-	            if process.stderr:
-	                print(f"Stderr from tee: {process.stderr.decode('utf-8')}")
-	        except subprocess.CalledProcessError as e:
-	            return False, f"Failed to write to {locale_gen_path} with sudo: {e.stderr.decode('utf-8')}"
-	
-	        # ✅ تشغيل locale-gen
-	        try:
-	            subprocess.check_call(["sudo", "locale-gen"])
-	        except subprocess.CalledProcessError as e:
-	            return False, f"Failed to run 'sudo locale-gen': {str(e)}"
-	        except FileNotFoundError:
-	            return False, "Error: 'sudo' command not found. Make sure sudo is installed and in your PATH."
-	
-	        # ✅ كتابة اللغة الافتراضية في /etc/default/locale
-	        locale_default_content = f'LANG="{lang_code}.UTF-8"\n'
-	        try:
-	            process = subprocess.run(
-	                ["sudo", "tee", locale_default_path],
-	                input=locale_default_content.encode('utf-8'),
-	                check=True,
-	                capture_output=True
-	            )
-	            if process.stderr:
-	                print(f"Stderr from tee for default locale: {process.stderr.decode('utf-8')}")
-	        except subprocess.CalledProcessError as e:
-	            return False, f"Failed to write to {locale_default_path} with sudo: {e.stderr.decode('utf-8')}"
-	
-	        return True, None
-	
-	    except Exception as e:
-	        return False, str(e)
+		try:
+			cmd = f"sudo bash -c 'sed -i \"/^{lang_code}.UTF-8 UTF-8/ s/^#//\" /etc/locale.gen && locale-gen && echo LANG={lang_code}.UTF-8 > /etc/default/locale'"
+			subprocess.Popen([
+				"xfce4-terminal", "--title=Apply System Language", "--hold", "-e", cmd
+			])
+			return True, None
+		except Exception as e:
+			return False, str(e)
 
 
 	def open_url(self, url):
