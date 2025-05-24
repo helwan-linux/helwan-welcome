@@ -649,12 +649,35 @@ class WelcomeApp(QWidget):
 			return False
 
 	def install_linux_lts(self):
-		self.run_terminal_cmd("pkexec pacman -S --needed linux-lts linux-lts-headers")
-		self.run_terminal_cmd("pkexec grub-mkconfig -o /boot/grub/grub.cfg")
+		if self.run_terminal_cmd("pacman -Q linux-lts") == 0:
+			print("Linux LTS kernel is already installed.")
+		else:
+			self.run_terminal_cmd("pkexec pacman -S --needed linux-lts linux-lts-headers")
+			print("Linux LTS kernel installed successfully.")
+		
+		if self.run_terminal_cmd("which update-grub") == 0:
+			self.run_terminal_cmd("pkexec update-grub")
+		else:
+			self.run_terminal_cmd("pkexec grub-mkconfig -o /boot/grub/grub.cfg")
+		
+		print("GRUB updated successfully.")
+
 
 	def install_linux_zen(self):
-		self.run_terminal_cmd("pkexec pacman -S --needed linux-zen linux-zen-headers")
-		self.run_terminal_cmd("pkexec grub-mkconfig -o /boot/grub/grub.cfg")
+		# تحقق من وجود الحزمة قبل التثبيت
+		if self.run_terminal_cmd("pacman -Q linux-zen") == 0:
+			print("Linux Zen kernel is already installed.")
+		else:
+			self.run_terminal_cmd("pkexec pacman -S --needed linux-zen linux-zen-headers")
+			print("Linux Zen kernel installed successfully.")
+		
+		# تحديث grub
+		if self.run_terminal_cmd("which update-grub") == 0:
+			self.run_terminal_cmd("pkexec update-grub")
+		else:
+			self.run_terminal_cmd("pkexec grub-mkconfig -o /boot/grub/grub.cfg")
+		
+		print("GRUB updated successfully.")
 
 	def apply_system_language(self):
 		selected_lang_name = self.system_language_combobox.currentText()
