@@ -650,9 +650,11 @@ class WelcomeApp(QWidget):
 
 	def install_linux_lts(self):
 		self.run_terminal_cmd("pkexec pacman -S --needed linux-lts linux-lts-headers")
+		self.run_terminal_cmd("pkexec grub-mkconfig -o /boot/grub/grub.cfg")
 
 	def install_linux_zen(self):
 		self.run_terminal_cmd("pkexec pacman -S --needed linux-zen linux-zen-headers")
+		self.run_terminal_cmd("pkexec grub-mkconfig -o /boot/grub/grub.cfg")
 
 	def apply_system_language(self):
 		selected_lang_name = self.system_language_combobox.currentText()
