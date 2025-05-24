@@ -2,7 +2,7 @@
 pkgname=hel-welcome-app
 _pkgname=hel-welcome-app
 pkgver=3
-pkgrel=02
+pkgrel=06
 pkgdesc="Welcome application for helwanlinux"
 arch=('any')
 url="https://github.com/helwan-linux/helwan-welcome"
