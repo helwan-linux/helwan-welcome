@@ -648,36 +648,86 @@ class WelcomeApp(QWidget):
 		except FileNotFoundError:
 			return False
 
+	
+
 	def install_linux_lts(self):
-		if self.run_terminal_cmd("pacman -Q linux-lts") == 0:
-			print("Linux LTS kernel is already installed.")
-		else:
-			self.run_terminal_cmd("pkexec pacman -S --needed linux-lts linux-lts-headers")
-			print("Linux LTS kernel installed successfully.")
-		
-		if self.run_terminal_cmd("which update-grub") == 0:
-			self.run_terminal_cmd("pkexec update-grub")
-		else:
-			self.run_terminal_cmd("pkexec grub-mkconfig -o /boot/grub/grub.cfg")
-		
-		print("GRUB updated successfully.")
+		# أمر التثبيت
+		cmd = (
+			"pkexec bash -c '"
+			"pacman -S --needed linux-lts linux-lts-headers && "
+			"if pacman -Qs linux-lts > /dev/null; then "
+			"echo \"linux-lts installed successfully.\"; "
+			"grub-mkconfig -o /boot/grub/grub.cfg; "
+			"else "
+			"echo \"Failed to install linux-lts.\" >&2; exit 1; "
+			"fi'"
+		)
+
+		print("Running command:", cmd)  # دي هتطبع الأمر قبل تشغيله
+
+		subprocess.run(cmd, shell=True)
+
+		# نسأل المستخدم بعد انتهاء التثبيت
+		reply = QMessageBox.question(
+			self,
+			_("Set LTS as default"),
+			_("Do you want to make the LTS kernel the default boot option?"),
+			QMessageBox.Yes | QMessageBox.No
+		)
+
+		if reply == QMessageBox.Yes:
+			# أمر ضبط الكيرنل الافتراضي
+			set_default_cmd = (
+				"pkexec bash -c '"
+				"grub-set-default \"Advanced options for Arch Linux>Arch Linux, with Linux lts\" && "
+				"grub-mkconfig -o /boot/grub/grub.cfg'"
+			)
+
+			print("Running command:", set_default_cmd)
+
+			subprocess.run(set_default_cmd, shell=True)
+
+
+
 
 
 	def install_linux_zen(self):
-		# تحقق من وجود الحزمة قبل التثبيت
-		if self.run_terminal_cmd("pacman -Q linux-zen") == 0:
-			print("Linux Zen kernel is already installed.")
-		else:
-			self.run_terminal_cmd("pkexec pacman -S --needed linux-zen linux-zen-headers")
-			print("Linux Zen kernel installed successfully.")
-		
-		# تحديث grub
-		if self.run_terminal_cmd("which update-grub") == 0:
-			self.run_terminal_cmd("pkexec update-grub")
-		else:
-			self.run_terminal_cmd("pkexec grub-mkconfig -o /boot/grub/grub.cfg")
-		
-		print("GRUB updated successfully.")
+		# أمر التثبيت
+		cmd = (
+			"pkexec bash -c '"
+			"pacman -S --needed linux-zen linux-zen-headers && "
+			"if pacman -Qs linux-zen > /dev/null; then "
+			"echo \"linux-zen installed successfully.\"; "
+			"grub-mkconfig -o /boot/grub/grub.cfg; "
+			"else "
+			"echo \"Failed to install linux-zen.\" >&2; exit 1; "
+			"fi'"
+		)
+
+		print("Running command:", cmd)  # دي هتطبع الأمر قبل تشغيله
+
+		subprocess.run(cmd, shell=True)
+
+		# نسأل المستخدم بعد انتهاء التثبيت
+		reply = QMessageBox.question(
+			self,
+			_("Set LTS as default"),
+			_("Do you want to make the zen kernel the default boot option?"),
+			QMessageBox.Yes | QMessageBox.No
+		)
+
+		if reply == QMessageBox.Yes:
+			# أمر ضبط الكيرنل الافتراضي
+			set_default_cmd = (
+				"pkexec bash -c '"
+				"grub-set-default \"Advanced options for Arch Linux>Arch Linux, with Linux zen\" && "
+				"grub-mkconfig -o /boot/grub/grub.cfg'"
+			)
+
+			print("Running command:", set_default_cmd)
+
+			subprocess.run(set_default_cmd, shell=True)
+
 
 	def apply_system_language(self):
 		selected_lang_name = self.system_language_combobox.currentText()
@@ -687,23 +737,56 @@ class WelcomeApp(QWidget):
 				lang_code = code
 				break
 
-		if lang_code:
-			try:
-				process = subprocess.Popen(["pkexec", "localectl", "set-locale", f"LANG={lang_code}"],
-										   stdout=subprocess.PIPE,
-										   stderr=subprocess.PIPE)
-				stdout, stderr = process.communicate()
-				if process.returncode == 0:
-					QMessageBox.information(self, _("System Language"),
-											_("System language applied successfully. You might need to restart your system for the changes to take full effect."))
-				else:
-					QMessageBox.critical(self, _("Error"), f"{_('Failed to apply system language:')} {stderr.decode()}")
-			except FileNotFoundError:
-				QMessageBox.critical(self, _("Error"), _("pkexec command not found. Ensure polkit is installed."))
-			except Exception as e:
-				QMessageBox.critical(self, _("Error"), f"{_('An error occurred while applying system language:')} {e}")
-		else:  # <-- هذا هو السطر 432
-			QMessageBox.critical(self, _("Error"), _("Invalid system language selected."))
+		if not lang_code:
+			QMessageBox.critical(self, _("Error"), _("Please select a valid system language."))
+			return
+
+		# نتأكد إن lang_code مش فيها .UTF-8 عشان ما نكررهاش
+		base_lang_code = lang_code.replace('.UTF-8', '')
+
+		# 🔍 نتحقق من اللغة الحالية باستخدام localectl
+		try:
+			current_locale_output = subprocess.check_output("localectl status", shell=True).decode()
+			if f"LANG={base_lang_code}.UTF-8" in current_locale_output:
+				QMessageBox.information(
+					self,
+					_("No Change Needed"),
+					_("The selected language is already active.")
+				)
+				return
+		except Exception as e:
+			QMessageBox.warning(self, _("Warning"), _("Could not verify current system language:\n") + str(e))
+
+		locale_line = f"{base_lang_code}.UTF-8 UTF-8"
+		cmd = (
+			'pkexec bash -c "'
+			f"sed -i 's/^#\\s*{locale_line}/{locale_line}/' /etc/locale.gen && "
+			"locale-gen && "
+			f"localectl set-locale LANG={base_lang_code}.UTF-8"
+			'"'
+		)
+
+		try:
+			process = subprocess.Popen(
+				cmd, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+			)
+			stdout, stderr = process.communicate()
+
+			if process.returncode == 0:
+				QMessageBox.information(
+					self,
+					_("Success"),
+					_("System language changed successfully. Please restart your system to apply changes.")
+				)
+			else:
+				error_message = stderr.decode().strip()
+				QMessageBox.critical(self, _("Error"), _("Failed to apply system language:\n") + error_message)
+
+		except FileNotFoundError:
+			QMessageBox.critical(self, _("Error"), _("Required system tools not found. Please ensure 'pkexec', 'sed', and 'locale-gen' are installed."))
+		except Exception as e:
+			QMessageBox.critical(self, _("Error"), _("An unexpected error occurred:\n") + str(e))
+
 
 
 	def open_url(self, url):
