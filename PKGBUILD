@@ -1,8 +1,8 @@
 # Maintainer: Saeed Badrelden <saeedbadrelden2021@gmail.com>
 pkgname=hel-welcome-app
 _pkgname=hel-welcome-app
-pkgver=3
-pkgrel=06
+pkgver=4
+pkgrel=00
 pkgdesc="Welcome application for helwanlinux"
 arch=('any')
 url="https://github.com/helwan-linux/helwan-welcome"
