@@ -478,7 +478,7 @@ class WelcomeApp(QWidget):
 
 		# System Information Buttons (Neofetch, Htop)
 		sysinfo_layout = QHBoxLayout()
-		self.neofetch_btn = self.create_button(_("Show System Info Details"), lambda: self.run_terminal_cmd("fastfetch"))
+		self.neofetch_btn = self.create_button(_("Show System Info Details"), lambda: self.run_terminal_cmd("helfetch"))
 		sysinfo_layout.addWidget(self.neofetch_btn)
 		self.htop_btn = self.create_button(_("Performance Monitor"), lambda: self.run_terminal_cmd("htop"))
 		sysinfo_layout.addWidget(self.htop_btn)
