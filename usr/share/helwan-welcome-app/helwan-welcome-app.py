@@ -660,15 +660,19 @@ class WelcomeApp(QWidget):
 			"read -r -p \"Set LTS as default kernel? (y/N): \" response && "
 			"if [[ \"$response\" =~ ^([yY][eE][sS]|[yY])$ ]]; then "
 			"grub-set-default \"Advanced options for Arch Linux>Arch Linux, with Linux lts\" && "
-			"grub-mkconfig -o /boot/grub/grub.cfg && "
 			"echo \"LTS kernel set as default.\" ; "
 			"else "
 			"echo \"LTS kernel installed but not set as default.\" ; "
 			"fi ; "
+			
+			# *** هذا السطر يضمن تحديث GRUB ليظهر الكيرنل الجديد دائمًا ***
+			"grub-mkconfig -o /boot/grub/grub.cfg && " 
+			
+			"echo \"GRUB updated. Please reboot to see changes.\" ; "
 			"exit 0"
 		)
 		
-		# *** الحل: نهرب من علامات التنصيص المزدوجة داخل الأمر ***
+		# الهروب من علامات التنصيص المزدوجة داخل الأمر
 		escaped_cmd_logic = cmd_logic.replace('"', '\\"') 
 
 		# نحتاج إلى تشغيل pkexec bash -c "..."
@@ -688,15 +692,19 @@ class WelcomeApp(QWidget):
 			"read -r -p \"Set Zen as default kernel? (y/N): \" response && "
 			"if [[ \"$response\" =~ ^([yY][eE][sS]|[yY])$ ]]; then "
 			"grub-set-default \"Advanced options for Arch Linux>Arch Linux, with Linux zen\" && "
-			"grub-mkconfig -o /boot/grub/grub.cfg && "
 			"echo \"Zen kernel set as default.\" ; "
 			"else "
 			"echo \"Zen kernel installed but not set as default.\" ; "
 			"fi ; "
+			
+			# *** هذا السطر يضمن تحديث GRUB ليظهر الكيرنل الجديد دائمًا ***
+			"grub-mkconfig -o /boot/grub/grub.cfg && " 
+			
+			"echo \"GRUB updated. Please reboot to see changes.\" ; "
 			"exit 0"
 		)
 		
-		# *** الحل: نهرب من علامات التنصيص المزدوجة داخل الأمر ***
+		# الهروب من علامات التنصيص المزدوجة داخل الأمر
 		escaped_cmd_logic = cmd_logic.replace('"', '\\"') 
 
 		# نحتاج إلى تشغيل pkexec bash -c "..."
