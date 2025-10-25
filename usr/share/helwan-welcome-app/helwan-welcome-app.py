@@ -653,82 +653,50 @@ class WelcomeApp(QWidget):
 	
 
 	def install_linux_lts(self):
-		# أمر التثبيت
-		cmd = (
-			"pkexec bash -c '"
+		# أمر التثبيت وطلب ضبط الإقلاع الافتراضي
+		install_and_set_cmd = (
 			"pacman -S --needed linux-lts linux-lts-headers && "
-			"if pacman -Qs linux-lts > /dev/null; then "
-			"echo \"linux-lts installed successfully.\"; "
-			"grub-mkconfig -o /boot/grub/grub.cfg; "
+			"echo \"Installation successful. Press 'Y' to set LTS kernel as default.\" && "
+			"read -r -p \"Set LTS as default kernel? (y/N): \" response && "
+			"if [[ \"$response\" =~ ^([yY][eE][sS]|[yY])$ ]]; then "
+			"grub-set-default \"Advanced options for Arch Linux>Arch Linux, with Linux lts\" && "
+			"grub-mkconfig -o /boot/grub/grub.cfg && "
+			"echo \"LTS kernel set as default.\" ; "
 			"else "
-			"echo \"Failed to install linux-lts.\" >&2; exit 1; "
-			"fi'"
+			"echo \"LTS kernel installed but not set as default.\" ; "
+			"fi ; "
+			"exit 0"
 		)
+		
+		# تنفيذ الأمر بأكمله في الطرفية باستخدام pkexec
+		full_command = f"pkexec bash -c '{install_and_set_cmd}'"
 
-		print("Running command:", cmd)  # دي هتطبع الأمر قبل تشغيله
-
-		subprocess.run(cmd, shell=True)
-
-		# نسأل المستخدم بعد انتهاء التثبيت
-		reply = QMessageBox.question(
-			self,
-			_("Set LTS as default"),
-			_("Do you want to make the LTS kernel the default boot option?"),
-			QMessageBox.Yes | QMessageBox.No
-		)
-
-		if reply == QMessageBox.Yes:
-			# أمر ضبط الكيرنل الافتراضي
-			set_default_cmd = (
-				"pkexec bash -c '"
-				"grub-set-default \"Advanced options for Arch Linux>Arch Linux, with Linux lts\" && "
-				"grub-mkconfig -o /boot/grub/grub.cfg'"
-			)
-
-			print("Running command:", set_default_cmd)
-
-			subprocess.run(set_default_cmd, shell=True)
+		self.run_terminal_cmd(full_command, _("Installing Linux LTS Kernel"))
 
 
 
 
 
 	def install_linux_zen(self):
-		# أمر التثبيت
-		cmd = (
-			"pkexec bash -c '"
+		# أمر التثبيت وطلب ضبط الإقلاع الافتراضي
+		install_and_set_cmd = (
 			"pacman -S --needed linux-zen linux-zen-headers && "
-			"if pacman -Qs linux-zen > /dev/null; then "
-			"echo \"linux-zen installed successfully.\"; "
-			"grub-mkconfig -o /boot/grub/grub.cfg; "
+			"echo \"Installation successful. Press 'Y' to set Zen kernel as default.\" && "
+			"read -r -p \"Set Zen as default kernel? (y/N): \" response && "
+			"if [[ \"$response\" =~ ^([yY][eE][sS]|[yY])$ ]]; then "
+			"grub-set-default \"Advanced options for Arch Linux>Arch Linux, with Linux zen\" && "
+			"grub-mkconfig -o /boot/grub/grub.cfg && "
+			"echo \"Zen kernel set as default.\" ; "
 			"else "
-			"echo \"Failed to install linux-zen.\" >&2; exit 1; "
-			"fi'"
+			"echo \"Zen kernel installed but not set as default.\" ; "
+			"fi ; "
+			"exit 0"
 		)
+		
+		# تنفيذ الأمر بأكمله في الطرفية باستخدام pkexec
+		full_command = f"pkexec bash -c '{install_and_set_cmd}'"
 
-		print("Running command:", cmd)  # دي هتطبع الأمر قبل تشغيله
-
-		subprocess.run(cmd, shell=True)
-
-		# نسأل المستخدم بعد انتهاء التثبيت
-		reply = QMessageBox.question(
-			self,
-			_("Set LTS as default"),
-			_("Do you want to make the zen kernel the default boot option?"),
-			QMessageBox.Yes | QMessageBox.No
-		)
-
-		if reply == QMessageBox.Yes:
-			# أمر ضبط الكيرنل الافتراضي
-			set_default_cmd = (
-				"pkexec bash -c '"
-				"grub-set-default \"Advanced options for Arch Linux>Arch Linux, with Linux zen\" && "
-				"grub-mkconfig -o /boot/grub/grub.cfg'"
-			)
-
-			print("Running command:", set_default_cmd)
-
-			subprocess.run(set_default_cmd, shell=True)
+		self.run_terminal_cmd(full_command, _("Installing Linux Zen Kernel"))
 
 
 	def apply_system_language(self):
