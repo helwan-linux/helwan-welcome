@@ -628,7 +628,8 @@ class WelcomeApp(QWidget):
 				self.language_code = code
 				self.retranslate_ui()
 				self.settings.setValue("language_index", self.app_lang_combobox.currentIndex())
-
+				self.settings.sync()
+				
 				# عرض الرسالة مرة واحدة فقط بعد تغيير فعلي
 				QMessageBox.information(self, _("Language Changed"),
 										_("Application language has been changed. Some changes may require an application restart."))
