@@ -32,9 +32,9 @@ DEFAULT_LANGUAGE_CODE = 'en'
 _ = load_translation(DEFAULT_LANGUAGE_CODE)
 
 # قائمة بلغات النظام المدعومة مع الأسماء المقابلة
-SYSTEM_LANGUAGES = languages = {
-	'ar_EG.UTF-8': 'العربية (مصر)',
+SYSTEM_LANGUAGES = languages = {	
 	'en_US.UTF-8': 'English (US)',
+	'ar_EG.UTF-8': 'العربية (مصر)',
 	'es_ES.UTF-8': 'Español (España)',
 	'pt_PT.UTF-8': 'Português (Portugal)',
 	'de_DE.UTF-8': 'Deutsch (Deutschland)',
@@ -81,8 +81,8 @@ SYSTEM_LANGUAGES = languages = {
 
 # قائمة لغة التطبيق بنفس الطريقة
 APP_LANGUAGES = languages = {
-	'ar_EG.UTF-8': 'العربية (مصر)',
 	'en_US.UTF-8': 'English (US)',
+	'ar_EG.UTF-8': 'العربية (مصر)',	
 	'es_ES.UTF-8': 'Español (España)',
 	'pt_PT.UTF-8': 'Português (Portugal)',
 	'de_DE.UTF-8': 'Deutsch (Deutschland)',
