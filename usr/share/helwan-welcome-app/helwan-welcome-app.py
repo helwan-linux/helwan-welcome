@@ -654,7 +654,7 @@ class WelcomeApp(QWidget):
 
 	def install_linux_lts(self):
 		# أمر التثبيت وطلب ضبط الإقلاع الافتراضي
-		install_and_set_cmd = (
+		cmd_logic = (
 			"pacman -S --needed linux-lts linux-lts-headers && "
 			"echo \"Installation successful. Press 'Y' to set LTS kernel as default.\" && "
 			"read -r -p \"Set LTS as default kernel? (y/N): \" response && "
@@ -668,8 +668,11 @@ class WelcomeApp(QWidget):
 			"exit 0"
 		)
 		
-		# تنفيذ الأمر بأكمله في الطرفية باستخدام pkexec
-		full_command = f"pkexec bash -c '{install_and_set_cmd}'"
+		# *** الحل: نهرب من علامات التنصيص المزدوجة داخل الأمر ***
+		escaped_cmd_logic = cmd_logic.replace('"', '\\"') 
+
+		# نحتاج إلى تشغيل pkexec bash -c "..."
+		full_command = f"pkexec bash -c \"{escaped_cmd_logic}\""
 
 		self.run_terminal_cmd(full_command, _("Installing Linux LTS Kernel"))
 
@@ -679,7 +682,7 @@ class WelcomeApp(QWidget):
 
 	def install_linux_zen(self):
 		# أمر التثبيت وطلب ضبط الإقلاع الافتراضي
-		install_and_set_cmd = (
+		cmd_logic = (
 			"pacman -S --needed linux-zen linux-zen-headers && "
 			"echo \"Installation successful. Press 'Y' to set Zen kernel as default.\" && "
 			"read -r -p \"Set Zen as default kernel? (y/N): \" response && "
@@ -693,8 +696,11 @@ class WelcomeApp(QWidget):
 			"exit 0"
 		)
 		
-		# تنفيذ الأمر بأكمله في الطرفية باستخدام pkexec
-		full_command = f"pkexec bash -c '{install_and_set_cmd}'"
+		# *** الحل: نهرب من علامات التنصيص المزدوجة داخل الأمر ***
+		escaped_cmd_logic = cmd_logic.replace('"', '\\"') 
+
+		# نحتاج إلى تشغيل pkexec bash -c "..."
+		full_command = f"pkexec bash -c \"{escaped_cmd_logic}\""
 
 		self.run_terminal_cmd(full_command, _("Installing Linux Zen Kernel"))
 
